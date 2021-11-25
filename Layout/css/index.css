@@ -11,4 +11,4 @@
     --text: #B0C7A9;/*text*/
     --borderCss: #2E4727;/*bordes*/
     }
-  
+ .contenedor{max-width:1200px;margin:auto;overflow:hidden;width:100%;}
