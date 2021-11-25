@@ -1,14 +1,27 @@
 /*generales para el html*/
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-:root{
-    --color1: #81C76D;/*fondos,etc*/
-    --color3: #4F7A43;/*fondos,etc*/
-    --title: #80917B;/*titulos*/
-    --text: #B0C7A9;/*text*/
-    --borderCss: #2E4727;/*bordes*/
-    }
- .contenedor{max-width:1200px;margin:auto;overflow:hidden;width:100%;}
+
+:root {
+    --color1: #81c76d;
+    /*fondos,etc*/
+    --color3: #4f7a43;
+    /*fondos,etc*/
+    --title: #80917b;
+    /*titulos*/
+    --text: #b0c7a9;
+    /*text*/
+    --borderCss: #2e4727;
+    /*bordes*/
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    width: 100%;
+}

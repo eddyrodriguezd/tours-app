@@ -1,0 +1,49 @@
+@import url("index.css");
+@keyframes carousel-slide {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        transform: translateX(-43%);
+    }
+}
+
+.carousel {
+    margin: 2rem auto;
+    padding: 2rem 0;
+    max-width: 70%;
+    overflow-x: hidden;
+    border-radius: 20px;
+    background-color: rgb(245, 245, 245);
+    box-shadow: 10px 5px 25px rgba(32, 31, 31, 2);
+}
+
+.carousel .slide {
+    width: 100%;
+    padding: 5px;
+}
+
+.carousel .slides {
+    padding-left: 0;
+    width: 175%;
+    display: flex;
+    list-style: none;
+    transition: transform 3s linear;
+    animation: carousel-slide 37s infinite linear 3s;
+}
+
+.img-empresa {
+    width: 98%;
+    height: 120px;
+    border-radius: 15px;
+    box-shadow: 10px 5px 25px rgba(45, 46, 44, 0.7);
+}
+
+.title {
+    border-top: thin solid var(--borderCss);
+    width: 350px;
+    margin: 2rem auto;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    color: var(--title);
+}
