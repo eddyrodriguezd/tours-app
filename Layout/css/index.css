@@ -12,7 +12,7 @@
     --color3: #4f7a43;
     /*fondos,etc*/
     --title: #80917b;
-    /*titulos*/
+    /*title*/
     --text: #b0c7a9;
     /*text*/
     --borderCss: #2e4727;
@@ -20,8 +20,9 @@
 }
 
 .contenedor {
+    /*para centrar elementos padres ejempl:section>div*/
+    width: 90%;
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
-    width: 100%;
 }
