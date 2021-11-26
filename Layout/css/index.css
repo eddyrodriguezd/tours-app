@@ -7,8 +7,14 @@
 :root{
     --color1: #81C76D;/*fondos,etc*/
     --color3: #4F7A43;/*fondos,etc*/
-    --title: #80917B;/*titulos*/
+    --title: #80917B;/*title*/
     --text: #B0C7A9;/*text*/
     --borderCss: #2E4727;/*bordes*/
     }
- .contenedor{max-width:1200px;margin:auto;overflow:hidden;width:100%;}
+.contenedor{/*para centrar elementos padres ejempl:section>div*/
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+        overflow: hidden;
+        
+    }
