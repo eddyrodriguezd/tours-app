@@ -1,20 +1,28 @@
 /*generales para el html*/
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-:root{
-    --color1: #81C76D;/*fondos,etc*/
-    --color3: #4F7A43;/*fondos,etc*/
-    --title: #80917B;/*title*/
-    --text: #B0C7A9;/*text*/
-    --borderCss: #2E4727;/*bordes*/
-    }
-.contenedor{/*para centrar elementos padres ejempl:section>div*/
-        width: 90%;
-        max-width: 1200px;
-        margin: auto;
-        overflow: hidden;
-        
-    }
+
+:root {
+    --color1: #81c76d;
+    /*fondos,etc*/
+    --color3: #4f7a43;
+    /*fondos,etc*/
+    --title: #80917b;
+    /*title*/
+    --text: #b0c7a9;
+    /*text*/
+    --borderCss: #2e4727;
+    /*bordes*/
+}
+
+.contenedor {
+    /*para centrar elementos padres ejempl:section>div*/
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
