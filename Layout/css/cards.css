@@ -16,6 +16,7 @@
     width: 350px;
     transition: transform .3s;
     justify-self: center;
+    position: relative;
 }
 
 .grid > article:hover {
@@ -23,10 +24,13 @@
     box-shadow: 2px 2px 26px 0px rgba(0,0,0,0.3);
 }
 
+.grid > article:hover .card-text {
+    background: #81C76D;
+}
+
 .grid > article img {
     width: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
 }
 
 .card {
@@ -40,4 +44,17 @@
 
 .card p {
     padding-bottom: 10px;
+}
+
+.card-text {
+    position: absolute;
+    bottom: 2rem;
+    width: 50%;
+    background: #fff;
+    font-family: "Gotham", sans-serif;
+    font-size: 12px;
+    padding: 6px 12px;
+    text-transform: uppercase;
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: 0px 5px 5px 0px #000;
 }
