@@ -1,0 +1,168 @@
+@import url("index.css");
+
+section{
+     width: 100vw;
+    height: 100vh;
+    display: flex;
+
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #eeb2e1 100%);
+}
+section .formLogin{
+    width: 45%;
+    height: inherit;
+display: flex;
+align-items: center;
+    margin: auto;
+
+}
+.formLogin img{
+    
+    display: block;
+    margin:10px auto;
+    height: 110px;
+}
+.formLogin form{
+    
+    margin: auto;
+    width: 70%;
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+
+    -webkit-box-shadow: 3px 3px 54px -3px rgba(46, 71, 39,0.78);
+    -moz-box-shadow: 3px 3px 54px -3px rgba(46, 71, 39,0.78);
+    box-shadow: 3px 3px 54px -3px rgba(46, 71, 39,0.78);
+}
+form .cont{
+    margin: 30px auto;
+    padding:0px 15px ;
+}
+form .cont label,form .cont input  {
+
+    outline:none;
+    border: none;
+    padding: 15px 20px;
+	border-radius: 10px;
+  margin:5px auto;
+  background-color:#f7f7f7;
+	border: 1px solid silver;
+
+	-webkit-box-shadow: inset 0 1px 5px rgba(46, 71, 39,0.2);
+	box-shadow: inset 0 1px 5px rgba(46, 71, 39,0.2), 0 1px rgba(255,255,255,.8);
+	width: 100%;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+.botton{
+
+    display: flex;
+}
+
+
+.formLogin form .btn-ingresar,.formLogin form .btn-registrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin: auto;
+    width: 40%;
+    height: 50px;
+    border-radius: 10px;
+    background: var(--color1);
+    font-size: 12px;
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    border: none;
+}
+.formLogin form .btn-ingresar:hover,.formLogin form .btn-registrar:hover {
+    background: var( --color3);
+    cursor: pointer;
+}
+
+
+section .imgBackground{
+    width: 65%;
+    height: inherit;
+    background-image: url("https://blog.naturlider.com/wp-content/uploads/2020/03/AdobeStock_309195144-post-dia-mundial-naturaleza.jpeg");
+
+}
+
+/***/
+
+.switch-button {
+    display: flex;
+    padding: 20px;
+    margin: auto;
+}
+.switch-button .switch-button__checkbox {
+    display: none;
+}
+.switch-button .switch-button__label {
+    cursor: pointer;
+    background-color: #941600;
+    width: 2rem;
+    height: 1rem;
+    border-radius: 2rem;
+    display: inline-block;
+    position: relative;
+}
+.switch-button .switch-button__label:before {
+    transition: .2s;
+    display: block;
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    content: '';
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 0px 1px #000;
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label {
+    background-color: var(--color3);
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label:before {
+    transform: translateX(1rem);
+}
+.switch-button  h4{
+
+    margin-left: 20px;
+
+}
+/**/
+
+@media (max-width:1000px){
+    section{  
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+   background-image: url("https://blog.naturlider.com/wp-content/uploads/2020/03/AdobeStock_309195144-post-dia-mundial-naturaleza.jpeg");
+    }
+    section .formLogin{
+    
+
+        width: 80%;
+    }
+    section .imgBackground{
+    display: none;
+    }
+  
+}
+@media (max-width:500px){
+  
+    .formLogin form{
+        width:inherit;
+    }
+    section .formLogin{
+    width: 100%;  
+        
+}
+ 
+}
