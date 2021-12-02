@@ -18,7 +18,9 @@
     --borderCss: #2e4727;
     /*bordes*/
 }
-
+html{
+    overflow-x: hidden;
+}
 .contenedor {
     /*para centrar elementos padres ejempl:section>div*/
     width: 90%;
