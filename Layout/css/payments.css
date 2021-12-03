@@ -1,0 +1,100 @@
+@import url("index.css");
+body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f3f2f6;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 1% 2%;
+}
+
+.form-pay {
+    background-color: #fff;
+    width: 100%;
+    padding: 4% 0;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgb(192, 192, 192);
+    max-width: 900px;
+}
+
+.form-pay {
+    margin-right: 5%;
+}
+
+.resumen-pay {
+    background-color: #fff;
+    height: 1000px;
+    border-radius: 10px;
+    padding: 4% 0;
+    width: 550px;
+    box-shadow: 5px 5px 15px rgb(192, 192, 192);
+}
+
+.form-pay input,
+.resumen-pay input {
+    padding-left: 0;
+    border: 2px solid rgb(173, 173, 173);
+    height: 65px;
+    width: 90%;
+    border-radius: 8px;
+    padding: 0.5rem;
+    /*min-height: 2rem;*/
+    color: rgb(107, 107, 107);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-pagar {
+    display: flex;
+    justify-content: right;
+    margin-right: 5%;
+}
+
+.form-pay input:hover {
+    border: 2.9px solid #0a7c75;
+}
+
+.form-pay input:focus {
+    outline: none;
+    border: 3px solid #0a7c75;
+}
+
+.button__link {
+    width: 150px;
+    text-decoration: none;
+    color: rgb(248, 248, 248);
+    background-color: #0a7c75;
+    border-radius: 5px;
+    padding: 1.5% 1%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: box-shadow 0.4s;
+    letter-spacing: 2px;
+    /*max-width: 1200px;*/
+    display: block;
+}
+
+.button__link:hover {
+    box-shadow: 5px 5px 15px rgb(184, 184, 184);
+}
+
+.header-pay {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 40px;
+    text-align: left;
+    color: rgb(107, 107, 107);
+    font-size: 1.2rem;
+}
+
+.card-resumen {
+    border: thin solid red;
+    margin: 20px 10px;
+    border-radius: 8px;
+}
