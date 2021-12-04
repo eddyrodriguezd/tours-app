@@ -8,8 +8,9 @@ elemento{
 */
 
 footer {
+    
     background: rgb(0, 0, 0);
-    padding: 60px 0;
+  
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -35,12 +36,25 @@ footer {
 
 .partFooter h4 {
     color: var(--title);
-    font-size: 20px;
+    font-size: 1rem;
     font-family: verdana;
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 30px;
-    text-shadow: 0.5px 0.5px 0.5px var(--color3), 0.5px 1px 0.5px var(--color3), 0.5px 1.5px 0.5px var(--color3), 0.5px 2px 0.5px var(--color3), 0.5px 2.5px 0.5px var(--color3), 0.5px 3px 0.5px var(--color3), 0.5px 3.5px 0.5px var(--color3), 0.5px 4px 0.5px var(--color3), 0.5px 4.5px 0.5px var(--color3), 0.5px 5px 0.5px var(--color3), 0.5px 9px 3px #2e472760, 0.5px 11px 5px#2e472760, 0.5px 14.5px 17.5px #2e472760, 0.5px 15px 30px #2e472760;
+    text-shadow: 0.5px 0.5px 0.5px var(--color3),
+    0.5px 1px 0.5px var(--color3),
+     0.5px .7px 0.5px var(--color3),
+      0.5px 1px 0.5px var(--color3),
+       0.5px 1.8px 0.5px var(--color3),
+        0.5px 1.5px 0.5px var(--color3),
+         0.5px 1.5px 0.5px var(--color3),
+          0.5px 2px 0.5px var(--color3),
+           0.5px 2.5px 0.5px var(--color3),
+            0.5px 2.5px 0.5px var(--color3),
+             0.5px 4.5px 3px #2e472760,
+              0.5px 4px 5px#2e472760, 
+              0.5px 7.5px 17.5px #2e472760,
+               0.5px 7px 30px #2e472760;
 }
 
 .partooter img {
@@ -94,12 +108,13 @@ footer {
     border-color: var(--color1);
 }
 
-@media screen and (min-width: 768px) {
-    footer {}
+@media screen and (min-width: 760px) {
+   
     footer>* {
         max-width: 1200px;
     }
     .partFooter {
+        height: 150px;
         width: 20%;
         margin: auto;
     }
@@ -114,5 +129,24 @@ footer {
         margin: auto;
         max-width: 1200px;
         width: 100%;
+    }
+    .partFooter h4 {
+        font-size: 1.2rem;
+        text-shadow: 0.5px 0.5px 0.5px var(--color3),
+         0.5px 1px 0.5px var(--color3),
+          0.5px 1.4px 0.5px var(--color3),
+           0.5px 1px 0.5px var(--color3),
+            0.5px 2.3px 0.5px var(--color3),
+             0.5px 2.8px 0.5px var(--color3),
+              0.5px 2.5px 0.5px var(--color3),
+               0.5px 3px 0.5px var(--color3),
+                0.5px 3.5px 0.5px var(--color3),
+                 0.5px 4px 0.5px var(--color3),
+                  0.5px 4px 3px #2e472760,
+                   0.5px 8px 5px#2e472760, 
+                   0.5px 11.5px 17.5px #2e472760,
+                    0.5px 12px 30px #2e472760;
+
+
     }
 }

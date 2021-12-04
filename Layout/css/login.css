@@ -80,6 +80,7 @@ form .cont label,form .cont input,form .cont textarea  {
     letter-spacing: 1px;
     outline: none;
     border: none;
+    text-decoration:none;
 }
 .formLogin form .btn-ingresar:hover,.formLogin form .btn-registrar:hover {
     background: var( --color3);
