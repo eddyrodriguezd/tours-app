@@ -1,81 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>App</title>
-        <script src="https://kit.fontawesome.com/8f1a392df7.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./css/footer.css">
-        <link rel="stylesheet" href="./css/header.css">
-        <link rel="stylesheet" href="./css/empresa.css">
-        <link rel="stylesheet" href="./css/slider.css">
-        <link rel="stylesheet" href="./css/cards.css">
-    </head>
-    
-    <body>
-        <main>
-            <section>
-                <div class="grid">
-                        <article>
-                            <img src="../assets/destinations/arequipa.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Arequipa</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/cajamarca.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Cajamarca</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/chiclayo.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Chiclayo</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/cuzco.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Cuzco</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/ica.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Ica</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/iquitos.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Iquitos</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/lima.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Lima</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/piura.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Piura</h3>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="../assets/destinations/tarapoto.jpg" alt="">
-                            <div class="card-text">
-                                <h3>Tarapoto</h3>
-                            </div>
-                        </article>
-                    </main>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <script src="https://kit.fontawesome.com/8f1a392df7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/empresa.css">
+    <link rel="stylesheet" href="./css/cards.css">
+    <link rel="stylesheet" href="./css/destinations.css">
+</head>
+
+<body>
+    <header>
+        <nav class="contenedor nav">
+
+            <!--para separarlos mediante margin-->
+            <div class="logo">
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="enlaces-header">
+                <a href="#">Inicio</a>
+                <a href="#">Nosotros</a>
+                <a href="#">Portafolio</a>
+                <a href="#">Documentación</a>
+                <a href="#">Regístrate</a>
+            </div>
+            <div class="hamburguer">
+                <!--  <i class="fas fa-bars"></i> -->
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="destination-header">
+                <div class="destination-title">
+                    <h3>Disfruta de nuestros siguientes destinos:</h3>
+                </div>
+                <div class="destination-header-top">
+                    <input type="text" name="destination" id="destination_textbox" autocomplete="off" placeholder="Destino">
+                    <a href="#" class="button__link">Buscar</a>
                 </div>
             </section>
-        </main>
-    </body>
-    
-    </html>
+            <section>
+                <div class="grid">
+                    <article>
+                        <img src="../assets/destinations/arequipa.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Arequipa</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/cajamarca.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Cajamarca</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/chiclayo.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Chiclayo</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/cuzco.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Cuzco</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/ica.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Ica</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/iquitos.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Iquitos</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/lima.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Lima</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/piura.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Piura</h3>
+                        </div>
+                    </article>
+                    <article>
+                        <img src="../assets/destinations/tarapoto.jpg" alt="">
+                        <div class="card-text">
+                            <h3>Tarapoto</h3>
+                        </div>
+                    </article>
+    </main>
+    </div>
+    </section>
+    </div>
+    </main>
+
+    <footer>
+        <div class="fotterContainer">
+            <div class="partFooter">
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="partFooter">
+                <h4>Contáctanos</h4>
+                <a class="color-white" href="tel:933333333">(+051) 933 333 333</a>
+                <a class="color-white" href="tel:92222222">(+051) 922 222 222</a>
+                <a href="mailto:tours@tours.com">tours@tours.com</a>
+            </div>
+            <div class="partFooter">
+                <h4>Encuéntranos</h4>
+                <strong><span>Dirección</span></strong>
+                <a href="#">Los Ángeles 713, Piura, Perú</a>
+            </div>
+            <div class="partFooter">
+                <h4>Redes Sociales</h4>
+                <div class="social-media">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
