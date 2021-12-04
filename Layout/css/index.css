@@ -19,6 +19,7 @@
     /*bordes*/
 }
 html{
+    font-size:13px;
     overflow-x: hidden;
 }
 .contenedor {
@@ -28,3 +29,16 @@ html{
     margin: auto;
     overflow: hidden;
 }
+body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f3f2f6;
+
+}
+
+@media screen and (min-width: 600px) {
+    html
+    {
+        font-size:18px;
+    }
+}
+    
