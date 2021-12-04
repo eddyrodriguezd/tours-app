@@ -7,18 +7,34 @@ elemento{
 }
 */
 
-header{
+header {
     width: 100%;
     height: 70px;
     background: rgb(255, 255, 255);
     border-bottom: 1px solid transparent;
-    box-shadow: 1px 1px 10px 0 rgb(46, 71, 39,.2);
+    box-shadow: 1px 1px 10px 0 rgb(46, 71, 39, 0.2);
     position: fixed;
-   
     top: 0;
- z-index: 3;
+    z-index: 3;
 }
-.nav{
+
+.menu-btn {
+    outline: thin solid var(--color3);
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    margin-left: 60%;
+}
+
+.none {
+    display: none;
+}
+
+.menu-btn svg {
+    fill: var(--color3);
+}
+
+.nav {
     display: flex;
     justify-content: space-between;
     height: inherit;
@@ -26,18 +42,71 @@ header{
     align-items: center;
     padding: 0 40px;
 }
-.nav .logo{
+
+.nav .logo {
     height: 60px;
 }
-.nav .logo img{
-        background: rgb(255, 255, 255);
-        height: 100%;
-        vertical-align: top;
+
+.nav .logo img {
+    background: rgb(255, 255, 255);
+    height: 100%;
+    vertical-align: top;
 }
- 
-.enlaces-header a{
-    color :var(--text);
+
+.enlaces-header {
+    background-color: rgba(235, 235, 235, 0.9);
+    position: fixed;
+    left: 0;
+    top: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    display: auto;
+}
+
+.enlaces-header.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.enlaces-header a {
+    color: var(--color3);
     text-decoration: none;
     margin-left: 20px;
-   
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    padding: 1rem;
+}
+
+@media screen and (min-width: 798px) {
+    .enlaces-header a {
+        color: var(--color3);
+        text-decoration: none;
+        margin-left: 20px;
+        opacity: 1;
+    }
+    .menu-btn {
+        display: none;
+    }
+    .enlaces-header a {
+        color: var(--color3);
+        text-decoration: none;
+        margin-left: 20px;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+        pointer-events: auto;
+    }
+    .enlaces-header {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        opacity: 1;
+        pointer-events: auto;
+        top: 0;
+        text-align: center;
+        justify-content: center;
+        background-color: #ffffff;
+    }
 }
