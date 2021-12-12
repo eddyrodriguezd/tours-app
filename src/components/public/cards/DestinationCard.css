@@ -1,0 +1,44 @@
+.card-text { 
+    margin-top: 10px;
+    width: 80%;
+}
+
+.grid {
+    margin: 80px 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+    grid-gap: 30px;
+    row-gap: 60px;
+    align-items: center;
+}
+
+.grid-element {
+    background-color: rgba(128, 199, 109, 0.16);
+    border: none;
+
+    box-shadow: 2px 2px 10px 0 rgb(46, 71, 39, 0.2);
+    border-radius: 20px;
+    text-align: center;
+    width: 150px;
+    transition: transform .3s;
+    justify-self: center;
+    position: relative;
+}
+
+
+.grid-element:hover {
+    transform: translateY(5px);
+    box-shadow: 2px 2px 26px 0px rgba(0,0,0,0.3);
+}
+
+.grid-element:hover .card-text {
+    background: #81C76D;
+}
+.card-text:hover {
+    color: #eee5e9;
+
+}
+.grid-element img {
+    width: 80%;
+    border-radius: 20px;
+}
