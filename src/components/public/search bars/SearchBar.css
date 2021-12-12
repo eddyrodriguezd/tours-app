@@ -1,0 +1,17 @@
+.destination-header-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.destination-header-top input {
+    border: 0;
+    padding-left: 0;
+    border-bottom: thin solid gray;
+    height: 40px;
+    width: 70%;
+
+    border:3px solid #0a7c75;
+    border-radius: 10px;
+}
