@@ -1,7 +1,8 @@
 import {Arequipa, Cajamarca, Chiclayo, Cuzco, Ica, Iquitos, Lima, Piura, Tarapoto} from './../../../assets/destinations';
 import DestinationCard from './DestinationCard';
+import './DestinationCard.css'
 
-export default function DestinationCardsGrid() {
+export default function DestinationCardsGrid(props) {
     const destinations = [
         { name: "Arequipa", image: Arequipa },
         { name: "Cajamarca", image: Cajamarca },
@@ -15,8 +16,10 @@ export default function DestinationCardsGrid() {
       ];
 
     return (
-        <div>
-            {destinations.map((item) =>
+        <div className="grid">
+            {destinations
+            .filter((val) => val.name.toLowerCase().includes(props.destinations))
+            .map((item) =>
                 <DestinationCard name={item.name} img={item.image}/>
             )}
         </div>

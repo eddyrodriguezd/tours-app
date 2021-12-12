@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import DestinationCardsGrid from './components/public/cards/DestinationCardsGrid';
+import Destinations from './views/Destinations';
 
 function App() {
   return (
     <div className="App">
-      <DestinationCardsGrid/>
+      <Destinations/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
