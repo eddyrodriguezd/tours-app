@@ -5,28 +5,22 @@ function Header() {
         <div className="flying-check">
           <p>
             <input type="checkbox" id="test" />
-            <label for="test">Aéreos</label>
+            <label htmlFor="test">Aéreos</label>
           </p>
           <p>
             <input type="checkbox" id="test2" />
-            <label for="test2">Terrestres</label>
+            <label htmlFor="test2">Terrestres</label>
           </p>
         </div>
-        <input
-          type="text"
-          name=""
-          id=""
-          value=""
-          placeholder="Fecha de Inicio"
-        />
-        <a href="#" className="button__link">
+        <input type="text" name="" id="" placeholder="Fecha de Inicio" />
+        <a href="/" className="button__link">
           Buscar
         </a>
       </div>
       <div className="flying-header-option">
         <select name="categorias" className="title-size-16">
-          <option value="1">Precio</option>
-          <option value="2">Más Vendido</option>
+          <option>Precio</option>
+          <option>Más Vendido</option>
         </select>
       </div>
     </section>

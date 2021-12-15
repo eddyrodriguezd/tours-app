@@ -15,7 +15,7 @@
 }
 
 .flying-card:hover {
-  box-shadow: 5px 5px 15px rgb(214, 214, 214);
+  box-shadow: 5px 5px 20px rgb(179, 179, 179);
 }
 
 .flying-card-body,
@@ -38,7 +38,7 @@
   color: rgb(248, 248, 248);
   background-color: #0a7c75;
   border-radius: 5px;
-  padding: 1% 2%;
+  padding: 0.2rem 0.5rem;
   font-weight: bold;
   font-size: 1rem;
   transition: box-shadow 0.4s;
@@ -76,7 +76,7 @@
   border: 0;
   padding-left: 5px;
   border-bottom: thin solid gray;
-  height: 40px;
+  height: 10px;
   width: 200px;
 }
 
@@ -95,6 +95,9 @@
   border: none;
   border-bottom: thin solid gray;
   color: gray;
+}
+.button__link {
+  height: 25px;
 }
 
 /*//////////////////////////////////////////////////////////*/
@@ -193,14 +196,17 @@
 
 /* utilitis */
 
-.container {
+.container-flyingpoints {
+  font-size: 16px;
+}
+
+.container-body {
   width: 90%;
   text-align: center;
   padding-top: 110px;
   max-width: 1200px;
   margin: auto;
   font-family: "Nunito", sans-serif;
-  background-color: #f3f2f6;
 }
 
 .title-size-26 {
@@ -233,7 +239,7 @@
 }
 @media screen and (min-width: 300px) {
   .button__link {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 }
 
@@ -248,6 +254,6 @@
     font-size: 1rem;
   }
   .button__link {
-    height: 40px;
+    height: 25px;
   }
 }

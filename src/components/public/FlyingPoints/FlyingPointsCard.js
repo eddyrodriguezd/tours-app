@@ -35,7 +35,7 @@ function FlyingPointsCard(props) {
             <span className="title-size-20">USD{props.precio}</span>
           </div>
         </div>
-        <a href="" className="button__link">
+        <a href="/" className="button__link">
           Seleccionar
         </a>
       </div>
