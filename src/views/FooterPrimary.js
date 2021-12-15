@@ -1,11 +1,9 @@
 import FooterComponent from "../components/public/Footer/FooterComponent";
 export default function FooterPrimary(props) {
-return(
+  return (
     <>
-   
-    {props.children}
-    <FooterComponent/>
-   </>
-)
-
+      {props.children}
+      <FooterComponent />
+    </>
+  );
 }
