@@ -1,0 +1,120 @@
+
+:root {
+
+    --color3: #f9bc60;
+
+    --background: #004643;
+
+}
+
+.content {
+    width: 100%;
+    height: 80px;
+    background-color: var(--background);
+    border-bottom: 1px solid transparent;
+    box-shadow: 0px 9px 10px 0 #abd1c620;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+}
+
+.menu-btn {
+    outline: thin solid var(--color3);
+    border: 0;
+    cursor: pointer;
+    background-color: #001e1d;
+    position: absolute;
+    right:  20px;
+}
+
+.none {
+    display: none;
+}
+
+.menu-btn svg {
+    fill: var(--color3);
+}
+
+.nav {
+    
+
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    height: inherit;
+
+    width: 100%;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.nav .logo {
+    height: 50px;
+}
+
+.nav .logo img {
+    background: var(--background);
+    height: 100%;
+    vertical-align: top;
+}
+
+.enlaces-header {
+ 
+    position: fixed;
+    left: 0;
+    top: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    display: auto;
+}
+
+.enlaces-header.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.enlaces-header a {
+    color: var(--color3);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight:bold;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    padding: 1rem;
+}
+
+@media screen and (min-width: 798px) {
+  
+.nav .logo {
+    height: 80px;
+}
+
+    .menu-btn {
+        display: none;
+    }
+    .enlaces-header a {
+        color: var(--color3);
+        text-decoration: none;
+        font-size: 1rem;
+        margin-left: 20px;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+        pointer-events: auto;
+    }
+    .enlaces-header {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        opacity: 1;
+        pointer-events: auto;
+        top: 0;
+        text-align: center;
+        justify-content: center;
+        background-color: var(--background);
+    }
+}
