@@ -9,13 +9,13 @@ import Piura from './piura.jpg';
 import Tarapoto from './tarapoto.jpg';
 
 export {
-    Arequipa,
-    Cajamarca,
-    Chiclayo,
-    Cuzco,
-    Ica,
-    Iquitos,
-    Lima,
-    Piura,
-    Tarapoto
+	Arequipa,
+	Cajamarca,
+	Chiclayo,
+	Cuzco,
+	Ica,
+	Iquitos,
+	Lima,
+	Piura,
+	Tarapoto,
 };
