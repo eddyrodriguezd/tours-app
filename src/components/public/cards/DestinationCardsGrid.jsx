@@ -12,28 +12,34 @@ import {
 import DestinationCard from './DestinationCard';
 import './DestinationCard.css';
 
-export default function DestinationCardsGrid(props) {
+const DestinationCardsGrid = ({ destinationsFilter }) => {
 	const destinations = [
-		{ name: 'Arequipa', image: Arequipa },
-		{ name: 'Cajamarca', image: Cajamarca },
-		{ name: 'Chiclayo', image: Chiclayo },
-		{ name: 'Cuzco', image: Cuzco },
-		{ name: 'Ica', image: Ica },
-		{ name: 'Iquitos', image: Iquitos },
-		{ name: 'Lima', image: Lima },
-		{ name: 'Piura', image: Piura },
-		{ name: 'Tarapoto', image: Tarapoto },
+		{ id: 1, name: 'Arequipa', image: Arequipa },
+		{ id: 2, name: 'Cajamarca', image: Cajamarca },
+		{ id: 3, name: 'Chiclayo', image: Chiclayo },
+		{ id: 4, name: 'Cuzco', image: Cuzco },
+		{ id: 5, name: 'Ica', image: Ica },
+		{ id: 6, name: 'Iquitos', image: Iquitos },
+		{ id: 7, name: 'Lima', image: Lima },
+		{ id: 8, name: 'Piura', image: Piura },
+		{ id: 9, name: 'Tarapoto', image: Tarapoto },
 	];
 
 	return (
 		<div className='grid'>
 			{destinations
 				.filter((val) =>
-					val.name.toLowerCase().includes(props.destinations)
+					val.name.toLowerCase().includes({ destinationsFilter })
 				)
-				.map((item, index) => (
-					<DestinationCard key={index} name={item.name} img={item.image} />
+				.map((item) => (
+					<DestinationCard
+						key={item.id}
+						name={item.name}
+						img={item.image}
+					/>
 				))}
 		</div>
 	);
-}
+};
+
+export default DestinationCardsGrid;

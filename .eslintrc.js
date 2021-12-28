@@ -14,6 +14,14 @@ module.exports = {
 	plugins: ['react', 'prettier'],
 	rules: {
 		'react/react-in-jsx-scope': 'off',
+		'react/prop-types': 'off',
+		'react/function-component-definition': [
+			2,
+			{
+				namedComponents: 'arrow-function',
+				unnamedComponents: 'arrow-function',
+			},
+		],
 		'prettier/prettier': 'error',
 	},
 };
