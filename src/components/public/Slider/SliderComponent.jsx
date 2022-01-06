@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-
-import sliderImages from '../../../mock/sliderImages';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-
+import SwiperCore, { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper';
+import sliderImages from '../../../mock/sliderImages';
 import 'swiper/swiper-bundle.css';
 import './SliderComponent.css';
-
-import SwiperCore, { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper';
 
 // install Swiper modules
 SwiperCore.use([FreeMode, Navigation, Thumbs, Autoplay]);
 
-export default function SliderComponent() {
+const SliderComponent = () => {
 	const styloswiper = {
 		'--swiper-navigation-color': '#fff',
 		'--swiper-pagination-color': '#fff',
@@ -40,6 +37,7 @@ export default function SliderComponent() {
 				className='mySwiper2'>
 				{sliderImages.map((slide, index) => (
 					<SwiperSlide
+						// eslint-disable-next-line react/no-array-index-key
 						key={index}
 						style={{ background: `url(${slide})`, ...syleSlider }}>
 						<div className='contendedor'>
@@ -61,6 +59,7 @@ export default function SliderComponent() {
 				watchSlidesProgress
 				className='mySwiper'>
 				{sliderImages.map((slide, index) => (
+					// eslint-disable-next-line react/no-array-index-key
 					<SwiperSlide key={index}>
 						{' '}
 						<img src={slide} alt='' className='img__slider' />{' '}
@@ -69,4 +68,6 @@ export default function SliderComponent() {
 			</Swiper>
 		</>
 	);
-}
+};
+
+export default SliderComponent;
