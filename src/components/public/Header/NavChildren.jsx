@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Logo from '../../../assets/LogoImage/logo.png';
 import './NavChildren.css';
 
@@ -27,11 +28,11 @@ const NavChildren = () => (
 				</svg>
 			</button>
 			<div className='enlaces-header'>
-				<a href='./index.html'>Inicio</a>
-				<a href='./destinations.html'>Destino</a>
-				<a href='./flyingpoints.html'>Punto</a>
-				<a href='./itinerary.html'>Itinerario</a>
-				<a href='./login.html'>Regístrate</a>
+				<NavLink to='./'>Inicio</NavLink>
+				<NavLink to='./destinos'>Destino</NavLink>
+				<NavLink to='./puntorecojo'>Punto</NavLink>
+				<NavLink to='./itinerario'>Itinerario</NavLink>
+				<NavLink to='./login.html'>Regístrate</NavLink>
 			</div>
 		</nav>
 	</div>

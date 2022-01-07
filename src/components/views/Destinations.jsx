@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import SearchBar from '../components/public/search bars/SearchBar';
-import DestinationCardsGrid from '../components/public/cards/DestinationCardsGrid';
+import SearchBar from '../public/search bars/SearchBar';
+import DestinationCardsGrid from '../public/cards/DestinationCardsGrid';
 
 const Destinations = () => {
 	const [destinationSearch, setDestinationSearch] = useState('');

@@ -1,6 +1,6 @@
-import Slider from '../components/public/Slider/SliderComponent';
-import ItineraryPanel from '../components/public/Itinerary/ItineraryPanel';
-import '../components/public/Itinerary/Itinerary.css';
+import Slider from '../public/Slider/SliderComponent';
+import ItineraryPanel from '../public/Itinerary/ItineraryPanel';
+import '../public/Itinerary/Itinerary.css';
 
 const Itinerary = () => (
 	<>

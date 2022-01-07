@@ -1,20 +1,22 @@
 import { useState } from 'react';
 
-export default function ItineraryPanel(props) {
+const ItineraryPanel = ({ titulo, description }) => {
 	const [showBody, setPanel] = useState('accordion');
 	function activate() {
-		showBody == 'accordion'
+		return showBody === 'accordion'
 			? setPanel('accordion active')
 			: setPanel('accordion');
 	}
 	return (
 		<>
-			<button className={showBody} onClick={activate}>
-				{props.titulo}
+			<button type='button' className={showBody} onClick={activate}>
+				{titulo}
 			</button>
 			<div className='panel' style={{ padding: '8px' }}>
-				<p>{props.description}</p>
+				<p>{description}</p>
 			</div>
 		</>
 	);
-}
+};
+
+export default ItineraryPanel;

@@ -22,6 +22,11 @@ module.exports = {
 				unnamedComponents: 'arrow-function',
 			},
 		],
-		'prettier/prettier': 'error',
+		'prettier/prettier': [
+			'error',
+			{
+				endOfLine: 'auto',
+			},
+		],
 	},
 };
