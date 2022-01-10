@@ -1,50 +1,45 @@
-
 .swiper-slide {
-  background-size: cover;
-  background-position: center;
+	background-size: cover;
+	background-position: center;
 }
 
 .mySwiper2 {
-
-  height: 70vh;
-  width: 100%;
-
-  background-color: #001e1d;
+	height: 70vh;
+	width: 100%;
+	background-color: #001e1d;
 }
 
 .mySwiper {
-  height: 20%;
-  box-sizing: border-box;
-  padding: 10px 0;
-  background-color: #001e1d;
+	height: 20%;
+	box-sizing: border-box;
+	padding: 10px 0;
+	background-color: #001e1d;
+	padding-bottom: 1rem;
 }
 
 .mySwiper .swiper-slide {
-  width: 25%;
-  height: 100%;
-  opacity: 0.4;
+	width: 25%;
+	height: 100%;
+	opacity: 0.4;
 }
 
 .mySwiper .swiper-slide-thumb-active {
-  opacity: 1;
+	opacity: 1;
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
+	display: block;
+	width: 100%;
 
-  object-fit: cover;
+	object-fit: cover;
 }
-.img__slider{
-
-  height: 150px;
-
+.img__slider {
+	height: 150px;
 }
-.contendedor{
-display: flex;
-  width: 25%;
-  height: 100%;
-color: rgb(0, 0, 0);
-  align-items: center;
-
+.contendedor {
+	display: flex;
+	width: 25%;
+	height: 100%;
+	color: rgb(0, 0, 0);
+	align-items: center;
 }

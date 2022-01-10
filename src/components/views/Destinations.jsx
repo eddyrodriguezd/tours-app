@@ -9,7 +9,7 @@ const Destinations = () => {
 	};
 
 	return (
-		<div>
+		<div className='container--destinations'>
 			<SearchBar searchValue={newSearchValue} />
 			<DestinationCardsGrid destinations={destinationSearch} />
 		</div>
