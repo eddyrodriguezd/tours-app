@@ -44,7 +44,7 @@ const NavChildren = () => {
 					<NavLink to='./destinos'>Destino</NavLink>
 					<NavLink to='./puntorecojo'>Punto</NavLink>
 					<NavLink to='./itinerario'>Itinerario</NavLink>
-					<NavLink to='./login'>Regístrate</NavLink>
+					<NavLink to='./login'>Iniciar Sesión</NavLink>
 				</div>
 			</nav>
 		</div>
