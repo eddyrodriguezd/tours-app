@@ -1,14 +1,33 @@
+<<<<<<< HEAD
 .mySwiper2 {
 	height: 80vh;
 	width: 100%;
 	position: relative;
+=======
+.swiper-slide {
+	background-size: cover;
+	background-position: center;
+}
+
+.mySwiper2 {
+	height: 70vh;
+	width: 100%;
+>>>>>>> plugins
 	background-color: #001e1d;
 }
 .mySwiper {
+<<<<<<< HEAD
 	height: 20vh;
 	box-sizing: border-box;
 	padding: 10px 0;
 	background-color: #001e1d;
+=======
+	height: 20%;
+	box-sizing: border-box;
+	padding: 10px 0;
+	background-color: #001e1d;
+	padding-bottom: 1rem;
+>>>>>>> plugins
 }
 .mySwiper .swiper-slide {
 	width: 25%;
@@ -17,14 +36,18 @@
 }
 .mySwiper .swiper-slide-thumb-active {
 	opacity: 1;
+<<<<<<< HEAD
 }
 .mySwiper2 img {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+=======
+>>>>>>> plugins
 }
 .swiper-slide img {
+<<<<<<< HEAD
 	object-fit: cover;
 	display: block;
 	width: 100%;
@@ -66,3 +89,20 @@
 	background-color: #001e1d;
 	border: 1px solid #e8e4e6;
 }
+=======
+	display: block;
+	width: 100%;
+
+	object-fit: cover;
+}
+.img__slider {
+	height: 150px;
+}
+.contendedor {
+	display: flex;
+	width: 25%;
+	height: 100%;
+	color: rgb(0, 0, 0);
+	align-items: center;
+}
+>>>>>>> plugins
