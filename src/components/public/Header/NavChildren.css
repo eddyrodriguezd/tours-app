@@ -106,12 +106,23 @@
 		display: none;
 	}
 	.enlaces-header a {
-		color: var(--color3);
+		color: #e8e4e6;
 		text-decoration: none;
 		font-size: 1rem;
 		margin-left: 20px;
 		opacity: 1;
 		transition: opacity 0.5s ease;
 		pointer-events: auto;
+	}
+	.enlaces-header {
+		display: flex;
+		flex-direction: row;
+		position: relative;
+		opacity: 1;
+		pointer-events: auto;
+		top: 0;
+		text-align: center;
+		justify-content: center;
+		background-color: var(--background);
 	}
 }
