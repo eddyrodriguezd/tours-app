@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import { Link } from 'react-router-dom';
 import SwiperCore, { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper';
 import sliderImages from '../../../mock/sliderImages';
 import 'swiper/swiper-bundle.css';
@@ -15,12 +16,6 @@ const SliderComponent = () => {
 	};
 
 	const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-	const syleSlider = {
-		backgroundSize: 'cover',
-		' backgroundPosition': 'center',
-		backgroundRepeat: 'no-repeat',
-	};
 
 	return (
 		<>
@@ -38,13 +33,16 @@ const SliderComponent = () => {
 				{sliderImages.map((slide, index) => (
 					<SwiperSlide
 						// eslint-disable-next-line react/no-array-index-key
-						key={index}
-						style={{ background: `url(${slide})`, ...syleSlider }}>
-						<div className='contendedor'>
-							<p>
-								Loretem verita nemo sapiente odit reprehenderit.
+						key={index}>
+						<img src={slide} alt='' />
+						<div className='contenido'>
+							<p className='contenido__frase'>
+								“Si no escalas la montaña, jamás podrás disfrutar del
+								paisaje”.
 								<br />
-								Loretem verita nemo sapiente odit reprehenderit.
+								<Link to='/Nosotros' className='contenido__btn'>
+									Quiénes Somos
+								</Link>
 							</p>
 						</div>
 					</SwiperSlide>
