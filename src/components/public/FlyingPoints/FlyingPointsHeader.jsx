@@ -5,13 +5,13 @@ const Header = () => (
 				<p>
 					<label htmlFor='test'>
 						Aéreos
-						<input type='checkbox' id='test' />
+						<input type='checkbox' className='checkbox' id='test' />
 					</label>
 				</p>
 				<p>
 					<label htmlFor='test2'>
 						Terrestres
-						<input type='checkbox' id='test2' />
+						<input type='checkbox' className='checkbox' id='test2' />
 					</label>
 				</p>
 			</div>
