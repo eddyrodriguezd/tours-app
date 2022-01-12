@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import { Link } from 'react-router-dom';
 import SwiperCore, { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper';
-import sliderImages from '../../../mock/sliderImages';
+import { sliderImages } from '../../../mock/sliderImages';
 import 'swiper/swiper-bundle.css';
 import './SliderComponent.css';
 

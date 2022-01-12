@@ -18,7 +18,6 @@ const App = () => (
 				<Route path='/registrate' element={<Registrate />} />
 				<Route path='/puntorecojo' element={<Flyingpoints />} />
 				<Route path='/itinerario' element={<Itinerary />} />
-
 				<Route path='*' element={<h2>Página no Encontrada</h2>} />
 			</Routes>
 		</BrowserRouter>
