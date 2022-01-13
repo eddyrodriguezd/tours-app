@@ -1,7 +1,7 @@
 import React from 'react';
-import './DestinationCard.css';
+import './Card.css';
 
-const DestinationCard = ({ img, name }) => (
+const Card = ({ img, name }) => (
 	<div className='grid-element'>
 		<img src={img} alt='' />
 		<div className='card-text'>
@@ -10,4 +10,4 @@ const DestinationCard = ({ img, name }) => (
 	</div>
 );
 
-export default DestinationCard;
+export default Card;

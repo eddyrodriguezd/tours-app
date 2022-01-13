@@ -1,11 +1,11 @@
 import SliderComponent from '../public/Slider/SliderComponent';
-import Destinations from './Destinations';
+import Categories from './Categories';
 import SliderEnterprise from '../public/sliderEnterprise/Slider';
 
 const LandingPage = () => (
 	<>
 		<SliderComponent />
-		<Destinations />
+		<Categories />
 		<SliderEnterprise />
 	</>
 );

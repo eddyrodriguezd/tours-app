@@ -3,22 +3,19 @@ import SearchBar from '../public/search bars/SearchBar';
 import CardsGrid from '../public/cards/CardsGrid';
 import mock from '../../mock/mock';
 
-const Destinations = () => {
-	const [destinationSearch, setDestinationSearch] = useState('');
+const Categories = () => {
+	const [categorySearch, setCategorySearch] = useState('');
 
 	const newSearchValue = (text) => {
-		setDestinationSearch(text);
+		setCategorySearch(text);
 	};
 
 	return (
 		<div className='container--destinations'>
 			<SearchBar searchValue={newSearchValue} />
-			<CardsGrid
-				filter={destinationSearch}
-				destinations={mock.destinations}
-			/>
+			<CardsGrid filter={categorySearch} destinations={mock.categories} />
 		</div>
 	);
 };
 
-export default Destinations;
+export default Categories;

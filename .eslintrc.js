@@ -15,15 +15,17 @@ module.exports = {
 	rules: {
 		'react/react-in-jsx-scope': 'off',
 		'react/prop-types': 'off',
-
-		'prefer-template': 'off',
-		'prettier/prettier': 'off',
-
 		'react/function-component-definition': [
 			2,
 			{
 				namedComponents: 'arrow-function',
 				unnamedComponents: 'arrow-function',
+			},
+		],
+		'prettier/prettier': [
+			'error',
+			{
+				endOfLine: 'auto',
 			},
 		],
 	},
