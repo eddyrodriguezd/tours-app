@@ -36,4 +36,10 @@ const destinations = [
 	{ id: 9, name: 'Tarapoto', image: Tarapoto },
 ];
 
-export default { categories, destinations };
+const tours = [
+	{ id: 1, name: 'Ica 2D/1N', image: Ica },
+	{ id: 2, name: 'Tarapoto 4D/3N', image: Tarapoto },
+	{ id: 3, name: 'Tarapoto 5D/4N', image: Tarapoto },
+];
+
+export default { categories, destinations, tours };

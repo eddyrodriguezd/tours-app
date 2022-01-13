@@ -5,6 +5,7 @@ import NavbarHeader from './components/views/NavbarHeader';
 import Flyingpoints from './components/views/Flyingpoints';
 import Itinerary from './components/views/Itinerary';
 import LandingPage from './components/views/LandingPage';
+import AdminPanel from './components/views/admin/AdminPanel';
 import { Login, Registrate } from './components/views/ViewLogin';
 
 const App = () => (
@@ -18,6 +19,7 @@ const App = () => (
 				<Route path='/registrate' element={<Registrate />} />
 				<Route path='/puntorecojo' element={<Flyingpoints />} />
 				<Route path='/itinerario' element={<Itinerary />} />
+				<Route path='/admin' element={<AdminPanel />} />
 				<Route path='*' element={<h2>Página no Encontrada</h2>} />
 			</Routes>
 		</BrowserRouter>
