@@ -12,7 +12,6 @@ import {
 import DestinationCard from './DestinationCard';
 import './DestinationCard.css';
 
-// eslint-disable-next-line no-unused-vars
 const DestinationCardsGrid = ({ destinationsFilter }) => {
 	const destinations = [
 		{ id: 1, name: 'Arequipa', image: Arequipa },
@@ -27,18 +26,17 @@ const DestinationCardsGrid = ({ destinationsFilter }) => {
 	];
 	return (
 		<div className='grid'>
-			{
-				destinations.map((item) => (
+			{destinations
+				.map((item) => (
 					<DestinationCard
 						key={item.id}
 						name={item.name}
 						img={item.image}
 					/>
 				))
-				/* . filter((val) =>
-					val.name.toLowerCase().includes({ destinationsFilter })
-				) */
-			}
+				.filter((val) => (
+					val.props.name.toLowerCase().includes(destinationsFilter)
+				))}
 		</div>
 	);
 };
