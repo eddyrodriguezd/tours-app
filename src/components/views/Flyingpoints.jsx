@@ -1,5 +1,6 @@
 import FlyingPointsCard from '../public/FlyingPoints/FlyingPointsCard';
 import FlyingPointsHeader from '../public/FlyingPoints/FlyingPointsHeader';
+import { flyingPoints } from '../../mock/sliderImages';
 import '../public/FlyingPoints/FlyingPointsCard.css';
 
 const Flyingpoints = () => (
@@ -7,46 +8,18 @@ const Flyingpoints = () => (
 		<main className='container-body'>
 			<FlyingPointsHeader />
 			<section className='flying-cards'>
-				<FlyingPointsCard
-					horaInicio='6:25'
-					lugarOrigen='LIM'
-					duracion='1 h'
-					horaFin='7:25'
-					lugarDestino='AYP'
-					parada='Directo'
-					clasificacion='Adulto'
-					precio='46.93'
-				/>
-				<FlyingPointsCard
-					horaInicio='6:25'
-					lugarOrigen='LIM'
-					duracion='1 h'
-					horaFin='7:25'
-					lugarDestino='AYP'
-					parada='1 Parada'
-					clasificacion='Adulto'
-					precio='46.93'
-				/>
-				<FlyingPointsCard
-					horaInicio='6:25'
-					lugarOrigen='LIM'
-					duracion='1 h'
-					horaFin='7:25'
-					lugarDestino='AYP'
-					parada='1 Parada'
-					clasificacion='Adulto'
-					precio='46.93'
-				/>
-				<FlyingPointsCard
-					horaInicio='6:25'
-					lugarOrigen='LIM'
-					duracion='1 h'
-					horaFin='7:25'
-					lugarDestino='AYP'
-					parada='1 Parada'
-					clasificacion='Adulto'
-					precio='46.93'
-				/>
+				{flyingPoints.map((e) => (
+					<FlyingPointsCard
+						horaInicio={e.horaInicio}
+						lugarOrigen={e.lugarOrigen}
+						duracion={e.duracion}
+						horaFin={e.horaFin}
+						lugarDestino={e.lugarDestino}
+						parada={e.parada}
+						clasificacion={e.clasificacion}
+						precio={e.precio}
+					/>
+				))}
 			</section>
 		</main>
 	</div>
