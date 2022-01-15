@@ -1,13 +1,19 @@
-import Categories from '../../components/categories/Categories';
+/* import Categories from '../../components/categories/Categories';
 import Landscape from './components/carrousel/Landscape';
 import { categories } from '../../mock/mock';
-import Slider from './components/slider/Slider';
+import Slider from './components/slider/Slider'; */
+import { Outlet } from 'react-router-dom';
+import Footer from '../../components/footer/Footer';
+import Nav from '../../components/header/Nav';
 
 const Main = () => (
 	<>
-		<Landscape />
+		<Nav />
+		{/* <Landscape />
 		<Categories categories={categories} />
-		<Slider />
+		<Slider /> */}
+		<Outlet />
+		<Footer />
 	</>
 );
 
