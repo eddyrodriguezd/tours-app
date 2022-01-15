@@ -42,4 +42,4 @@ const tours = [
 	{ id: 3, name: 'Tarapoto 5D/4N', image: Tarapoto },
 ];
 
-export default { categories, destinations, tours };
+export { categories, destinations, tours };
