@@ -2,64 +2,64 @@
  Destination cards grid
 */
 .grid-tours {
-    margin: 100px 50px;
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 60px;
-    background: blue;
-    align-items: center;
+	margin: 100px 50px;
+	display: grid;
+	grid-template-columns: 1fr;
+	row-gap: 60px;
+	background: blue;
+	align-items: center;
 }
 
 /*
  Destination card
 */
 .grid-wrapper {
-    background-color: greenyellow;
+	background-color: greenyellow;
 }
 
 .grid-row {
-    float: left;
-    padding: 10px;
+	float: left;
+	padding: 10px;
 }
 .left {
-    background: purple;
-    width: 30%;
+	background: purple;
+	width: 30%;
 }
 .right {
-    background: lightcoral;
-    width: 66%;
+	background: lightcoral;
+	width: 66%;
 }
 .grid-element:after {
-    content: "";
-    display: table;
-    clear: both;
+	content: '';
+	display: table;
+	clear: both;
 }
 
 .card-name {
-    background: #81C76D;
-    font-family: "Gotham", sans-serif;
-    padding: 1px;
-    text-transform: uppercase;
+	background: #81c76d;
+	font-family: 'Gotham', sans-serif;
+	padding: 1px;
+	text-transform: uppercase;
 }
-.card-name h3{
-    font-size: .9rem;
+.card-name h3 {
+	font-size: 0.9rem;
 }
 .card-buttons {
-    display: flex;
+	display: flex;
 }
 .card-button-column {
-    flex: 50%;
-    padding: 10px;
+	flex: 50%;
+	padding: 10px;
 }
 .tour-card-edit-button {
-    background: green; 
-    width: 50%;
-    height: 150%;
-    margin: 0 auto;
+	background: green;
+	width: 50%;
+	height: 150%;
+	margin: 0 auto;
 }
-.tour-card-delete-button{
-    background: red;
-    width: 50%;
-    height: 150%;
-    margin: 0 auto;
+.tour-card-delete-button {
+	background: red;
+	width: 50%;
+	height: 150%;
+	margin: 0 auto;
 }
