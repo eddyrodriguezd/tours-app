@@ -1,30 +1,25 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Destinations from './components/views/Destinations';
-import FooterPrimary from './components/views/FooterPrimary';
-import NavbarHeader from './components/views/NavbarHeader';
-import Flyingpoints from './components/views/Flyingpoints';
-import Itinerary from './components/views/Itinerary';
-import LandingPage from './components/views/LandingPage';
-import AdminPanel from './components/views/admin/AdminPanel';
+import Flyingpoints from './pages/tickets';
 import { Login, Registrate } from './components/views/ViewLogin';
+import Itinerary from './pages/itinerary/Itinerary';
+import Main from './pages/landing/Main';
+import Destinations from './pages/destinations/Destinations';
+import Body from './pages/landing/components/body/Body';
 
 const App = () => (
-	<>
-		<BrowserRouter>
-			<NavbarHeader />
-			<Routes>
-				<Route path='/' element={<LandingPage />} />
-				<Route path='/destinos' element={<Destinations />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/registrate' element={<Registrate />} />
-				<Route path='/puntorecojo' element={<Flyingpoints />} />
-				<Route path='/itinerario' element={<Itinerary />} />
-				<Route path='/admin' element={<AdminPanel />} />
-				<Route path='*' element={<h2>Página no Encontrada</h2>} />
-			</Routes>
-		</BrowserRouter>
-		<FooterPrimary />
-	</>
+	<BrowserRouter>
+		<Routes>
+			<Route path='/' element={<Main />}>
+				<Route path='/' element={<Body />} />
+				<Route path='destinos' element={<Destinations />} />
+				<Route path='puntorecojo' element={<Flyingpoints />} />
+				<Route path='itinerario' element={<Itinerary />} />
+			</Route>
+			<Route path='/login' element={<Login />} />
+			<Route path='/registrate' element={<Registrate />} />
+			<Route path='*' element={<h2>Página no Encontrada</h2>} />
+		</Routes>
+	</BrowserRouter>
 );
 
 export default App;
