@@ -5,6 +5,7 @@ import Itinerary from './pages/itinerary/Itinerary';
 import Main from './pages/landing/Main';
 import Destinations from './pages/destinations/Destinations';
 import Body from './pages/landing/components/body/Body';
+import LogoutBusines from './pages/login/components/registerBusiness';
 
 const App = () => (
 	<BrowserRouter>
@@ -16,7 +17,8 @@ const App = () => (
 				<Route path='itinerario' element={<Itinerary />} />
 			</Route>
 			<Route path='/login' element={<Login />} />
-			<Route path='/registrate' element={<Registrate />} />
+			<Route path='/register' element={<Registrate />} />
+			<Route path='/registerBusines' element={<LogoutBusines />} />
 			<Route path='*' element={<h2>Página no Encontrada</h2>} />
 		</Routes>
 	</BrowserRouter>
