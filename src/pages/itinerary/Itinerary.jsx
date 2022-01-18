@@ -36,7 +36,7 @@ const Itinerary = () => {
 					})}
 				</main>
 				<Link to='/checkout' state={{ tour: paquete[id] }}>
-					<Button type="primary">Primary Button</Button>
+					<Button type='primary'>Primary Button</Button>
 				</Link>
 			</div>
 		</>

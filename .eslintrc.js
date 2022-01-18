@@ -22,8 +22,11 @@ module.exports = {
 				unnamedComponents: 'arrow-function',
 			},
 		],
-		'prettier/prettier': 'off',
-		'react/destructuring-assignment': 'off',
-		'react/no-this-in-sfc': 'off',
+		'prettier/prettier': [
+			'error',
+			{
+				endOfLine: 'auto',
+			},
+		],
 	},
 };
