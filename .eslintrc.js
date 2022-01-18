@@ -23,5 +23,7 @@ module.exports = {
 			},
 		],
 		'prettier/prettier': 'off',
+		'react/destructuring-assignment': 'off',
+		'react/no-this-in-sfc': 'off',
 	},
 };

@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Steps, Button, message } from 'antd';
+import { useLocation } from 'react-router-dom';
+
+import { Steps, Button, message, Card } from 'antd';
 
 import TravellersForm from '../../components/travellersInfo/TravellersForm';
 import FlyingPoints from '../../components/tickets';
@@ -20,11 +22,18 @@ const steps = [
     },
     {
         title: 'Pago',
-        content: 'Last-content',
+        content: <Button placeholder='Pagar' />,
     },
 ];
 
 const Checkout = () => {
+
+    const location = useLocation();
+    const { tour } = location.state;
+    const { Meta } = Card;
+
+    console.log('Tour received from itinerary: ', tour);
+
     const [current, setCurrent] = useState(0);
 
     const next = () => {
@@ -37,6 +46,14 @@ const Checkout = () => {
 
     return (
         <div style={{ marginTop: '6rem' }}>
+            <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<img alt="example" src={tour.img} />}>
+                <Meta title={tour.title} description="www.instagram.com" />
+            </Card>
+
+
             <Steps current={current}>
                 {steps.map(item => (
                     <Step key={item.title} title={item.title} />

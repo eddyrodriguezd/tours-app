@@ -16,7 +16,7 @@ const App = () => (
 				<Route path='/' element={<Body />} />
 				<Route path='destinos' element={<Destinations />} />
 				<Route path='puntorecojo' element={<Flyingpoints />} />
-				<Route path='itinerario/:id' element={<Itinerary />} />
+				<Route path='/itinerario/:id' element={<Itinerary />} />
 				<Route path='/paquetes' element={<Packages />} />
 				<Route path='/checkout' element={<Checkout />} />
 			</Route>
