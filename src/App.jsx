@@ -5,6 +5,7 @@ import Itinerary from './pages/itinerary/Itinerary';
 import Main from './pages/landing/Main';
 import Destinations from './pages/destinations/Destinations';
 import Body from './pages/landing/components/body/Body';
+import Packages from './pages/packages/Packages';
 
 const App = () => (
 	<BrowserRouter>
@@ -13,7 +14,8 @@ const App = () => (
 				<Route path='/' element={<Body />} />
 				<Route path='destinos' element={<Destinations />} />
 				<Route path='puntorecojo' element={<Flyingpoints />} />
-				<Route path='itinerario' element={<Itinerary />} />
+				<Route path='itinerario/:id' element={<Itinerary />} />
+				<Route path='/paquetes' element={<Packages />} />
 			</Route>
 			<Route path='/login' element={<Login />} />
 			<Route path='/registrate' element={<Registrate />} />

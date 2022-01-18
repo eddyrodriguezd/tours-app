@@ -1,7 +1,7 @@
-import Slider from '../components/public/Slider/SliderComponent';
-import ItineraryPanel from '../components/public/Itinerary/ItineraryPanel';
-import { itinerario } from '../mock/sliderImages';
-import '../public/Itinerary/Itinerary.css';
+import { paquete } from '../mock/sliderImages';
+import './itinerary/Itinerary.css';
+import Slider from './landing/components/slider/Slider';
+import ItineraryPanel from './itinerary/panel/index';
 
 const Itinerary = () => (
 	<>
@@ -9,7 +9,7 @@ const Itinerary = () => (
 		<div className='container-itinerary'>
 			<main className='container-body'>
 				<h2>Itinerario del Viaje</h2>
-				{itinerario.map((el, index) => {
+				{paquete.map((el, index) => {
 					const i = index * 2;
 					return (
 						<ItineraryPanel
