@@ -6,6 +6,7 @@ import Main from './pages/landing/Main';
 import Destinations from './pages/destinations/Destinations';
 import Body from './pages/landing/components/body/Body';
 import Packages from './pages/packages/Packages';
+import LogoutBusines from './pages/login/components/registerBusiness';
 
 const App = () => (
 	<BrowserRouter>
@@ -18,7 +19,8 @@ const App = () => (
 				<Route path='/paquetes' element={<Packages />} />
 			</Route>
 			<Route path='/login' element={<Login />} />
-			<Route path='/registrate' element={<Registrate />} />
+			<Route path='/register' element={<Registrate />} />
+			<Route path='/registerBusines' element={<LogoutBusines />} />
 			<Route path='*' element={<h2>Página no Encontrada</h2>} />
 		</Routes>
 	</BrowserRouter>

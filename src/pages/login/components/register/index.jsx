@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../../Login.css';
 
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -5,7 +6,10 @@ const Logout = () => (
 	<div className='content__login'>
 		<div className='formLogin'>
 			<form action='' method='post'>
-				<img src='assets/img/logo/logo.png' alt='' />
+				<Link to='/'>
+					<img src='assets/img/logo/logo.png' alt='Logo' />
+				</Link>
+
 				<legend className='text'>Registar nueva cuenta</legend>
 
 				<div className='cont'>
@@ -16,7 +20,6 @@ const Logout = () => (
 						placeholder='Ingrese el nombre de usuario'
 					/>
 				</div>
-
 				<div className='cont'>
 					<label htmlFor='telphone'>Telefono</label>
 					<input
