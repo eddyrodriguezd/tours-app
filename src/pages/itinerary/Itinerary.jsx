@@ -1,24 +1,24 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from 'antd';
 
 import ItineraryPanel from './panel';
-import { paquete } from '../../mock/sliderImages';
+// import { paquete } from '../../mock/sliderImages';
 import './Itinerary.css';
 import Landscape from '../landing/components/carrousel/Landscape';
 
 const Itinerary = () => {
-	const { id } = useParams();
+	// const { id } = useParams();
 
-	/* const history = useHistory();
-	const onConfirmItineraryClick = useCallback(() => history.push('/sample'), [history]); */
+	const location = useLocation();
+	const { tour } = location.state;
 
 	return (
 		<>
 			<Landscape />
 			<div className='container-itinerary'>
 				<main className='container-body'>
-					<h2>{paquete[id].title}</h2>
-					{paquete[id].itinerary.map((el, index) => {
+					<h2>{tour.title}</h2>
+					{tour.itinerary.map((el, index) => {
 						const i = index * 2;
 						return (
 							<ItineraryPanel
@@ -35,8 +35,8 @@ const Itinerary = () => {
 						);
 					})}
 				</main>
-				<Link to='/checkout' state={{ tour: paquete[id] }}>
-					<Button type='primary'>Primary Button</Button>
+				<Link to='/checkout' state={{ tour }}>
+					<Button type='primary'>¡Lo quiero!</Button>
 				</Link>
 			</div>
 		</>

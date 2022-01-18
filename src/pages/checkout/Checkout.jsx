@@ -45,8 +45,8 @@ const Checkout = () => {
 			<Card
 				hoverable
 				style={{ width: 240 }}
-				cover={<img alt='example' src={tour.img} />}>
-				<Meta title={tour.title} description='www.instagram.com' />
+				cover={<img alt='example' src={`assets/img/${tour.img}.jpg`} />}>
+				<Meta title={tour.title} description={tour.title} />
 			</Card>
 
 			<Steps current={current}>
@@ -54,7 +54,6 @@ const Checkout = () => {
 					<Step key={item.title} title={item.title} />
 				))}
 			</Steps>
-			<div className='steps-content'>{steps[current].content}</div>
 			<div className='steps-action'>
 				{current < steps.length - 1 && (
 					<Button type='primary' onClick={() => next()}>
@@ -74,6 +73,7 @@ const Checkout = () => {
 					</Button>
 				)}
 			</div>
+			<div className='steps-content'>{steps[current].content}</div>
 		</div>
 	);
 };
