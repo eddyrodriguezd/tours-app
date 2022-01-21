@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 
-import { Steps, Button, message, Card } from 'antd';
+import { Steps, Button, Card } from 'antd';
 
 import TravellersForm from '../../components/travellersInfo/TravellersForm';
 import FlyingPoints from '../../components/tickets';
@@ -27,6 +27,8 @@ const steps = [
 
 const Checkout = () => {
 	const location = useLocation();
+	if (location.state == null || location.state.tour == null) return <Navigate to='/paquetes' />
+
 	const { tour } = location.state;
 	const { Meta } = Card;
 
@@ -39,6 +41,8 @@ const Checkout = () => {
 	const prev = () => {
 		setCurrent(current - 1);
 	};
+
+	const success = () => <Navigate to='/paquetes' />
 
 	return (
 		<div style={{ marginTop: '6rem' }}>
@@ -54,26 +58,26 @@ const Checkout = () => {
 					<Step key={item.title} title={item.title} />
 				))}
 			</Steps>
+
+			<div className='steps-content'>{steps[current].content}</div>
+
 			<div className='steps-action'>
+				{current > 0 && (
+					<Button className='steps-button' onClick={() => prev()}>
+						Anterior
+					</Button>
+				)}
 				{current < steps.length - 1 && (
-					<Button type='primary' onClick={() => next()}>
-						Next
+					<Button className='steps-button' type='primary' onClick={() => next()}>
+						Siguiente
 					</Button>
 				)}
 				{current === steps.length - 1 && (
-					<Button
-						type='primary'
-						onClick={() => message.success('Processing complete!')}>
-						Done
-					</Button>
-				)}
-				{current > 0 && (
-					<Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-						Previous
+					<Button className='steps-button' type='primary' onClick={() => success()}>
+						Finalizar
 					</Button>
 				)}
 			</div>
-			<div className='steps-content'>{steps[current].content}</div>
 		</div>
 	);
 };

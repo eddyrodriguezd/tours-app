@@ -1,15 +1,14 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Navigate } from 'react-router-dom';
 import { Button } from 'antd';
 
 import ItineraryPanel from './panel';
-// import { paquete } from '../../mock/sliderImages';
 import './Itinerary.css';
 import Landscape from '../landing/components/carrousel/Landscape';
 
 const Itinerary = () => {
-	// const { id } = useParams();
-
 	const location = useLocation();
+	if (location.state == null || location.state.tour == null) return <Navigate to='/paquetes' />
+
 	const { tour } = location.state;
 
 	return (
