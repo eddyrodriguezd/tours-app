@@ -7,6 +7,7 @@ import Destinations from './pages/destinations/Destinations';
 import Body from './pages/landing/components/body/Body';
 import Packages from './pages/packages/Packages';
 import LogoutBusines from './pages/login/components/registerBusiness';
+import RegisterTour from './components/tours/RegisterTour';
 import Checkout from './pages/checkout/Checkout';
 import Dashboard from './pages/dashboard/Dashboard';
 
@@ -21,6 +22,8 @@ const App = () => (
 				<Route path='/paquetes' element={<Packages />} />
 				<Route path='/checkout' element={<Checkout />} />
 			</Route>
+
+			<Route path='/tour' element={<RegisterTour />} />
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Registrate />} />
 			<Route path='/registerBusines' element={<LogoutBusines />} />
