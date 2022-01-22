@@ -7,6 +7,7 @@ import Destinations from './pages/destinations/Destinations';
 import Body from './pages/landing/components/body/Body';
 import Packages from './pages/packages/Packages';
 import LogoutBusines from './pages/login/components/registerBusiness';
+import Dashboard from './pages/dashboard/Dashboard';
 
 const App = () => (
 	<BrowserRouter>
@@ -22,6 +23,7 @@ const App = () => (
 			<Route path='/register' element={<Registrate />} />
 			<Route path='/registerBusines' element={<LogoutBusines />} />
 			<Route path='*' element={<h2>Página no Encontrada</h2>} />
+			<Route path='/dashboard' element={<Dashboard />} />
 		</Routes>
 	</BrowserRouter>
 );
