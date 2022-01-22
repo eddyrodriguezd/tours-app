@@ -10,7 +10,7 @@ const Categories = ({ categories }) => {
 	};
 
 	return (
-		<div className='container--destinations'>
+		<div className='container'>
 			<SearchBar searchValue={newSearchValue} />
 			<CardsGrid filter={categorySearch} destinations={categories} />
 		</div>

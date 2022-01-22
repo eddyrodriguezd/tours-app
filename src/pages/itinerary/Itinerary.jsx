@@ -1,18 +1,23 @@
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, Navigate } from 'react-router-dom';
+import { Button } from 'antd';
+
 import ItineraryPanel from './panel';
-import { paquete } from '../../mock/sliderImages';
 import './Itinerary.css';
 import Landscape from '../landing/components/carrousel/Landscape';
 
 const Itinerary = () => {
-	const { id } = useParams();
+	const location = useLocation();
+	if (location.state == null || location.state.tour == null) return <Navigate to='/paquetes' />
+
+	const { tour } = location.state;
+
 	return (
 		<>
 			<Landscape />
 			<div className='container-itinerary'>
 				<main className='container-body'>
-					<h2>{paquete[id].title}</h2>
-					{paquete[id].itinerary.map((el, index) => {
+					<h2>{tour.title}</h2>
+					{tour.itinerary.map((el, index) => {
 						const i = index * 2;
 						return (
 							<ItineraryPanel
@@ -29,7 +34,9 @@ const Itinerary = () => {
 						);
 					})}
 				</main>
-				{/* <NavLink to="/">Home</NavLink> */}
+				<Link to='/checkout' state={{ tour }}>
+					<Button type='primary'>¡Lo quiero!</Button>
+				</Link>
 			</div>
 		</>
 	);

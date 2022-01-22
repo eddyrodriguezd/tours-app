@@ -15,7 +15,7 @@ const Header = () => (
 					</label>
 				</p>
 			</div>
-			<input type='text' name='' id='' placeholder='Fecha de Inicio' />
+			<input type='text' name='' id='' placeholder='Ciudad de origen' />
 			<a href='/' className='button__link'>
 				Buscar
 			</a>
