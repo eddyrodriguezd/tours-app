@@ -4,11 +4,11 @@ import { paquete } from '../../../../mock/sliderImages';
 
 const CardPaquetes = () => (
 	<div className='site-card-wrapper'>
-		<Row gutter={16}>
+		<Row gutter={[16, 16]}>
 			{paquete.map((e, index) => {
 				const i = index * 2;
 				return (
-					<Col key={i} span={6}>
+					<Col key={i} xs={24} sm={12} md={8} lg={6}>
 						<Link to={`/itinerario/${e.id - 1}`}>
 							<Card
 								title={e.title}

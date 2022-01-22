@@ -5,11 +5,13 @@
 	margin: auto;
 	margin-top: 6rem;
 	margin-bottom: 1rem;
+	text-align: center;
+	justify-content: center;
 }
 
 .img_package {
-	width: 224px;
-	height: 168px;
+	width: 90%;
+	height: 220px;
 	margin-bottom: 0.5rem;
 }
 
