@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { Form, Input, Select, DatePicker, InputNumber, Row, Col } from 'antd';
+import {
+	Form,
+	Input,
+	Select,
+	DatePicker,
+	InputNumber,
+	Row,
+	Col,
+} from 'antd';
 import moment from 'moment';
 
 const { Option } = Select;
@@ -13,16 +21,12 @@ const TravellersForm = () => {
 	};
 
 	return (
-		<Form
-			layout='horizontal'
-			size='default'>
-
+		<Form layout='horizontal' size='default'>
 			<Row>
 				<Col xs={6} sm={7} md={8} lg={9} xl={10}>
-
 					<h2>Datos del viaje</h2>
 
-					<Row >
+					<Row>
 						<Col span={12}>
 							<Form.Item label='Cantidad de pasajeros'>
 								<InputNumber
@@ -52,17 +56,16 @@ const TravellersForm = () => {
 					<Form.Item label='Teléfono'>
 						<Input />
 					</Form.Item>
-
 				</Col>
 
-				<Col xs={18} sm={17} md={16} lg={15} xl={14} >
+				<Col xs={18} sm={17} md={16} lg={15} xl={14}>
 					<h2>Datos de los pasajeros</h2>
 
 					{[...Array(travellersQty)].map((value, index) => (
 						<div>
 							<h3>Pasajero {index + 1}</h3>
 
-							<Row >
+							<Row>
 								<Col span={12}>
 									<Form.Item label='Nombre(s)'>
 										<Input />
@@ -76,8 +79,7 @@ const TravellersForm = () => {
 								</Col>
 							</Row>
 
-
-							<Row >
+							<Row>
 								<Col span={6}>
 									<Form.Item label='Tipo de documento'>
 										<Select defaultValue='DNI' style={{ width: '6rem' }}>
@@ -94,12 +96,10 @@ const TravellersForm = () => {
 									</Form.Item>
 								</Col>
 							</Row>
-
 						</div>
 					))}
 				</Col>
 			</Row>
-
 		</Form>
 	);
 };

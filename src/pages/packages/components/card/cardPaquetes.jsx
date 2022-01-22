@@ -9,7 +9,8 @@ const CardPaquetes = () => (
 				const i = index * 2;
 				return (
 					<Col key={i} xs={24} sm={12} md={8} lg={6}>
-						<Link to={`/itinerario/${e.id - 1}`}>
+						<Link to={`/itinerario/${e.id}`}
+							state={{ tour: paquete[e.id - 1] }}>
 							<Card
 								title={e.title}
 								bordered={false}
