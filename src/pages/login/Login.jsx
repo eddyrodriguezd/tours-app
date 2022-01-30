@@ -27,7 +27,7 @@ const Login = () => {
 						<div className='switch__content'>
 							<input type='checkbox' id='check' className='checkbox' />
 
-							<h5 className='text'>Iniciar Sesion como Empresa</h5>
+							<p className='text'>Iniciar Sesion como Empresa</p>
 						</div>
 						<div className='cont'>
 							<label htmlFor='user'>Email or Username</label>
@@ -48,7 +48,7 @@ const Login = () => {
 						<div className='botton'>
 							<div className='botton__checkbox'>
 								<input type='checkbox' id='check' className='checkbox' />
-								<p className='botton_txt'>Remenber me</p>
+								<h5 className='botton_txt'>Remenber me</h5>
 							</div>
 
 							<Link to='/' className='botton_link'>
@@ -66,7 +66,12 @@ const Login = () => {
 						</button>
 					</form>
 				</div>
-				<div className='imgBackground' />
+				<div className='imgBackground'>
+					<img
+						src='https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
+						alt='passport'
+					/>
+				</div>
 			</div>
 			<div className='modal' ref={refModal}>
 				<div className='modal__content'>
