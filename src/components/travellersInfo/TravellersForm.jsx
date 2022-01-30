@@ -13,11 +13,12 @@ import moment from 'moment';
 const { Option } = Select;
 const dateFormat = 'DD/MM/YYYY';
 
-const TravellersForm = () => {
+const TravellersForm = ({ onChangeFn }) => {
 	const [travellersQty, setTravellersQty] = useState(1);
 
 	const onTravellersQtyChange = (quantity) => {
 		setTravellersQty(quantity);
+		onChangeFn('membersSize', quantity);
 	};
 
 	return (
@@ -30,6 +31,7 @@ const TravellersForm = () => {
 						<Col span={12}>
 							<Form.Item label='Cantidad de pasajeros'>
 								<InputNumber
+									name='tourId'
 									min={1}
 									max={10}
 									defaultValue={1}
@@ -43,6 +45,9 @@ const TravellersForm = () => {
 								<DatePicker
 									defaultValue={moment(new Date(), dateFormat)}
 									format={dateFormat}
+									onChange={(e) =>
+										onChangeFn('dateOfTravel', e.format(dateFormat).toString())
+									}
 								/>
 							</Form.Item>
 						</Col>
@@ -51,10 +56,10 @@ const TravellersForm = () => {
 					<h2>Datos de contacto</h2>
 
 					<Form.Item label='Email'>
-						<Input />
+						<Input onChange={(e) => onChangeFn('contactInfo.email', e.target.value)}/>
 					</Form.Item>
 					<Form.Item label='Teléfono'>
-						<Input />
+						<Input onChange={(e) => onChangeFn('contactInfo.phoneNumber', e.target.value)}/>
 					</Form.Item>
 				</Col>
 
@@ -68,13 +73,13 @@ const TravellersForm = () => {
 							<Row>
 								<Col span={12}>
 									<Form.Item label='Nombre(s)'>
-										<Input />
+										<Input onChange={(e) => onChangeFn('member'.concat(index).concat('.name'), e.target.value)}/>
 									</Form.Item>
 								</Col>
 
 								<Col span={12}>
 									<Form.Item label='Apellido(s)'>
-										<Input />
+										<Input onChange={(e) => onChangeFn('member'.concat(index).concat('.lastName'), e.target.value)}/>
 									</Form.Item>
 								</Col>
 							</Row>
@@ -82,7 +87,7 @@ const TravellersForm = () => {
 							<Row>
 								<Col span={6}>
 									<Form.Item label='Tipo de documento'>
-										<Select defaultValue='DNI' style={{ width: '6rem' }}>
+										<Select defaultValue='DNI' style={{ width: '6rem' }} onChange={(idNumberValue) => onChangeFn('member'.concat(index).concat('.idType'), idNumberValue)}>
 											<Option value='DNI'>DNI</Option>
 											<Option value='CE'>CE</Option>
 											<Option value='Pasaporte'>Pasaporte</Option>
@@ -92,7 +97,7 @@ const TravellersForm = () => {
 
 								<Col span={18}>
 									<Form.Item label='Número de documento'>
-										<Input />
+										<Input onChange={(e) => onChangeFn('member'.concat(index).concat('.idNumber'), e.target.value)}/>
 									</Form.Item>
 								</Col>
 							</Row>
