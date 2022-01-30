@@ -46,7 +46,10 @@ const TravellersForm = ({ onChangeFn }) => {
 									defaultValue={moment(new Date(), dateFormat)}
 									format={dateFormat}
 									onChange={(e) =>
-										onChangeFn('dateOfTravel', e.format(dateFormat).toString())
+										onChangeFn(
+											'dateOfTravel',
+											e.format(dateFormat).toString()
+										)
 									}
 								/>
 							</Form.Item>
@@ -56,10 +59,18 @@ const TravellersForm = ({ onChangeFn }) => {
 					<h2>Datos de contacto</h2>
 
 					<Form.Item label='Email'>
-						<Input onChange={(e) => onChangeFn('contactInfo.email', e.target.value)}/>
+						<Input
+							onChange={(e) =>
+								onChangeFn('contactInfo.email', e.target.value)
+							}
+						/>
 					</Form.Item>
 					<Form.Item label='Teléfono'>
-						<Input onChange={(e) => onChangeFn('contactInfo.phoneNumber', e.target.value)}/>
+						<Input
+							onChange={(e) =>
+								onChangeFn('contactInfo.phoneNumber', e.target.value)
+							}
+						/>
 					</Form.Item>
 				</Col>
 
@@ -73,13 +84,27 @@ const TravellersForm = ({ onChangeFn }) => {
 							<Row>
 								<Col span={12}>
 									<Form.Item label='Nombre(s)'>
-										<Input onChange={(e) => onChangeFn('member'.concat(index).concat('.name'), e.target.value)}/>
+										<Input
+											onChange={(e) =>
+												onChangeFn(
+													'member'.concat(index).concat('.name'),
+													e.target.value
+												)
+											}
+										/>
 									</Form.Item>
 								</Col>
 
 								<Col span={12}>
 									<Form.Item label='Apellido(s)'>
-										<Input onChange={(e) => onChangeFn('member'.concat(index).concat('.lastName'), e.target.value)}/>
+										<Input
+											onChange={(e) =>
+												onChangeFn(
+													'member'.concat(index).concat('.lastName'),
+													e.target.value
+												)
+											}
+										/>
 									</Form.Item>
 								</Col>
 							</Row>
@@ -87,7 +112,15 @@ const TravellersForm = ({ onChangeFn }) => {
 							<Row>
 								<Col span={6}>
 									<Form.Item label='Tipo de documento'>
-										<Select defaultValue='DNI' style={{ width: '6rem' }} onChange={(idNumberValue) => onChangeFn('member'.concat(index).concat('.idType'), idNumberValue)}>
+										<Select
+											defaultValue='DNI'
+											style={{ width: '6rem' }}
+											onChange={(idNumberValue) =>
+												onChangeFn(
+													'member'.concat(index).concat('.idType'),
+													idNumberValue
+												)
+											}>
 											<Option value='DNI'>DNI</Option>
 											<Option value='CE'>CE</Option>
 											<Option value='Pasaporte'>Pasaporte</Option>
@@ -97,7 +130,14 @@ const TravellersForm = ({ onChangeFn }) => {
 
 								<Col span={18}>
 									<Form.Item label='Número de documento'>
-										<Input onChange={(e) => onChangeFn('member'.concat(index).concat('.idNumber'), e.target.value)}/>
+										<Input
+											onChange={(e) =>
+												onChangeFn(
+													'member'.concat(index).concat('.idNumber'),
+													e.target.value
+												)
+											}
+										/>
 									</Form.Item>
 								</Col>
 							</Row>

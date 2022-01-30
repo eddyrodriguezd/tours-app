@@ -39,52 +39,55 @@ const Checkout = () => {
 			email: '',
 			phoneNumber: '',
 		},
-		startDestination: '',
-		endDestination: '',
 		dateOfTravel: '',
 		members: [],
-		transport: {}, 
+		transport: {
+			mean: '',
+			startDestination: '',
+			endDestination: tour.destination,
+		},
 	};
 
 	function hasNumber(myString) {
 		return /\d/.test(myString);
-	  }
+	}
 
-	useEffect(() => {	
-
+	useEffect(() => {
 		// Setting values to reservation (everything but arrays)
 		Object.keys(inputs)
-		.filter((key) => key!=='membersSize')
-		.map((key) => key.split('.'))
-		.filter((keyArray) => !hasNumber(keyArray[0]))
-		.forEach((keyArray) => {
-			if(keyArray.length === 1) {
-				reservation[keyArray[0]] = inputs[keyArray[0]]
-			}
-			else {
-				reservation[keyArray[0]][keyArray[1]] = inputs[keyArray[0].concat('.').concat(keyArray[1])];
-			}
+			.filter((key) => key !== 'membersSize')
+			.map((key) => key.split('.'))
+			.filter((keyArray) => !hasNumber(keyArray[0]))
+			.forEach((keyArray) => {
+				if (keyArray.length === 1) {
+					reservation[keyArray[0]] = inputs[keyArray[0]];
+				} else {
+					reservation[keyArray[0]][keyArray[1]] =
+						inputs[keyArray[0].concat('.').concat(keyArray[1])];
+				}
 			});
-			
+
 		// Adding travel members
-		for(let i=0; i < inputs.membersSize; i+=1) {
-			if(inputs['member'.concat(i).concat('.name')] !== undefined && inputs['member'.concat(i).concat('.lastName')] !== undefined
-			&& inputs['member'.concat(i).concat('.idNumber')] !== undefined) {
-	
-				console.log('Passenger ', i, 'exists and its name is: ', inputs['member'.concat(i).concat('.name')]);
-	
+		for (let i = 0; i < inputs.membersSize; i += 1) {
+			if (
+				inputs['member'.concat(i).concat('.name')] !== undefined &&
+				inputs['member'.concat(i).concat('.lastName')] !== undefined &&
+				inputs['member'.concat(i).concat('.idNumber')] !== undefined
+			) {
 				reservation.members.push({
-					'name': inputs['member'.concat(i).concat('.name')],
-					'lastName': inputs['member'.concat(i).concat('.lastName')],
-					'idType': inputs['member'.concat(i).concat('.idType')] === undefined ? "DNI" : inputs['member'.concat(i).concat('.idType')],
-					'idNumber': inputs['member'.concat(i).concat('.idNumber')]
+					name: inputs['member'.concat(i).concat('.name')],
+					lastName: inputs['member'.concat(i).concat('.lastName')],
+					idType:
+						inputs['member'.concat(i).concat('.idType')] === undefined
+							? 'DNI'
+							: inputs['member'.concat(i).concat('.idType')],
+					idNumber: inputs['member'.concat(i).concat('.idNumber')],
 				});
 			}
 		}
 
 		console.log('Reservation: ', reservation);
-
-	 }, [inputs]);
+	}, [inputs]);
 
 	const steps = [
 		{
