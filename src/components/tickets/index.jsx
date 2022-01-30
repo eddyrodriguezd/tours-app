@@ -3,9 +3,9 @@ import FlyingPointsHeader from './components/header/FlyingPoints';
 import { flyingPoints } from '../../mock/sliderImages';
 import './components/card/FlyingPoints.css';
 
-const Flyingpoints = () => (
+const Flyingpoints = ({ onChangeFn }) => (
 	<div className='container-flyingpoints'>
-		<FlyingPointsHeader />
+		<FlyingPointsHeader onChangeFn={onChangeFn} />
 		<section className='flying-cards'>
 			{flyingPoints.map((e) => (
 				<FlyingPointsCard

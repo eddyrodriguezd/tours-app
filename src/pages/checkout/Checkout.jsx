@@ -3,8 +3,12 @@ import { useLocation, Navigate } from 'react-router-dom';
 
 import { Steps, Button, Card } from 'antd';
 
+import moment from 'moment';
+
 import TravellersForm from '../../components/travellersInfo/TravellersForm';
 import FlyingPoints from '../../components/tickets';
+
+import reservationEndpoints from '../../api/reservation/reservationEndpoints';
 
 import './Checkout.css';
 
@@ -19,8 +23,10 @@ const Checkout = () => {
 	const { Meta } = Card;
 
 	const [current, setCurrent] = useState(0);
+
 	const [inputs, setInputs] = useState({
 		membersSize: 1,
+		dateOfTravel: moment(new Date(), 'DD/MM/YYYY'),
 	});
 
 	const changeFormValues = (key, value) => {
@@ -96,7 +102,7 @@ const Checkout = () => {
 		},
 		{
 			title: 'Vuelo',
-			content: <FlyingPoints />,
+			content: <FlyingPoints onChangeFn={changeFormValues} />,
 		},
 		{
 			title: 'Pago',
@@ -112,7 +118,9 @@ const Checkout = () => {
 		setCurrent(current - 1);
 	};
 
-	const success = () => <Navigate to='/paquetes' />;
+	const success = () => {
+		reservationEndpoints.registerReservation(reservation);
+	};
 
 	return (
 		<div style={{ marginTop: '6rem' }}>
