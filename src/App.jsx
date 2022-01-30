@@ -10,6 +10,7 @@ import LogoutBusines from './pages/login/components/registerBusiness';
 import RegisterTour from './components/tours/RegisterTour';
 import Checkout from './pages/checkout/Checkout';
 import Dashboard from './pages/dashboard/Dashboard';
+import Editor from './components/editor/Editor';
 
 const App = () => (
 	<BrowserRouter>
@@ -24,6 +25,7 @@ const App = () => (
 			</Route>
 
 			<Route path='/tour' element={<RegisterTour />} />
+			<Route path='/editor' element={<Editor />} />
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Registrate />} />
 			<Route path='/registerBusines' element={<LogoutBusines />} />

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import {
 	Form,
 	Input,
@@ -11,19 +10,36 @@ import {
 } from 'antd';
 /* import { UploadOutlined } from '@ant-design/icons'; */
 import 'antd/dist/antd.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Editor from '../editor/Editor';
 /* import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'; */
 
 const { Option } = Select;
 
 const RegisterTour = () => {
-	const [dataTour, setDataTour] = useState([]);
-	const [tabList, setTabList] = useState([
+	const [tabItinerario, setItinerario] = useState([
 		{
-			key: 'día1',
-			tab: 'día1',
+			dia: 'dia1',
+			descripcion: '',
 		},
 	]);
+	const [dataTour, setDataTour] = useState({});
+	const [tabList, setTabList] = useState([
+		{
+			key: 'dia1',
+			tab: 'dia1',
+		},
+	]);
+	const [contentList, setContentList] = useState({
+		día1: (
+			<Editor
+				key='dia1'
+				valor={tabItinerario}
+				setValue={setItinerario}
+				indice='0'
+			/>
+		),
+	});
 	const addTour = ({ tour }) => {
 		const objTour = {
 			titulo: tour.titulo,
@@ -34,33 +50,63 @@ const RegisterTour = () => {
 			nDias: tour.nDias,
 			fechaInicio: tour.fechaInicio.format('YYYY-MM-DD'),
 			fechaFin: tour.fechaFin.format('YYYY-MM-DD'),
+			images: tour.upload,
+			itineraio: tabItinerario,
 		};
-		setDataTour([...dataTour, objTour]);
+		console.log(objTour);
+		setDataTour(...dataTour, objTour);
 		localStorage.setItem('tours', JSON.stringify(dataTour));
 	};
 
-	const contentList = {
-		día1: <p>content1</p>,
-		día2: <p>content2</p>,
-	};
-	const [activeTabKey1, setActiveTabKey1] = useState('día1');
+	const [activeTabKey1, setActiveTabKey1] = useState('dia1');
 
 	const onTab1Change = (key) => {
 		setActiveTabKey1(key);
 	};
 
 	const handleNDias = (e) => {
-		// setDias(e);
+		console.log(e);
+
 		const arrayList = [...Array(e)].map((value, index) => ({
 			key: `dia${index + 1}`,
 			tab: `dia${index + 1}`,
 		}));
-		setTabList(arrayList);
-		console.log(arrayList);
+		let nuevoArreglo = [];
+		if (e < tabItinerario.length) {
+			nuevoArreglo = [...tabItinerario].splice(0, e + 1);
+		} else {
+			console.log('entro al else');
+			nuevoArreglo = [...tabItinerario];
+			for (let i = 0; i < e - tabItinerario.length; i += 1) {
+				console.log(i);
+				nuevoArreglo.push({
+					dia: `dia${tabItinerario.length + 1 + i}`,
+					descripcion: '',
+				});
+			}
+		}
 
-		// setTabList([...tabList, { key: valor, tab: valor }]);
+		setItinerario(nuevoArreglo);
+
+		setTabList(arrayList);
 	};
 
+	useEffect(() => {
+		const objContentList = {};
+		tabItinerario.forEach((value, index) => {
+			const key = `dia${index + 1}`;
+			objContentList[key] = (
+				<Editor
+					key={key}
+					valor={tabItinerario}
+					setValue={setItinerario}
+					indice={index}
+				/>
+			);
+		});
+		setContentList(objContentList);
+		// console.log(tabItinerario);
+	}, [tabItinerario]);
 	return (
 		<Form
 			name='basic'
@@ -137,12 +183,20 @@ const RegisterTour = () => {
 			<Form.Item
 				name={['tour', 'upload']}
 				label='Subir Imagen'
-				valuePropName='fileList'
-				/* getValueFromEvent={normFile} */
-				extra='25kb'>
-				<Upload name='logo' action='/upload.do' listType='picture'>
+				/* valuePropName='fileList'
+				 getValueFromEvent={normFile} 
+				extra='25kb' */
+			>
+				<Upload.Dragger
+					multiple
+					listType='picture'
+					accept='.png,.jpg'
+					beforeUpload={(file) => {
+						console.log(file);
+						return false;
+					}}>
 					<Button>Subir</Button>
-				</Upload>
+				</Upload.Dragger>
 			</Form.Item>
 			<br />
 			<Form.Item name={['tour', 'itinerario']} label='Itinerario'>
