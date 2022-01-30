@@ -7,7 +7,8 @@ import Landscape from '../landing/components/carrousel/Landscape';
 
 const Itinerary = () => {
 	const location = useLocation();
-	if (location.state == null || location.state.tour == null) return <Navigate to='/paquetes' />
+	if (location.state == null || location.state.tour == null)
+		return <Navigate to='/paquetes' />;
 
 	const { tour } = location.state;
 

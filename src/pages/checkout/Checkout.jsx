@@ -27,7 +27,8 @@ const steps = [
 
 const Checkout = () => {
 	const location = useLocation();
-	if (location.state == null || location.state.tour == null) return <Navigate to='/paquetes' />
+	if (location.state == null || location.state.tour == null)
+		return <Navigate to='/paquetes' />;
 
 	const { tour } = location.state;
 	const { Meta } = Card;
@@ -42,7 +43,7 @@ const Checkout = () => {
 		setCurrent(current - 1);
 	};
 
-	const success = () => <Navigate to='/paquetes' />
+	const success = () => <Navigate to='/paquetes' />;
 
 	return (
 		<div style={{ marginTop: '6rem' }}>
@@ -68,12 +69,18 @@ const Checkout = () => {
 					</Button>
 				)}
 				{current < steps.length - 1 && (
-					<Button className='steps-button' type='primary' onClick={() => next()}>
+					<Button
+						className='steps-button'
+						type='primary'
+						onClick={() => next()}>
 						Siguiente
 					</Button>
 				)}
 				{current === steps.length - 1 && (
-					<Button className='steps-button' type='primary' onClick={() => success()}>
+					<Button
+						className='steps-button'
+						type='primary'
+						onClick={() => success()}>
 						Finalizar
 					</Button>
 				)}
