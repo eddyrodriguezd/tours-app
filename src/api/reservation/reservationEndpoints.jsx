@@ -5,12 +5,19 @@ const registerReservation = (data) => {
 		'/reservation/create'
 	);
 
-	axios.post(url, data).then((response) => {
-		console.log(response.data);
-		if (response.status === 200) {
-			alert('Reservation sucessfully created');
-		}
-	});
+	axios
+		.post(url, data)
+		.then((response) => {
+			console.log(response.data);
+			if (response.status === 200) {
+				alert('Reservation sucessfully created');
+			}
+		})
+		.catch(() => {
+			console.log(
+				'Could not send the reservation information to the backend service.'
+			);
+		});
 };
 
 export default { registerReservation };
