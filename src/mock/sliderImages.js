@@ -23,6 +23,11 @@ const paquete = [
 	{
 		id: '1',
 		title: 'Mancora Inolvidable',
+		destination: {
+			country: 'Peru',
+			state: 'Piura',
+			city: 'Mancora',
+		},
 		n_dias: '4',
 		n_noches: '3',
 		id_destino: '1',
@@ -84,6 +89,11 @@ const paquete = [
 	{
 		id: '2',
 		title: 'Cusco Milenario',
+		destination: {
+			country: 'Peru',
+			state: 'Cusco',
+			city: 'Cusco',
+		},
 		n_dias: '3',
 		n_noches: '2',
 		id_destino: '1',
@@ -122,6 +132,11 @@ const paquete = [
 	{
 		id: '1',
 		title: 'Mancora Inolvidable',
+		destination: {
+			country: 'Peru',
+			state: 'Piura',
+			city: 'Mancora',
+		},
 		n_dias: '4',
 		n_noches: '3',
 		id_destino: '1',
@@ -183,6 +198,11 @@ const paquete = [
 	{
 		id: '1',
 		title: 'Mancora Inolvidable',
+		destination: {
+			country: 'Peru',
+			state: 'Piura',
+			city: 'Mancora',
+		},
 		n_dias: '4',
 		n_noches: '3',
 		id_destino: '1',
@@ -244,6 +264,11 @@ const paquete = [
 	{
 		id: '1',
 		title: 'Mancora Inolvidable',
+		destination: {
+			country: 'Peru',
+			state: 'Piura',
+			city: 'Mancora',
+		},
 		n_dias: '4',
 		n_noches: '3',
 		id_destino: '1',

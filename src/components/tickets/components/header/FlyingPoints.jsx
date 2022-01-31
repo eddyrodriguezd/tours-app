@@ -1,19 +1,16 @@
-const Header = () => (
+import { Radio, Space } from 'antd';
+
+const Header = ({ onChangeFn }) => (
 	<section className='flying-header'>
 		<div className='flying-header-top'>
 			<div className='flying-check'>
-				<p>
-					<label htmlFor='test'>
-						Aéreos
-						<input type='checkbox' className='checkbox' id='test' />
-					</label>
-				</p>
-				<p>
-					<label htmlFor='test2'>
-						Terrestres
-						<input type='checkbox' className='checkbox' id='test2' />
-					</label>
-				</p>
+				<Radio.Group
+					onChange={(e) => onChangeFn('transport.mean', e.target.value)}>
+					<Space direction='vertical'>
+						<Radio value='plane'>Aéreos</Radio>
+						<Radio value='bus'>Terrestres</Radio>
+					</Space>
+				</Radio.Group>
 			</div>
 			<input type='text' name='' id='' placeholder='Ciudad de origen' />
 			<a href='/' className='button__link'>
