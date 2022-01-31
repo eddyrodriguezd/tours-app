@@ -130,7 +130,7 @@ const paquete = [
 		],
 	},
 	{
-		id: '1',
+		id: '3',
 		title: 'Mancora Inolvidable',
 		destination: {
 			country: 'Peru',
@@ -196,7 +196,7 @@ const paquete = [
 		],
 	},
 	{
-		id: '1',
+		id: '4',
 		title: 'Mancora Inolvidable',
 		destination: {
 			country: 'Peru',
@@ -262,7 +262,7 @@ const paquete = [
 		],
 	},
 	{
-		id: '1',
+		id: '5',
 		title: 'Mancora Inolvidable',
 		destination: {
 			country: 'Peru',

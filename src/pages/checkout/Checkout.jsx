@@ -26,13 +26,10 @@ const Checkout = () => {
 
 	const [inputs, setInputs] = useState({
 		membersSize: 1,
-		dateOfTravel: moment(new Date(), 'DD/MM/YYYY'),
+		dateOfTravel: moment(new Date()).format('DD/MM/YYYY').toString(),
 	});
 
 	const changeFormValues = (key, value) => {
-		console.log(`Key: ${key}`);
-		console.log(`Value: ${value}`);
-
 		setInputs({
 			...inputs,
 			[key]: value,
@@ -40,7 +37,7 @@ const Checkout = () => {
 	};
 
 	const reservation = {
-		tourId: '',
+		tourId: tour.id,
 		contactInfo: {
 			email: '',
 			phoneNumber: '',
