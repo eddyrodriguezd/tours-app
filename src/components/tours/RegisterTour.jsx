@@ -8,11 +8,9 @@ import {
 	DatePicker,
 	Card,
 } from 'antd';
-/* import { UploadOutlined } from '@ant-design/icons'; */
 import 'antd/dist/antd.css';
 import { useState, useEffect } from 'react';
 import Editor from '../editor/Editor';
-/* import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'; */
 
 const { Option } = Select;
 
@@ -23,7 +21,6 @@ const RegisterTour = () => {
 			descripcion: '',
 		},
 	]);
-	// const [dataTour, setDataTour] = useState([]);
 	const dataTour = [];
 	const [tabList, setTabList] = useState([
 		{

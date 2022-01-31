@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 import React, { useState } from 'react';
 import './Dashboard.css';
+import { Outlet, NavLink } from 'react-router-dom';
 
 const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
@@ -33,7 +34,7 @@ const Dashboard = () => {
 				onBreakpoint={points}>
 				<div className='content-usuario'>
 					<img
-						src='assets/img/logo/logo.png'
+						src='./assets/img/logo/logo.png'
 						alt='logo'
 						className='content-usuario__img'
 						style={imgPoint}
@@ -54,9 +55,15 @@ const Dashboard = () => {
 						Estadísticas
 					</Menu.Item>
 					<Menu.Item key='2' icon={<DesktopOutlined />}>
-						Agregar
+						<NavLink
+							onClick={(e) => {
+								e.target.blur();
+							}}
+							className='menu-item__link'
+							to='/dashboard/tour'>
+							Agregar Tour
+						</NavLink>
 					</Menu.Item>
-
 					<Menu.Item key='9' icon={<FileOutlined />}>
 						Modificar
 					</Menu.Item>
@@ -67,7 +74,7 @@ const Dashboard = () => {
 					<Row>
 						<Col span={5} offset={2} className='content-empresa'>
 							<img
-								src='assets/img/logo/logo.png'
+								src='./assets/img/logo/logo.png'
 								alt='logo'
 								className='content-empresa__img'
 							/>
@@ -82,7 +89,7 @@ const Dashboard = () => {
 								<span>Cerrar Sessión</span>
 							</div>
 							<img
-								src='assets/img/logo/logo.png'
+								src='./assets/img/logo/logo.png'
 								alt='logo'
 								className='content-logout__img'
 							/>
@@ -95,6 +102,7 @@ const Dashboard = () => {
 						<Breadcrumb.Item>Bill</Breadcrumb.Item>
 					</Breadcrumb>
 					<Divider orientation='left'>Responsive</Divider>
+					<Outlet />
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
 					Ant Design ©2018 Created by Ant UED
