@@ -23,7 +23,8 @@ const RegisterTour = () => {
 			descripcion: '',
 		},
 	]);
-	const [dataTour, setDataTour] = useState({});
+	// const [dataTour, setDataTour] = useState([]);
+	const dataTour = [];
 	const [tabList, setTabList] = useState([
 		{
 			key: 'dia1',
@@ -41,6 +42,7 @@ const RegisterTour = () => {
 		),
 	});
 	const addTour = ({ tour }) => {
+		console.log(`titulo ${tour.titulo}`);
 		const objTour = {
 			titulo: tour.titulo,
 			descripcion: tour.descripcion,
@@ -53,8 +55,12 @@ const RegisterTour = () => {
 			images: tour.upload,
 			itineraio: tabItinerario,
 		};
+		console.log('---------------------');
 		console.log(objTour);
-		setDataTour(...dataTour, objTour);
+		console.log('---------------------');
+		dataTour.push(objTour);
+		// setDataTour([...dataTour, objTour]);
+		console.log(dataTour);
 		localStorage.setItem('tours', JSON.stringify(dataTour));
 	};
 
@@ -107,6 +113,17 @@ const RegisterTour = () => {
 		setContentList(objContentList);
 		// console.log(tabItinerario);
 	}, [tabItinerario]);
+
+	const normFile = (e) => {
+		console.log('Upload event:', e);
+
+		if (Array.isArray(e)) {
+			return e;
+		}
+
+		return e && e.fileList;
+	};
+
 	return (
 		<Form
 			name='basic'
@@ -114,7 +131,7 @@ const RegisterTour = () => {
 				span: 6,
 			}}
 			wrapperCol={{
-				span: 8,
+				span: 12,
 			}}
 			initialValues={{
 				remember: true,
@@ -168,25 +185,52 @@ const RegisterTour = () => {
 					<Option value='campo'>campo</Option>
 				</Select>
 			</Form.Item>
-			<Form.Item label='Precio' name={['tour', 'precio']}>
+			<Form.Item
+				rules={[
+					{
+						required: true,
+					},
+				]}
+				label='Precio'
+				name={['tour', 'precio']}>
 				<InputNumber />
 			</Form.Item>
-			<Form.Item label='N° Dias' name={['tour', 'nDias']}>
+			<Form.Item
+				rules={[
+					{
+						required: true,
+					},
+				]}
+				label='N° Dias'
+				name={['tour', 'nDias']}>
 				<InputNumber onChange={handleNDias} />
 			</Form.Item>
-			<Form.Item label='Fecha de Inicio' name={['tour', 'fechaInicio']}>
+			<Form.Item
+				rules={[
+					{
+						required: true,
+					},
+				]}
+				label='Fecha de Inicio'
+				name={['tour', 'fechaInicio']}>
 				<DatePicker />
 			</Form.Item>
-			<Form.Item label='Fecha de Fin' name={['tour', 'fechaFin']}>
+			<Form.Item
+				rules={[
+					{
+						required: true,
+					},
+				]}
+				label='Fecha de Fin'
+				name={['tour', 'fechaFin']}>
 				<DatePicker />
 			</Form.Item>
 			<Form.Item
 				name={['tour', 'upload']}
 				label='Subir Imagen'
-				/* valuePropName='fileList'
-				 getValueFromEvent={normFile} 
-				extra='25kb' */
-			>
+				valuePropName='fileList'
+				getValueFromEvent={normFile}
+				extra='25kb'>
 				<Upload.Dragger
 					multiple
 					listType='picture'
@@ -199,7 +243,14 @@ const RegisterTour = () => {
 				</Upload.Dragger>
 			</Form.Item>
 			<br />
-			<Form.Item name={['tour', 'itinerario']} label='Itinerario'>
+			<Form.Item
+				rules={[
+					{
+						required: true,
+					},
+				]}
+				name={['tour', 'itinerario']}
+				label='Itinerario'>
 				<Card
 					tabList={tabList}
 					activeTabKey={activeTabKey1}
