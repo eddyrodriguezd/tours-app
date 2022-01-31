@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import Flyingpoints from './components/tickets';
 import { Login, Registrate } from './components/views/ViewLogin';
 import Itinerary from './pages/itinerary/Itinerary';
