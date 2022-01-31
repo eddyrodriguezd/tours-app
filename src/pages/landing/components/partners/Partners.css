@@ -1,0 +1,38 @@
+.transport-partners {
+	width: 100%;
+	padding: 30px;
+}
+
+.transport-partners__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.transport-partners__container-left {
+	flex-shrink: 2 1;
+}
+
+.transport-partners__img {
+	width: 100%;
+	max-width: 1200px;
+	height: 500px;
+	object-fit: cover;
+	padding-right: 50px;
+}
+.transport-partners--gallery {
+	max-width: 850px;
+}
+.transport-partners--gallery img {
+	padding: 15px;
+}
+.transport-partners__img-transports {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+@media screen and (max-width: 1140px) {
+	.transport-partners__img {
+		display: none;
+	}
+}

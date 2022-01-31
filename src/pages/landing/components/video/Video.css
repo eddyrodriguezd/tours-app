@@ -1,0 +1,108 @@
+.video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+}
+
+.container-video {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	top: 0;
+	z-index: -1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.video__subtitle,
+.video__title {
+	font-weight: 600;
+}
+.video__subtitle {
+	font-size: 2rem;
+	color: #f1f1f1;
+}
+.video__title {
+	color: #2e87cc;
+	font-size: 3rem;
+	text-transform: uppercase;
+}
+
+.video__orange {
+	color: #f9461d;
+}
+.video__button {
+	border: 2px solid #163359;
+	font-size: 1.1rem;
+	padding: 10px 20px;
+
+	color: white;
+}
+
+.video__button:hover {
+	background-color: black;
+	border: none;
+}
+
+@keyframes fadeAndScale {
+	0% {
+		opacity: 0;
+		transform: scale3d(0.75, 0.75, 1);
+	}
+
+	70% {
+		opacity: 0;
+		transform: scale3d(0.75, 0.75, 1);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.fade-in-1 {
+	animation: fadeIn 1s;
+}
+.fade-in-2 {
+	animation: fadeIn 2s;
+}
+.fade-in-3 {
+	animation: fadeIn 3s;
+}
+
+.fade-1,
+.fade-2,
+.fade-3 {
+	transform-origin: center bottom;
+}
+
+.fade-1 {
+	animation: fadeAndScale 1s cubic-bezier(0.39, -1.05, 0.58, 1.95);
+	animation-delay: -0.2s;
+}
+
+.fade-2 {
+	animation: fadeAndScale 2s cubic-bezier(0.39, -1.05, 0.58, 1.95);
+}
+
+.fade-3 {
+	animation: fadeAndScale 3s cubic-bezier(0.39, -1.05, 0.58, 1.95);
+}

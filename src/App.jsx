@@ -11,6 +11,7 @@ import RegisterTour from './components/tours/RegisterTour';
 import Checkout from './pages/checkout/Checkout';
 import Dashboard from './pages/dashboard/Dashboard';
 import Editor from './components/editor/Editor';
+import './App.css';
 
 const App = () => (
 	<BrowserRouter>

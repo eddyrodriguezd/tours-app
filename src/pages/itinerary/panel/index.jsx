@@ -3,7 +3,7 @@ import { useState } from 'react';
 const ItineraryPanel = ({ titulo, description, children }) => {
 	const [showBody, setPanel] = useState(false);
 	function activate() {
-		setPanel(!showBody /* ?'accordion active' : 'accordion' */);
+		setPanel(!showBody);
 	}
 	return (
 		<>

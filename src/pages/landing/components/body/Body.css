@@ -1,0 +1,57 @@
+.main {
+	margin-top: 100vh;
+	position: relative;
+}
+
+.cards {
+	width: 100%;
+	display: grid;
+	grid-gap: 50px;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	max-width: 1400px;
+}
+.card {
+	border: none;
+	position: relative;
+}
+.card:hover {
+	border: 1px solid #2e87cc;
+}
+
+.card__icon {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	background-color: #2e87cc;
+	transform: rotateZ(45deg);
+	top: -30px;
+	left: 45%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.card__icon > span {
+	color: white;
+	transform: rotateZ(-45deg);
+	font-size: 2rem;
+}
+
+.card__title {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-top: 30px;
+}
+.card__title hr,
+.title-section hr {
+	width: 50px;
+	height: 5px;
+	background-color: #f9461d;
+	border: 0;
+}
+
+.card__text {
+	font-weight: 200;
+	color: gray;
+	padding: 10px 0;
+}

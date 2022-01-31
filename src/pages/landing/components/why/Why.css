@@ -1,0 +1,17 @@
+.background-why {
+	background: url('./img/viajero.jpg') no-repeat fixed center;
+	height: 500px;
+	width: 100%;
+}
+
+.why-width {
+	width: 305px;
+}
+.why-width:hover {
+	border: none;
+}
+.why-container-card {
+	width: 320px;
+	padding-bottom: 15px;
+	background-color: #f9461d;
+}

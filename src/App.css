@@ -1,1 +1,48 @@
 @import 'antd/dist/antd.css';
+
+html {
+	position: relative;
+}
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.nunito {
+	font-family: 'Nunito';
+}
+
+/***** scroll *******/
+
+body::-webkit-scrollbar {
+	-webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical {
+	width: 10px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+body::-webkit-scrollbar-button:increment,
+body::-webkit-scrollbar-button {
+	display: none;
+}
+
+body::-webkit-scrollbar:horizontal {
+	height: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #797979;
+	border-radius: 20px;
+}
+
+body::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+
+/***** end scroll ******/
