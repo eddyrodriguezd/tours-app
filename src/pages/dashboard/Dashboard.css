@@ -60,3 +60,8 @@
 .content-logout__name span {
 	color: rgb(197, 0, 0);
 }
+
+.menu-item__link.active {
+	text-decoration: transparent;
+	outline: none;
+}

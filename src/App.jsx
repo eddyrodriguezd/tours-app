@@ -30,7 +30,9 @@ const App = () => (
 			<Route path='/register' element={<Registrate />} />
 			<Route path='/registerBusines' element={<LogoutBusines />} />
 			<Route path='*' element={<h2>Página no Encontrada</h2>} />
-			<Route path='/dashboard' element={<Dashboard />} />
+			<Route path='/dashboard/' element={<Dashboard />}>
+				<Route path='tour' element={<RegisterTour />} />
+			</Route>
 		</Routes>
 	</BrowserRouter>
 );
