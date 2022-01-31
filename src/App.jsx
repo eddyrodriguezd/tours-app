@@ -13,7 +13,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Editor from './components/editor/Editor';
 
 const App = () => (
-	<BrowserRouter>
+	<HashRouter>
 		<Routes>
 			<Route path='/' element={<Main />}>
 				<Route path='/' element={<Body />} />
@@ -34,7 +34,7 @@ const App = () => (
 				<Route path='tour' element={<RegisterTour />} />
 			</Route>
 		</Routes>
-	</BrowserRouter>
+	</HashRouter>
 );
 
 export default App;
