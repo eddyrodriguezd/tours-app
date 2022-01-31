@@ -10,7 +10,7 @@ const LogoutBusines = () => (
 					<img src='assets/img/logo/logo.png' alt='Logo' />
 				</Link>
 
-				<legend className='text'> Iniciar Sesion como Empresa</legend>
+				<legend className='legend_text'> Registra tu Empresa</legend>
 				<div className='cont'>
 					<label htmlFor='razon'>Razón Social</label>
 					<input
@@ -46,7 +46,12 @@ const LogoutBusines = () => (
 				</button>
 			</form>
 		</div>
-		<div className='imgBackground' />
+		<div className='imgBackground'>
+			<img
+				src='https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
+				alt='passport'
+			/>
+		</div>
 	</div>
 );
 
