@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Flyingpoints from './components/tickets';
 import { Login, Registrate } from './components/views/ViewLogin';
 import Itinerary from './pages/itinerary/Itinerary';
@@ -13,7 +13,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Editor from './components/editor/Editor';
 
 const App = () => (
-	<HashRouter>
+	<BrowserRouter>
 		<Routes>
 			<Route path='/' element={<Main />}>
 				<Route path='/' element={<Body />} />
@@ -34,7 +34,7 @@ const App = () => (
 				<Route path='tour' element={<RegisterTour />} />
 			</Route>
 		</Routes>
-	</HashRouter>
+	</BrowserRouter>
 );
 
 export default App;
