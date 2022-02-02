@@ -38,7 +38,9 @@ const Nav = () => {
 					className={`${offset === 0 && 'menu'}`}
 					style={{ width: '200px' }}>
 					<Menu.Item key='mailes'>
-						<NavLink to='/login'>Ingresar</NavLink>
+						<NavLink target='_blank' rel='noopener noreferrer' to='/login'>
+							Ingresar
+						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='alipays'>
 						<a href='!#'>Registrate</a>
