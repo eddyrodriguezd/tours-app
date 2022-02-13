@@ -22,11 +22,22 @@ const Checkout = () => {
 	const { tour } = location.state;
 	const { Meta } = Card;
 
+	const days = tour.n_dias;
+
 	const [current, setCurrent] = useState(0);
 
 	const [inputs, setInputs] = useState({
-		membersSize: 1,
-		dateOfTravel: moment(new Date()).format('DD/MM/YYYY').toString(),
+		tour: {
+			tourId: tour.id,
+			destination: tour.destination,
+		},
+		contactInfo: {
+			clientId: '62092e1d497b63825370e49d',
+			email: 'eddyrodriguezdlc@gmail.com',
+			phoneNumber: '+51999000999',
+		},
+		members: [],
+		startDate: moment(new Date()).format('DD/MM/YYYY').toString(),
 	});
 
 	const changeFormValues = (key, value) => {
@@ -36,66 +47,62 @@ const Checkout = () => {
 		});
 	};
 
-	const reservation = {
-		tourId: tour.id,
-		contactInfo: {
-			email: '',
-			phoneNumber: '',
-		},
-		dateOfTravel: '',
-		members: [],
-		transport: {
-			mean: '',
-			startDestination: '',
-			endDestination: tour.destination,
-		},
+	const addMemberInfo = (key, index, value) => {
+		setInputs(() => ({
+			...inputs,
+			members: [
+				...inputs.members.slice(0, index),
+				{
+					...inputs.members[index],
+					[key]: value,
+				},
+				...inputs.members.slice(index + 1),
+			],
+		}));
 	};
 
-	function hasNumber(myString) {
-		return /\d/.test(myString);
-	}
-
+	// Calculate endDate based on startDate and tour's duration
 	useEffect(() => {
-		// Setting values to reservation (everything but arrays)
-		Object.keys(inputs)
-			.filter((key) => key !== 'membersSize')
-			.map((key) => key.split('.'))
-			.filter((keyArray) => !hasNumber(keyArray[0]))
-			.forEach((keyArray) => {
-				if (keyArray.length === 1) {
-					reservation[keyArray[0]] = inputs[keyArray[0]];
-				} else {
-					reservation[keyArray[0]][keyArray[1]] =
-						inputs[keyArray[0].concat('.').concat(keyArray[1])];
-				}
-			});
+		setInputs({
+			...inputs,
+			endDate: moment(inputs.startDate, 'DD/MM/YYYY')
+				.add(days, 'days')
+				.format('DD/MM/YYYY')
+				.toString(),
+		});
+	}, [inputs.startDate]);
 
-		// Adding travel members
-		for (let i = 0; i < inputs.membersSize; i += 1) {
-			if (
-				inputs['member'.concat(i).concat('.name')] !== undefined &&
-				inputs['member'.concat(i).concat('.lastName')] !== undefined &&
-				inputs['member'.concat(i).concat('.idNumber')] !== undefined
-			) {
-				reservation.members.push({
-					name: inputs['member'.concat(i).concat('.name')],
-					lastName: inputs['member'.concat(i).concat('.lastName')],
-					idType:
-						inputs['member'.concat(i).concat('.idType')] === undefined
-							? 'DNI'
-							: inputs['member'.concat(i).concat('.idType')],
-					idNumber: inputs['member'.concat(i).concat('.idNumber')],
+	// Set 'DNI' as idType by default
+	useEffect(() => {
+		inputs.members.map((member, index) => {
+			if (member.idType === undefined) {
+				setInputs({
+					...inputs,
+					members: [
+						...inputs.members.slice(0, index),
+						{
+							...inputs.members[index],
+							idType: 'DNI',
+						},
+						...inputs.members.slice(index + 1),
+					],
 				});
 			}
-		}
+			return inputs;
+		});
+	}, [inputs.members]);
 
-		console.log('Reservation: ', reservation);
-	}, [inputs]);
-
+	// Navigate through differents sections from Stepper
 	const steps = [
 		{
 			title: 'Información',
-			content: <TravellersForm onChangeFn={changeFormValues} />,
+			content: (
+				<TravellersForm
+					inputs={inputs}
+					addMemberInfo={addMemberInfo}
+					onChangeFn={changeFormValues}
+				/>
+			),
 		},
 		{
 			title: 'Vuelo',
@@ -116,7 +123,8 @@ const Checkout = () => {
 	};
 
 	const success = () => {
-		reservationEndpoints.registerReservation(reservation);
+		console.log('Reservation that will be saved:', JSON.stringify(inputs));
+		reservationEndpoints.registerReservation(inputs);
 	};
 
 	return (
