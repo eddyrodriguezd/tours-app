@@ -5,7 +5,7 @@ const Header = ({ onChangeFn }) => (
 		<div className='flying-header-top'>
 			<div className='flying-check'>
 				<Radio.Group
-					onChange={(e) => onChangeFn('transport.mean', e.target.value)}>
+					onChange={(e) => onChangeFn('transport', e.target.value)}>
 					<Space direction='vertical'>
 						<Radio value='plane'>Aéreos</Radio>
 						<Radio value='bus'>Terrestres</Radio>
