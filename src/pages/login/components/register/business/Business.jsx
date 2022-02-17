@@ -1,13 +1,11 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Alert } from 'antd';
-import { Link } from 'react-router-dom';
-import './Login.css';
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-const Login = () => {
-	// eslint-disable-next-line no-unused-vars
+const Business = () => {
 	const [form, setForm] = useState({});
-	// eslint-disable-next-line no-unused-vars
+
 	const [alert, setAlert] = useState(false);
 
 	const handleChange = (e) => {
@@ -17,7 +15,7 @@ const Login = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!(Object.keys(form).length === 2)) {
+		if (!(Object.keys(form).length === 3)) {
 			setAlert(true);
 			setTimeout(() => {
 				setAlert(false);
@@ -42,8 +40,10 @@ const Login = () => {
 							closable
 						/>
 					)}
+					<legend className='legend_text'>Registra tu Empresa</legend>
+
 					<div className='cont'>
-						<label htmlFor='email'>Correo electrónico </label>
+						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							id='email'
@@ -55,6 +55,20 @@ const Login = () => {
 								e.target.setCustomValidity(
 									'Ingrese un correo electrónico váliddo'
 								)
+							}
+						/>
+					</div>
+					<div className='cont'>
+						<label htmlFor='ruc'>Ruc</label>
+						<input
+							type='text'
+							id='ruc'
+							placeholder='Ingrese el ruc'
+							name='ruc'
+							pattern='[0-9]{11}'
+							onChange={handleChange}
+							onInvalid={(e) =>
+								e.target.setCustomValidity('Ingrese un ruc váliddo')
 							}
 						/>
 					</div>
@@ -74,22 +88,10 @@ const Login = () => {
 							}
 						/>
 					</div>
-					<div className='botton'>
-						<div className='botton__checkbox'>
-							<input type='checkbox' id='check' className='checkbox' />
-							<h5 className='botton_txt'>Remenber me</h5>
-						</div>
 
-						<Link to='/' className='botton_link'>
-							¿Olvidaste tu contraseña?
-						</Link>
-					</div>
 					<button type='submit' className='btn-registrar'>
-						Ingresar
+						Registrarte
 					</button>
-					<Link to='/register' className='btn-register'>
-						Registrar como Usuario
-					</Link>
 				</form>
 			</div>
 			<div className='imgBackground'>
@@ -101,4 +103,5 @@ const Login = () => {
 		</div>
 	);
 };
-export default Login;
+
+export default Business;

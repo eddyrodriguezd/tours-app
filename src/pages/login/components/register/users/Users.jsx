@@ -1,13 +1,11 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Alert } from 'antd';
-import { Link } from 'react-router-dom';
-import './Login.css';
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-const Login = () => {
-	// eslint-disable-next-line no-unused-vars
+const Users = () => {
 	const [form, setForm] = useState({});
-	// eslint-disable-next-line no-unused-vars
+
 	const [alert, setAlert] = useState(false);
 
 	const handleChange = (e) => {
@@ -25,7 +23,6 @@ const Login = () => {
 		}
 		// se.target.reset();
 	};
-
 	return (
 		<div className='content__login'>
 			<div className='formLogin'>
@@ -42,8 +39,10 @@ const Login = () => {
 							closable
 						/>
 					)}
+					<legend className='legend_text'>Registrate</legend>
+
 					<div className='cont'>
-						<label htmlFor='email'>Correo electrónico </label>
+						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							id='email'
@@ -74,22 +73,10 @@ const Login = () => {
 							}
 						/>
 					</div>
-					<div className='botton'>
-						<div className='botton__checkbox'>
-							<input type='checkbox' id='check' className='checkbox' />
-							<h5 className='botton_txt'>Remenber me</h5>
-						</div>
 
-						<Link to='/' className='botton_link'>
-							¿Olvidaste tu contraseña?
-						</Link>
-					</div>
 					<button type='submit' className='btn-registrar'>
-						Ingresar
+						Registrarte
 					</button>
-					<Link to='/register' className='btn-register'>
-						Registrar como Usuario
-					</Link>
 				</form>
 			</div>
 			<div className='imgBackground'>
@@ -101,4 +88,5 @@ const Login = () => {
 		</div>
 	);
 };
-export default Login;
+
+export default Users;
