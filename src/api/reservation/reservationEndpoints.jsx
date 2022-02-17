@@ -13,9 +13,10 @@ const registerReservation = (data) => {
 				alert('Reservation sucessfully created');
 			}
 		})
-		.catch(() => {
+		.catch((err) => {
 			console.log(
-				'Could not send the reservation information to the backend service.'
+				'Could not send the reservation information to the backend service.',
+				err
 			);
 		});
 };
