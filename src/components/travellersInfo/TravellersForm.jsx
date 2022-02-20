@@ -13,7 +13,7 @@ import moment from 'moment';
 const { Option } = Select;
 const dateFormat = 'DD/MM/YYYY';
 
-const TravellersForm = ({ onChangeFn }) => {
+const TravellersForm = ({ inputs, addMemberInfo, onChangeFn }) => {
 	const [travellersQty, setTravellersQty] = useState(1);
 
 	const onTravellersQtyChange = (quantity) => {
@@ -46,10 +46,7 @@ const TravellersForm = ({ onChangeFn }) => {
 									defaultValue={moment(new Date(), dateFormat)}
 									format={dateFormat}
 									onChange={(e) =>
-										onChangeFn(
-											'dateOfTravel',
-											e.format(dateFormat).toString()
-										)
+										onChangeFn('startDate', e.format(dateFormat).toString())
 									}
 								/>
 							</Form.Item>
@@ -61,14 +58,20 @@ const TravellersForm = ({ onChangeFn }) => {
 					<Form.Item label='Email'>
 						<Input
 							onChange={(e) =>
-								onChangeFn('contactInfo.email', e.target.value)
+								onChangeFn('contactInfo', {
+									...inputs.contactInfo,
+									email: e.target.value,
+								})
 							}
 						/>
 					</Form.Item>
 					<Form.Item label='Teléfono'>
 						<Input
 							onChange={(e) =>
-								onChangeFn('contactInfo.phoneNumber', e.target.value)
+								onChangeFn('contactInfo', {
+									...inputs.contactInfo,
+									phoneNumber: e.target.value,
+								})
 							}
 						/>
 					</Form.Item>
@@ -86,10 +89,7 @@ const TravellersForm = ({ onChangeFn }) => {
 									<Form.Item label='Nombre(s)'>
 										<Input
 											onChange={(e) =>
-												onChangeFn(
-													'member'.concat(index).concat('.name'),
-													e.target.value
-												)
+												addMemberInfo('name', index, e.target.value)
 											}
 										/>
 									</Form.Item>
@@ -99,10 +99,7 @@ const TravellersForm = ({ onChangeFn }) => {
 									<Form.Item label='Apellido(s)'>
 										<Input
 											onChange={(e) =>
-												onChangeFn(
-													'member'.concat(index).concat('.lastName'),
-													e.target.value
-												)
+												addMemberInfo('lastName', index, e.target.value)
 											}
 										/>
 									</Form.Item>
@@ -115,11 +112,8 @@ const TravellersForm = ({ onChangeFn }) => {
 										<Select
 											defaultValue='DNI'
 											style={{ width: '6rem' }}
-											onChange={(idNumberValue) =>
-												onChangeFn(
-													'member'.concat(index).concat('.idType'),
-													idNumberValue
-												)
+											onChange={(targetValue) =>
+												addMemberInfo('idType', index, targetValue)
 											}>
 											<Option value='DNI'>DNI</Option>
 											<Option value='CE'>CE</Option>
@@ -132,10 +126,7 @@ const TravellersForm = ({ onChangeFn }) => {
 									<Form.Item label='Número de documento'>
 										<Input
 											onChange={(e) =>
-												onChangeFn(
-													'member'.concat(index).concat('.idNumber'),
-													e.target.value
-												)
+												addMemberInfo('idNumber', index, e.target.value)
 											}
 										/>
 									</Form.Item>
