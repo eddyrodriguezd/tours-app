@@ -41,16 +41,16 @@ const RegisterTour = () => {
 	const addTour = ({ tour }) => {
 		console.log(`titulo ${tour.titulo}`);
 		const objTour = {
-			titulo: tour.titulo,
-			descripcion: tour.descripcion,
-			destino: tour.destino,
-			categoria: tour.categoria,
-			precio: tour.precio,
-			nDias: tour.nDias,
-			fechaInicio: tour.fechaInicio.format('YYYY-MM-DD'),
-			fechaFin: tour.fechaFin.format('YYYY-MM-DD'),
+			title: tour.titulo,
+			description: tour.descripcion,
+			destination: tour.destino,
+			categori: tour.categoria,
+			price: tour.precio,
+			nDays: tour.nDias,
+			startDate: tour.fechaInicio.format('YYYY-MM-DD'),
+			endDate: tour.fechaFin.format('YYYY-MM-DD'),
 			images: tour.upload,
-			itineraio: tabItinerario,
+			itinerary: tabItinerario,
 		};
 		console.log('---------------------');
 		console.log(objTour);
@@ -162,9 +162,9 @@ const RegisterTour = () => {
 				]}
 				hasFeedback>
 				<Select placeholder='Seleccione Destino' allowClear>
-					<Option value='piura'>piura</Option>
-					<Option value='tumbes'>tumbes</Option>
-					<Option value='lima'>lima</Option>
+					<Option value='1'>piura</Option>
+					<Option value='2'>tumbes</Option>
+					<Option value='3'>lima</Option>
 				</Select>
 			</Form.Item>
 			<Form.Item
@@ -177,9 +177,9 @@ const RegisterTour = () => {
 				]}
 				hasFeedback>
 				<Select placeholder='Seleccione Categoria' allowClear>
-					<Option value='relax'>relax</Option>
-					<Option value='playa'>playa</Option>
-					<Option value='campo'>campo</Option>
+					<Option value='1'>relax</Option>
+					<Option value='2'>playa</Option>
+					<Option value='3'>campo</Option>
 				</Select>
 			</Form.Item>
 			<Form.Item
@@ -240,14 +240,7 @@ const RegisterTour = () => {
 				</Upload.Dragger>
 			</Form.Item>
 			<br />
-			<Form.Item
-				rules={[
-					{
-						required: true,
-					},
-				]}
-				name={['tour', 'itinerario']}
-				label='Itinerario'>
+			<Form.Item name={['tour', 'itinerario']} label='Itinerario'>
 				<Card
 					tabList={tabList}
 					activeTabKey={activeTabKey1}
