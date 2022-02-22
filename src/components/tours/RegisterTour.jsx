@@ -11,14 +11,17 @@ import {
 import 'antd/dist/antd.css';
 import { useState, useEffect } from 'react';
 import Editor from '../editor/Editor';
+import { registerTour, getTours } from '../../api/tour/tour';
 
 const { Option } = Select;
 
 const RegisterTour = () => {
+	const [arrayImages, setArrayImages] = useState([]);
+
 	const [tabItinerario, setItinerario] = useState([
 		{
-			dia: 'dia1',
-			descripcion: '',
+			day: 'dia1',
+			description: '',
 		},
 	]);
 	const dataTour = [];
@@ -39,7 +42,7 @@ const RegisterTour = () => {
 		),
 	});
 	const addTour = ({ tour }) => {
-		console.log(`titulo ${tour.titulo}`);
+		console.log(`titulo ${tour.upload}`);
 		const objTour = {
 			title: tour.titulo,
 			description: tour.descripcion,
@@ -49,11 +52,12 @@ const RegisterTour = () => {
 			nDays: tour.nDias,
 			startDate: tour.fechaInicio.format('YYYY-MM-DD'),
 			endDate: tour.fechaFin.format('YYYY-MM-DD'),
-			images: tour.upload,
+			images: arrayImages,
 			itinerary: tabItinerario,
 		};
 		console.log('---------------------');
 		console.log(objTour);
+		registerTour(objTour);
 		console.log('---------------------');
 		dataTour.push(objTour);
 		// setDataTour([...dataTour, objTour]);
@@ -83,8 +87,8 @@ const RegisterTour = () => {
 			for (let i = 0; i < e - tabItinerario.length; i += 1) {
 				console.log(i);
 				nuevoArreglo.push({
-					dia: `dia${tabItinerario.length + 1 + i}`,
-					descripcion: '',
+					day: `dia${tabItinerario.length + 1 + i}`,
+					description: '',
 				});
 			}
 		}
@@ -112,9 +116,16 @@ const RegisterTour = () => {
 	}, [tabItinerario]);
 
 	const normFile = (e) => {
-		console.log('Upload event:', e);
+		console.log('Upload event:', e.fileList[0].name);
+
+		const newImages = e.fileList.map((el) => el.name);
+		console.log(`aqui lorito es el arreglos`);
+		console.log(newImages);
+
+		setArrayImages(newImages);
 
 		if (Array.isArray(e)) {
+			console.log('aqui lorito:', e);
 			return e;
 		}
 
@@ -258,6 +269,7 @@ const RegisterTour = () => {
 				<Button type='primary' htmlType='submit'>
 					Agregar
 				</Button>
+				<Button onClick={getTours}>listar</Button>
 			</Form.Item>
 		</Form>
 	);
