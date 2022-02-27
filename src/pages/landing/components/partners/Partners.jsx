@@ -1,4 +1,6 @@
 import React from 'react';
+import { partners } from '../../../../mock/sliderImages';
+import PartnersImage from './partnersCard/PartnersImage';
 import './Partners.css';
 
 const Partners = () => (
@@ -16,12 +18,9 @@ const Partners = () => (
 			</div>
 			<div className='transport-partners--gallery'>
 				<div className='transport-partners__img-transports'>
-					<img src='assets/img/empresas/civa.jpg' alt='' />
-					<img src='assets/img/empresas/colombia_lujo.jpg' alt='' />
-					<img src='assets/img/empresas/machu_picchu.jpg' alt='' />
-					<img src='assets/img/empresas/mota_turismo.jpg' alt='' />
-					<img src='assets/img/empresas/mundi_travel.jpg' alt='' />
-					<img src='assets/img/empresas/tatito.jpg' alt='' />
+					{partners.map((el) => (
+						<PartnersImage img={el} />
+					))}
 				</div>
 			</div>
 		</div>
