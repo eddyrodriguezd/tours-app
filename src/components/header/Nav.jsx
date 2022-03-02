@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Menu } from 'antd';
 import 'antd/dist/antd.css';
 import './Nav.css';
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
 	const [offset, setOffset] = useState(0);
@@ -21,14 +22,14 @@ const Nav = () => {
 					mode='horizontal'
 					className={`${offset === 0 && 'menu'}`}
 					style={{ flex: '1 1' }}>
-					<Menu.Item key='mail'>
-						<a href='!#'>Inicio</a>
+					<Menu.Item key='main'>
+						<NavLink to='/'>Inicio</NavLink>
 					</Menu.Item>
-					<Menu.Item key='alipay'>
-						<a href='!#'>Destino</a>
+					<Menu.Item key='destination'>
+						<NavLink to='/destinos'>Destinos</NavLink>
 					</Menu.Item>
-					<Menu.Item key='alipays'>
-						<a href='!#'>Itinerario</a>
+					<Menu.Item key='pakage'>
+						<NavLink to='/paquetes'>Paquetes</NavLink>
 					</Menu.Item>
 				</Menu>
 
@@ -37,7 +38,9 @@ const Nav = () => {
 					className={`${offset === 0 && 'menu'}`}
 					style={{ width: '200px' }}>
 					<Menu.Item key='mailes'>
-						<a href='!#'>Ingresar</a>
+						<NavLink target='_blank' rel='noopener noreferrer' to='/login'>
+							Ingresar
+						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='alipays'>
 						<a href='!#'>Registrate</a>

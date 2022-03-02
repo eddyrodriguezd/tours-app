@@ -19,6 +19,45 @@ const destionos = [
 	},
 ];
 
+const services = [
+	{
+		icon: 'loyalty',
+		title: 'Pasajes',
+		description:
+			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, fugiat. Inventore aperiam obcaecati, est sed nisi quos? Fuga, est eaque! Quia fuga dicta ratione numquam soluta incidunt fugiat aliquid illo!',
+	},
+	{
+		icon: 'location_city',
+		title: 'Alojamiento',
+		description:
+			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, fugiat. Inventore aperiam obcaecati, est sed nisi quos? Fuga, est eaque! Quia fuga dicta ratione numquam soluta incidunt fugiat aliquid illo!',
+	},
+	{
+		icon: 'dining',
+		title: 'Alimentación',
+		description:
+			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, fugiat. Inventore aperiam obcaecati, est sed nisi quos? Fuga, est eaque! Quia fuga dicta ratione numquam soluta incidunt fugiat aliquid illo!',
+	},
+	{
+		icon: 'photo_camera',
+		title: 'Fotografía',
+		description:
+			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, fugiat. Inventore aperiam obcaecati, est sed nisi quos? Fuga, est eaque! Quia fuga dicta ratione numquam soluta incidunt fugiat aliquid illo!',
+	},
+	{
+		icon: 'train',
+		title: 'Paseo en Tren',
+		description:
+			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, fugiat. Inventore aperiam obcaecati, est sed nisi quos? Fuga, est eaque! Quia fuga dicta ratione numquam soluta incidunt fugiat aliquid illo!',
+	},
+	{
+		icon: 'directions_boat',
+		title: 'Paseo en bote',
+		description:
+			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, fugiat. Inventore aperiam obcaecati, est sed nisi quos? Fuga, est eaque! Quia fuga dicta ratione numquam soluta incidunt fugiat aliquid illo!',
+	},
+];
+
 const paquete = [
 	{
 		id: '1',
@@ -372,4 +411,48 @@ const flyingPoints = [
 	},
 ];
 
-export { destionos, paquete, sliderImages, flyingPoints };
+const pakages = [
+	{
+		title: 'Aventura',
+		img: 'aventura',
+	},
+	{
+		title: 'Gastronomia',
+		img: 'gastronomia',
+	},
+	{
+		title: 'Cultura',
+		img: 'culture',
+	},
+	{
+		title: 'Excursion',
+		img: 'excursion',
+	},
+	{
+		title: 'Naturaleza',
+		img: 'naturaleza',
+	},
+	{
+		title: 'Playas',
+		img: 'playa',
+	},
+];
+
+const partners = [
+	'civa',
+	'colombia_lujo',
+	'machu_picchu',
+	'mota_turismo',
+	'mundi_travel',
+	'tatito',
+];
+
+export {
+	destionos,
+	paquete,
+	sliderImages,
+	flyingPoints,
+	services,
+	pakages,
+	partners,
+};
