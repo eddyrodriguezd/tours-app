@@ -11,7 +11,7 @@ import {
 import 'antd/dist/antd.css';
 import { useState, useEffect } from 'react';
 import Editor from '../editor/Editor';
-import { registerTour, getTours } from '../../api/tour/tour';
+import { registerTour } from '../../api/tour/tour';
 
 const { Option } = Select;
 
@@ -55,13 +55,13 @@ const RegisterTour = () => {
 			images: arrayImages,
 			itinerary: tabItinerario,
 		};
-		console.log('---------------------');
-		console.log(objTour);
+		// console.log('---------------------');
+		// console.log(objTour);
 		registerTour(objTour);
-		console.log('---------------------');
+		// console.log('---------------------');
 		dataTour.push(objTour);
 		// setDataTour([...dataTour, objTour]);
-		console.log(dataTour);
+		// console.log(dataTour);
 		localStorage.setItem('tours', JSON.stringify(dataTour));
 	};
 
@@ -118,7 +118,7 @@ const RegisterTour = () => {
 	const normFile = (e) => {
 		console.log('Upload event:', e.fileList[0].name);
 
-		const newImages = e.fileList.map((el) => el.name);
+		const newImages = e.fileList.map((el) => el.originFileObj);
 		console.log(`aqui lorito es el arreglos`);
 		console.log(newImages);
 
@@ -173,9 +173,9 @@ const RegisterTour = () => {
 				]}
 				hasFeedback>
 				<Select placeholder='Seleccione Destino' allowClear>
-					<Option value='1'>piura</Option>
-					<Option value='2'>tumbes</Option>
-					<Option value='3'>lima</Option>
+					<Option value='piura'>piura</Option>
+					<Option value='tumbes'>tumbes</Option>
+					<Option value='lima'>lima</Option>
 				</Select>
 			</Form.Item>
 			<Form.Item
@@ -188,9 +188,9 @@ const RegisterTour = () => {
 				]}
 				hasFeedback>
 				<Select placeholder='Seleccione Categoria' allowClear>
-					<Option value='1'>relax</Option>
-					<Option value='2'>playa</Option>
-					<Option value='3'>campo</Option>
+					<Option value='relax'>relax</Option>
+					<Option value='playa'>playa</Option>
+					<Option value='campo'>campo</Option>
 				</Select>
 			</Form.Item>
 			<Form.Item
@@ -269,7 +269,6 @@ const RegisterTour = () => {
 				<Button type='primary' htmlType='submit'>
 					Agregar
 				</Button>
-				<Button onClick={getTours}>listar</Button>
 			</Form.Item>
 		</Form>
 	);
