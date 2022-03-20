@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
+import LoginEndpoints from '../../api/login/loginEndpoints';
 import './Login.css';
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
@@ -8,6 +9,7 @@ const Login = () => {
 	const [modal, setModal] = useState(false);
 	const refModal = useRef();
 	const handleClick = () => setModal(!modal);
+
 	useEffect(
 		() =>
 			modal
@@ -15,34 +17,56 @@ const Login = () => {
 				: refModal.current.classList.remove('active1'),
 		[modal]
 	);
+
+	const [credentials, setCredentials] = useState({
+		email: '',
+		password: '',
+	});
+
+	const handleChange = (e) => {
+		setCredentials({
+			...credentials,
+			[e.target.name]: e.target.value,
+		});
+		console.log('cre', credentials);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		LoginEndpoints.login(credentials);
+	};
+
 	return (
 		<>
 			<div className='content__login'>
 				<div className='formLogin'>
-					<form action='' method='post'>
+					<form action='' method='post' onSubmit={handleSubmit}>
 						<Link to='/'>
 							<img src='assets/img/logo/logo.png' alt='Logo' />
 						</Link>
 
 						<div className='switch__content'>
 							<input type='checkbox' id='check' className='checkbox' />
-
 							<p className='text'>Iniciar Sesion como Empresa</p>
 						</div>
 						<div className='cont'>
 							<label htmlFor='user'>Email or Username</label>
 							<input
 								type='text'
-								id='user'
+								name='email'
+								id='email'
 								placeholder='Ingrese su Email o su nombre de Usuario'
+								onChange={handleChange}
 							/>
 						</div>
 						<div className='cont'>
 							<label htmlFor='password'>Password</label>
 							<input
 								type='password'
+								name='password'
 								id='password'
 								placeholder='Ingrese la Contraseña'
+								onChange={handleChange}
 							/>
 						</div>
 						<div className='botton'>
@@ -55,9 +79,9 @@ const Login = () => {
 								Forgot your password?
 							</Link>
 						</div>
-						<Link to='/' className='btn-registrar'>
-							Sign In
-						</Link>
+						{/* <Link to='/' className='btn-registrar'> */}
+						<button type='submit'>Sign In</button>
+						{/* </Link> */}
 						<button
 							type='button'
 							className='btn-register'
