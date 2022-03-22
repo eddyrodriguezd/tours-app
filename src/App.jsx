@@ -12,6 +12,7 @@ import Checkout from './pages/checkout/Checkout';
 import Dashboard from './pages/dashboard/Dashboard';
 import Editor from './components/editor/Editor';
 import './App.css';
+import ListTours from './components/tours/ListTours';
 
 const App = () => (
 	<BrowserRouter>
@@ -32,6 +33,7 @@ const App = () => (
 			<Route path='*' element={<h2>Página no Encontrada</h2>} />
 			<Route path='/dashboard/' element={<Dashboard />}>
 				<Route path='tour' element={<RegisterTour />} />
+				<Route path='listTours' element={<ListTours />} />
 			</Route>
 		</Routes>
 	</BrowserRouter>

@@ -6,11 +6,11 @@ const registerReservation = (data) => {
 	);
 
 	axios
-		.post(url, data)
+		.post(url, data, { withCredentials: true })
 		.then((response) => {
 			console.log(response.data);
 			if (response.status === 200) {
-				alert('Reservation sucessfully created');
+				alert('Reservation successfully created');
 			}
 		})
 		.catch((err) => {

@@ -1,14 +1,18 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Alert } from 'antd';
 import { Link } from 'react-router-dom';
+import LoginEndpoints from '../../api/login/loginEndpoints';
 import './Login.css';
-/* eslint-disable jsx-a11y/label-has-associated-control */
 
 const Login = () => {
-	// eslint-disable-next-line no-unused-vars
 	const [form, setForm] = useState({});
-	// eslint-disable-next-line no-unused-vars
 	const [alert, setAlert] = useState(false);
+	const [credentials, setCredentials] = useState({
+		email: '',
+		password: '',
+	});
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -24,6 +28,7 @@ const Login = () => {
 			}, 3000);
 		}
 		// se.target.reset();
+		LoginEndpoints.login(credentials);
 	};
 
 	return (
