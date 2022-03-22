@@ -25,6 +25,7 @@ const Checkout = () => {
 	const days = tour.n_dias;
 
 	const [current, setCurrent] = useState(0);
+	const [success, setSuccess] = useState(false);
 
 	const [inputs, setInputs] = useState({
 		tour: {
@@ -122,10 +123,18 @@ const Checkout = () => {
 		setCurrent(current - 1);
 	};
 
-	const success = () => {
+	const successFn = () => {
 		console.log('Reservation that will be saved:', JSON.stringify(inputs));
-		reservationEndpoints.registerReservation(inputs);
+		reservationEndpoints.registerReservation(inputs, setSuccess);
 	};
+
+	// Redirect when everything finishes
+	useEffect(() => {
+		if (success) {
+			return <Navigate to='/' />;
+		}
+		return undefined;
+	}, [success]);
 
 	return (
 		<div style={{ marginTop: '6rem' }}>
@@ -162,7 +171,7 @@ const Checkout = () => {
 					<Button
 						className='steps-button'
 						type='primary'
-						onClick={() => success()}>
+						onClick={() => successFn()}>
 						Finalizar
 					</Button>
 				)}
