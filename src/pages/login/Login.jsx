@@ -13,7 +13,6 @@ const Login = () => {
 		email: '',
 		password: '',
 	});
-
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
@@ -30,7 +29,6 @@ const Login = () => {
 		// se.target.reset();
 		LoginEndpoints.login(credentials);
 	};
-
 	return (
 		<div className='content__login'>
 			<div className='formLogin'>
@@ -84,7 +82,6 @@ const Login = () => {
 							<input type='checkbox' id='check' className='checkbox' />
 							<h5 className='botton_txt'>Remenber me</h5>
 						</div>
-
 						<Link to='/' className='botton_link'>
 							¿Olvidaste tu contraseña?
 						</Link>
