@@ -1,18 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Alert } from 'antd';
-import { Link } from 'react-router-dom';
-import LoginEndpoints from '../../api/login/loginEndpoints';
-import './Login.css';
+/* eslint-disable jsx-a11y/label-has-associated-control */
 
-const Login = () => {
+const Users = () => {
 	const [form, setForm] = useState({});
+
 	const [alert, setAlert] = useState(false);
-	const [credentials, setCredentials] = useState({
-		email: '',
-		password: '',
-	});
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
@@ -27,7 +22,6 @@ const Login = () => {
 			}, 3000);
 		}
 		// se.target.reset();
-		LoginEndpoints.login(credentials);
 	};
 	return (
 		<div className='content__login'>
@@ -45,8 +39,10 @@ const Login = () => {
 							closable
 						/>
 					)}
+					<legend className='legend_text'>Registrate</legend>
+
 					<div className='cont'>
-						<label htmlFor='email'>Correo electrónico </label>
+						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							id='email'
@@ -77,21 +73,10 @@ const Login = () => {
 							}
 						/>
 					</div>
-					<div className='botton'>
-						<div className='botton__checkbox'>
-							<input type='checkbox' id='check' className='checkbox' />
-							<h5 className='botton_txt'>Remenber me</h5>
-						</div>
-						<Link to='/' className='botton_link'>
-							¿Olvidaste tu contraseña?
-						</Link>
-					</div>
+
 					<button type='submit' className='btn-registrar'>
-						Ingresar
+						Registrarte
 					</button>
-					<Link to='/register' className='btn-register'>
-						Registrar como Usuario
-					</Link>
 				</form>
 			</div>
 			<div className='imgBackground'>
@@ -103,4 +88,5 @@ const Login = () => {
 		</div>
 	);
 };
-export default Login;
+
+export default Users;
