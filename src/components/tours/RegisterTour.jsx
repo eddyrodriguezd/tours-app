@@ -11,7 +11,7 @@ import {
 import 'antd/dist/antd.css';
 import { useState, useEffect } from 'react';
 import Editor from '../editor/Editor';
-import { registerTour, getTours } from '../../api/tour/tour';
+import { registerTour } from '../../api/tour/tour';
 
 const { Option } = Select;
 
@@ -42,7 +42,6 @@ const RegisterTour = () => {
 		),
 	});
 	const addTour = ({ tour }) => {
-		console.log(`titulo ${tour.upload}`);
 		const objTour = {
 			title: tour.titulo,
 			description: tour.descripcion,
@@ -55,13 +54,8 @@ const RegisterTour = () => {
 			images: arrayImages,
 			itinerary: tabItinerario,
 		};
-		console.log('---------------------');
-		console.log(objTour);
 		registerTour(objTour);
-		console.log('---------------------');
 		dataTour.push(objTour);
-		// setDataTour([...dataTour, objTour]);
-		console.log(dataTour);
 		localStorage.setItem('tours', JSON.stringify(dataTour));
 	};
 
@@ -72,8 +66,6 @@ const RegisterTour = () => {
 	};
 
 	const handleNDias = (e) => {
-		console.log(e);
-
 		const arrayList = [...Array(e)].map((value, index) => ({
 			key: `dia${index + 1}`,
 			tab: `dia${index + 1}`,
@@ -82,10 +74,8 @@ const RegisterTour = () => {
 		if (e < tabItinerario.length) {
 			nuevoArreglo = [...tabItinerario].splice(0, e + 1);
 		} else {
-			console.log('entro al else');
 			nuevoArreglo = [...tabItinerario];
 			for (let i = 0; i < e - tabItinerario.length; i += 1) {
-				console.log(i);
 				nuevoArreglo.push({
 					day: `dia${tabItinerario.length + 1 + i}`,
 					description: '',
@@ -112,20 +102,14 @@ const RegisterTour = () => {
 			);
 		});
 		setContentList(objContentList);
-		// console.log(tabItinerario);
 	}, [tabItinerario]);
 
 	const normFile = (e) => {
-		console.log('Upload event:', e.fileList[0].name);
-
-		const newImages = e.fileList.map((el) => el.name);
-		console.log(`aqui lorito es el arreglos`);
-		console.log(newImages);
+		const newImages = e.fileList.map((el) => el.originFileObj);
 
 		setArrayImages(newImages);
 
 		if (Array.isArray(e)) {
-			console.log('aqui lorito:', e);
 			return e;
 		}
 
@@ -173,9 +157,9 @@ const RegisterTour = () => {
 				]}
 				hasFeedback>
 				<Select placeholder='Seleccione Destino' allowClear>
-					<Option value='1'>piura</Option>
-					<Option value='2'>tumbes</Option>
-					<Option value='3'>lima</Option>
+					<Option value='piura'>piura</Option>
+					<Option value='tumbes'>tumbes</Option>
+					<Option value='lima'>lima</Option>
 				</Select>
 			</Form.Item>
 			<Form.Item
@@ -188,9 +172,9 @@ const RegisterTour = () => {
 				]}
 				hasFeedback>
 				<Select placeholder='Seleccione Categoria' allowClear>
-					<Option value='1'>relax</Option>
-					<Option value='2'>playa</Option>
-					<Option value='3'>campo</Option>
+					<Option value='relax'>relax</Option>
+					<Option value='playa'>playa</Option>
+					<Option value='campo'>campo</Option>
 				</Select>
 			</Form.Item>
 			<Form.Item
@@ -243,10 +227,7 @@ const RegisterTour = () => {
 					multiple
 					listType='picture'
 					accept='.png,.jpg'
-					beforeUpload={(file) => {
-						console.log(file);
-						return false;
-					}}>
+					beforeUpload={() => false}>
 					<Button>Subir</Button>
 				</Upload.Dragger>
 			</Form.Item>
@@ -269,7 +250,6 @@ const RegisterTour = () => {
 				<Button type='primary' htmlType='submit'>
 					Agregar
 				</Button>
-				<Button onClick={getTours}>listar</Button>
 			</Form.Item>
 		</Form>
 	);
