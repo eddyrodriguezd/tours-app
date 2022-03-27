@@ -105,7 +105,7 @@ const Checkout = () => {
 			title: 'Información',
 			content: (
 				<TravellersForm
-					inputs={inputs}
+					members={inputs.members}
 					addMemberInfo={addMemberInfo}
 					onChangeFn={changeFormValues}
 				/>
@@ -135,7 +135,7 @@ const Checkout = () => {
 	};
 
 	useEffect(() => {
-		console.log('current value', current);
+		// Current value is 1 when Hotels Tab is displayed
 		if (current === 1) {
 			const hotelParams = {
 				checkIn: inputs.startDate,
