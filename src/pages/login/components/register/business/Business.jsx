@@ -1,18 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Alert } from 'antd';
-import { Link } from 'react-router-dom';
-import LoginEndpoints from '../../api/login/loginEndpoints';
-import './Login.css';
+/* eslint-disable jsx-a11y/label-has-associated-control */
 
-const Login = () => {
+const Business = () => {
 	const [form, setForm] = useState({});
+
 	const [alert, setAlert] = useState(false);
-	const [credentials, setCredentials] = useState({
-		email: '',
-		password: '',
-	});
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
@@ -20,15 +15,15 @@ const Login = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!(Object.keys(form).length === 2)) {
+		if (!(Object.keys(form).length === 3)) {
 			setAlert(true);
 			setTimeout(() => {
 				setAlert(false);
 			}, 3000);
 		}
 		// se.target.reset();
-		LoginEndpoints.login(credentials);
 	};
+
 	return (
 		<div className='content__login'>
 			<div className='formLogin'>
@@ -45,8 +40,10 @@ const Login = () => {
 							closable
 						/>
 					)}
+					<legend className='legend_text'>Registra tu Empresa</legend>
+
 					<div className='cont'>
-						<label htmlFor='email'>Correo electrónico </label>
+						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							id='email'
@@ -58,6 +55,20 @@ const Login = () => {
 								e.target.setCustomValidity(
 									'Ingrese un correo electrónico váliddo'
 								)
+							}
+						/>
+					</div>
+					<div className='cont'>
+						<label htmlFor='ruc'>Ruc</label>
+						<input
+							type='text'
+							id='ruc'
+							placeholder='Ingrese el ruc'
+							name='ruc'
+							pattern='[0-9]{11}'
+							onChange={handleChange}
+							onInvalid={(e) =>
+								e.target.setCustomValidity('Ingrese un ruc váliddo')
 							}
 						/>
 					</div>
@@ -77,21 +88,10 @@ const Login = () => {
 							}
 						/>
 					</div>
-					<div className='botton'>
-						<div className='botton__checkbox'>
-							<input type='checkbox' id='check' className='checkbox' />
-							<h5 className='botton_txt'>Remenber me</h5>
-						</div>
-						<Link to='/' className='botton_link'>
-							¿Olvidaste tu contraseña?
-						</Link>
-					</div>
+
 					<button type='submit' className='btn-registrar'>
-						Ingresar
+						Registrarte
 					</button>
-					<Link to='/register' className='btn-register'>
-						Registrar como Usuario
-					</Link>
 				</form>
 			</div>
 			<div className='imgBackground'>
@@ -103,4 +103,5 @@ const Login = () => {
 		</div>
 	);
 };
-export default Login;
+
+export default Business;

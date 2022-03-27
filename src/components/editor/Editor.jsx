@@ -43,13 +43,13 @@ const Editor = ({ valor, setValue, indice }) => {
 	Quill.register(Font, true); */
 	const valorItinerario = [...valor];
 	const setValueEditor = (textoEditor) => {
-		valorItinerario[indice].descripcion = textoEditor;
+		valorItinerario[indice].description = textoEditor;
 		setValue(valorItinerario);
 	};
 	return (
 		<ReactQuill
 			theme='snow'
-			value={valorItinerario[indice].descripcion}
+			value={valorItinerario[indice].description}
 			onChange={setValueEditor}
 			modules={modules}
 			formats={formats}
