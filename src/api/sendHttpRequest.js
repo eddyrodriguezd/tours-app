@@ -10,12 +10,11 @@ const sendHttpRequest = (
 
 	axios({ method, url, data, withCredentials: true })
 		.then((response) => {
-			// console.log(response.data);
 			if (response.status !== successCode) {
 				throw new Error(errorMessage);
 			}
 			console.log(successMessage);
-			successTrigger(true);
+			successTrigger(response.data.value);
 		})
 		.catch((err) => {
 			console.log(errorMessage, err);

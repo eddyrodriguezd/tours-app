@@ -8,7 +8,10 @@ import moment from 'moment';
 import TravellersForm from '../../components/travellersInfo/TravellersForm';
 import FlyingPoints from '../../components/tickets';
 
-import reservationEndpoints from '../../api/reservation/reservationEndpoints';
+import {
+	registerReservation,
+	fetchHotels,
+} from '../../api/reservation/reservationEndpoints';
 
 import './Checkout.css';
 
@@ -16,6 +19,7 @@ const { Step } = Steps;
 
 const Checkout = () => {
 	const location = useLocation();
+
 	if (location.state == null || location.state.tour == null)
 		return <Navigate to='/paquetes' />;
 
@@ -25,7 +29,9 @@ const Checkout = () => {
 	const days = tour.n_dias;
 
 	const [current, setCurrent] = useState(0);
-	const [success, setSuccess] = useState(false);
+	const [reservationSuccess, setReservationSuccess] = useState(false);
+
+	const [hotelsInfo, setHotelsInfo] = useState([]);
 
 	const [inputs, setInputs] = useState({
 		tour: {
@@ -38,7 +44,7 @@ const Checkout = () => {
 			phoneNumber: '+51999000999',
 		},
 		members: [],
-		startDate: moment(new Date()).format('DD/MM/YYYY').toString(),
+		startDate: moment(new Date()).format('YYYY-MM-DD').toString(),
 	});
 
 	const changeFormValues = (key, value) => {
@@ -66,9 +72,9 @@ const Checkout = () => {
 	useEffect(() => {
 		setInputs({
 			...inputs,
-			endDate: moment(inputs.startDate, 'DD/MM/YYYY')
+			endDate: moment(inputs.startDate, 'YYYY-MM-DD')
 				.add(days, 'days')
-				.format('DD/MM/YYYY')
+				.format('YYYY-MM-DD')
 				.toString(),
 		});
 	}, [inputs.startDate]);
@@ -123,18 +129,31 @@ const Checkout = () => {
 		setCurrent(current - 1);
 	};
 
-	const successFn = () => {
+	const success = () => {
 		console.log('Reservation that will be saved:', JSON.stringify(inputs));
-		reservationEndpoints.registerReservation(inputs, setSuccess);
+		registerReservation(inputs, () => setReservationSuccess(true));
 	};
 
-	// Redirect when everything finishes
 	useEffect(() => {
-		if (success) {
-			return <Navigate to='/' />;
+		console.log('current value', current);
+		if (current === 1) {
+			const hotelParams = {
+				checkIn: inputs.startDate,
+				checkOut: inputs.endDate,
+				rooms: 2,
+				adults: 2,
+				children: 0,
+				city: inputs.tour.destination.city,
+			};
+			fetchHotels(hotelParams, (data) => setHotelsInfo(data));
 		}
-		return undefined;
-	}, [success]);
+	}, [current]);
+
+	useEffect(() => {
+		console.log("Hotels' Information:", hotelsInfo);
+	}, [hotelsInfo]);
+
+	if (reservationSuccess) return <Navigate to='/' />;
 
 	return (
 		<div style={{ marginTop: '6rem' }}>
@@ -171,7 +190,7 @@ const Checkout = () => {
 					<Button
 						className='steps-button'
 						type='primary'
-						onClick={() => successFn()}>
+						onClick={() => success()}>
 						Finalizar
 					</Button>
 				)}
