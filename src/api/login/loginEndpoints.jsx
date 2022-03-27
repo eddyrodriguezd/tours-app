@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const login = (data) => {
-	const url = process.env.REACT_APP_BACKEND_ENDPOINT.concat('/login');
+	const url = process.env.REACT_APP_BACKEND_ENDPOINT.concat('/users/login');
 
 	axios
 		.post(url, data, { withCredentials: true })

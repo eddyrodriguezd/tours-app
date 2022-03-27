@@ -11,7 +11,7 @@ import {
 import moment from 'moment';
 
 const { Option } = Select;
-const dateFormat = 'DD/MM/YYYY';
+const dateFormat = 'YYYY-MM-DD';
 
 const TravellersForm = ({ inputs, addMemberInfo, onChangeFn }) => {
 	const [travellersQty, setTravellersQty] = useState(1);
