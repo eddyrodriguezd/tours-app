@@ -1,16 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Input, Select, DatePicker, InputNumber } from 'antd';
 import moment from 'moment';
 
 const { Option } = Select;
 const dateFormat = 'YYYY-MM-DD';
 
-const TravellersForm = ({ inputs, addMemberInfo, onChangeFn }) => {
+const TravellersForm = ({
+	inputs,
+	addMemberInfo,
+	onChangeFn,
+	setFormCompleted,
+}) => {
 	const { members } = inputs;
 
 	const [nameStatusArr, setNameStatusArr] = useState([{}]);
 	const [lastNameStatusArr, setLastNameStatusArr] = useState([{}]);
 	const [idNumberStatusArr, setIdNumberStatusArr] = useState([{}]);
+
+	useEffect(() => {
+		const statusArr = [
+			...nameStatusArr,
+			...lastNameStatusArr,
+			...idNumberStatusArr,
+		];
+		const successfulItems = statusArr.filter(
+			(status) => status.validateStatus === 'success'
+		).length;
+
+		setFormCompleted(successfulItems === statusArr.length);
+	}, [nameStatusArr, lastNameStatusArr, idNumberStatusArr]);
 
 	const updateStatusArr = (arr, fun, index, valueToSet) => {
 		arr.map(() => {
@@ -140,8 +158,7 @@ const TravellersForm = ({ inputs, addMemberInfo, onChangeFn }) => {
 			wrapperCol={{ span: 6 }}
 			layout='horizontal'
 			initialValues={{ size: 'default' }}
-			size='default'
-			onForm>
+			size='default'>
 			<h2>Datos del viaje</h2>
 
 			<Form.Item label='Cantidad de pasajeros'>
