@@ -5,31 +5,52 @@ import moment from 'moment';
 const { Option } = Select;
 const dateFormat = 'YYYY-MM-DD';
 
-const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
-	const [travellersQty, setTravellersQty] = useState(1);
+const TravellersForm = ({ inputs, addMemberInfo, onChangeFn }) => {
+	const { members } = inputs;
 
-	const onTravellersQtyChange = (quantity) => {
-		setTravellersQty(quantity);
-		onChangeFn('membersSize', quantity);
-	};
-
+	const [nameStatusArr, setNameStatusArr] = useState([{}]);
+	const [lastNameStatusArr, setLastNameStatusArr] = useState([{}]);
 	const [idNumberStatusArr, setIdNumberStatusArr] = useState([{}]);
 
-	const updateIdNumberStatus = (index, valueToSet) => {
-		console.log(
-			'updating number status from:',
-			idNumberStatusArr,
-			'value to set',
-			valueToSet
-		);
-		idNumberStatusArr.map(() => {
-			setIdNumberStatusArr([
-				...idNumberStatusArr.slice(0, index),
-				valueToSet,
-				...idNumberStatusArr.slice(index + 1),
-			]);
-			return idNumberStatusArr;
+	const updateStatusArr = (arr, fun, index, valueToSet) => {
+		arr.map(() => {
+			fun([...arr.slice(0, index), valueToSet, ...arr.slice(index + 1)]);
+			return arr;
 		});
+	};
+
+	const addMemberInfoAndValidateNotEmpty = (key, index, value) => {
+		addMemberInfo(key, index, value);
+
+		switch (key) {
+			case 'name':
+				if (value === '') {
+					updateStatusArr(nameStatusArr, setNameStatusArr, index, {
+						validateStatus: 'error',
+						errorMsg: 'Por favor ingrese su(s) nombre(s)',
+					});
+					return;
+				}
+				updateStatusArr(nameStatusArr, setNameStatusArr, index, {
+					validateStatus: 'success',
+					errorMsg: '',
+				});
+				break;
+			case 'lastName':
+				if (value === '') {
+					updateStatusArr(lastNameStatusArr, setLastNameStatusArr, index, {
+						validateStatus: 'error',
+						errorMsg: 'Por favor ingrese su(s) apellido(s)',
+					});
+					return;
+				}
+				updateStatusArr(lastNameStatusArr, setLastNameStatusArr, index, {
+					validateStatus: 'success',
+					errorMsg: '',
+				});
+				break;
+			default:
+		}
 	};
 
 	const addMemberInfoAndValidateIdNumber = (index, value) => {
@@ -37,7 +58,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 		console.log('value', value);
 
 		if (Number.isNaN(Number(value))) {
-			updateIdNumberStatus(index, {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 				validateStatus: 'error',
 				errorMsg: 'El número de '
 					.concat(members[index].idType)
@@ -47,7 +68,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 		}
 
 		if (value.length !== 9 && members[index]?.idType === 'Pasaporte') {
-			updateIdNumberStatus(index, {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 				validateStatus: 'error',
 				errorMsg: 'El número de Pasaporte debe contar con 9 dígitos',
 			});
@@ -58,7 +79,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 			value.length !== 8 &&
 			(members[index]?.idType === 'CE' || members[index]?.idType === 'DNI')
 		) {
-			updateIdNumberStatus(index, {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 				validateStatus: 'error',
 				errorMsg: 'El número de '
 					.concat(members[index].idType)
@@ -67,7 +88,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 			return;
 		}
 
-		updateIdNumberStatus(index, {
+		updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 			validateStatus: 'success',
 			errorMsg: '',
 		});
@@ -77,7 +98,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 		addMemberInfo('idType', index, value);
 
 		if (Number.isNaN(Number(members[index]?.idNumber))) {
-			updateIdNumberStatus(index, {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 				validateStatus: 'error',
 				errorMsg: 'El '
 					.concat(value)
@@ -87,7 +108,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 		}
 
 		if (members[index]?.idNumber !== 9 && value === 'Pasaporte') {
-			updateIdNumberStatus(index, {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 				validateStatus: 'error',
 				errorMsg: 'El número de Pasaporte debe contar con 9 dígitos',
 			});
@@ -98,7 +119,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 			members[index]?.idNumber !== 8 &&
 			(value === 'CE' || value === 'DNI')
 		) {
-			updateIdNumberStatus(index, {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 				validateStatus: 'error',
 				errorMsg: 'El número de '
 					.concat(value)
@@ -107,7 +128,7 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 			return;
 		}
 
-		updateIdNumberStatus(index, {
+		updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
 			validateStatus: 'success',
 			errorMsg: '',
 		});
@@ -119,7 +140,8 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 			wrapperCol={{ span: 6 }}
 			layout='horizontal'
 			initialValues={{ size: 'default' }}
-			size='default'>
+			size='default'
+			onForm>
 			<h2>Datos del viaje</h2>
 
 			<Form.Item label='Cantidad de pasajeros'>
@@ -127,14 +149,20 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 					name='tourId'
 					min={1}
 					max={10}
-					defaultValue={1}
-					onChange={onTravellersQtyChange}
+					defaultValue={
+						inputs.membersSize === undefined ? 1 : inputs.membersSize
+					}
+					onChange={(value) => onChangeFn('membersSize', value)}
 				/>
 			</Form.Item>
 
 			<Form.Item label='Fecha de salida'>
 				<DatePicker
-					defaultValue={moment(new Date(), dateFormat)}
+					defaultValue={
+						inputs.startDate === undefined
+							? moment(new Date(), dateFormat)
+							: moment(new Date(inputs.startDate), dateFormat)
+					}
 					format={dateFormat}
 					onChange={(e) =>
 						onChangeFn('startDate', e.format(dateFormat).toString())
@@ -144,27 +172,59 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 
 			<h2>Datos de los pasajeros</h2>
 
-			{[...Array(travellersQty)].map((value, index) => (
+			{[...Array(inputs.membersSize)].map((value, index) => (
 				<div>
 					<h3>Pasajero {index + 1}</h3>
 
-					<Form.Item label='Nombre(s)'>
+					<Form.Item
+						label='Nombre(s)'
+						hasFeedback
+						validateStatus={nameStatusArr[index]?.validateStatus}
+						help={nameStatusArr[index]?.errorMsg}>
 						<Input
-							onChange={(e) => addMemberInfo('name', index, e.target.value)}
+							defaultValue={
+								inputs.members[index]?.name === undefined
+									? ''
+									: inputs.members[index]?.name
+							}
+							onChange={(e) =>
+								addMemberInfoAndValidateNotEmpty(
+									'name',
+									index,
+									e.target.value
+								)
+							}
 						/>
 					</Form.Item>
 
-					<Form.Item label='Apellido(s)'>
+					<Form.Item
+						label='Apellido(s)'
+						hasFeedback
+						validateStatus={lastNameStatusArr[index]?.validateStatus}
+						help={lastNameStatusArr[index]?.errorMsg}>
 						<Input
+							defaultValue={
+								inputs.members[index]?.lastName === undefined
+									? ''
+									: inputs.members[index]?.lastName
+							}
 							onChange={(e) =>
-								addMemberInfo('lastName', index, e.target.value)
+								addMemberInfoAndValidateNotEmpty(
+									'lastName',
+									index,
+									e.target.value
+								)
 							}
 						/>
 					</Form.Item>
 
 					<Form.Item label='Tipo de documento'>
 						<Select
-							defaultValue='DNI'
+							defaultValue={
+								inputs.members[index]?.idType === undefined
+									? 'DNI'
+									: inputs.members[index]?.idType
+							}
 							style={{ width: '6rem' }}
 							onChange={(targetValue) =>
 								addMemberInfoAndValidateIdType(index, targetValue)
@@ -181,6 +241,11 @@ const TravellersForm = ({ members, addMemberInfo, onChangeFn }) => {
 						validateStatus={idNumberStatusArr[index]?.validateStatus}
 						help={idNumberStatusArr[index]?.errorMsg}>
 						<Input
+							defaultValue={
+								inputs.members[index]?.idNumber === undefined
+									? ''
+									: inputs.members[index]?.idNumber
+							}
 							onChange={(e) =>
 								addMemberInfoAndValidateIdNumber(index, e.target.value)
 							}

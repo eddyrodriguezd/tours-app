@@ -105,7 +105,7 @@ const Checkout = () => {
 			title: 'Información',
 			content: (
 				<TravellersForm
-					members={inputs.members}
+					inputs={inputs}
 					addMemberInfo={addMemberInfo}
 					onChangeFn={changeFormValues}
 				/>
