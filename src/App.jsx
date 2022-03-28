@@ -11,6 +11,7 @@ import RegisterTour from './components/tours/RegisterTour';
 import Checkout from './pages/checkout/Checkout';
 import Dashboard from './pages/dashboard/Dashboard';
 import Editor from './components/editor/Editor';
+import ConfirmEmail from './components/confirm-email/ConfirmEmail';
 import './App.css';
 
 const App = () => (
@@ -24,7 +25,7 @@ const App = () => (
 				<Route path='/paquetes' element={<Packages />} />
 				<Route path='/checkout' element={<Checkout />} />
 			</Route>
-
+			<Route path='/confirmacion/:tk' element={<ConfirmEmail />} />
 			<Route path='/editor' element={<Editor />} />
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Registrate />} />
