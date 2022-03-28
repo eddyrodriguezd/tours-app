@@ -1,141 +1,275 @@
-import { useState } from 'react';
-import {
-	Form,
-	Input,
-	Select,
-	DatePicker,
-	InputNumber,
-	Row,
-	Col,
-} from 'antd';
+import { useState, useEffect } from 'react';
+import { Form, Input, Select, DatePicker, InputNumber } from 'antd';
 import moment from 'moment';
 
 const { Option } = Select;
 const dateFormat = 'YYYY-MM-DD';
 
-const TravellersForm = ({ inputs, addMemberInfo, onChangeFn }) => {
-	const [travellersQty, setTravellersQty] = useState(1);
+const TravellersForm = ({
+	inputs,
+	addMemberInfo,
+	onChangeFn,
+	setFormCompleted,
+}) => {
+	const { members } = inputs;
 
-	const onTravellersQtyChange = (quantity) => {
-		setTravellersQty(quantity);
-		onChangeFn('membersSize', quantity);
+	const [nameStatusArr, setNameStatusArr] = useState([{}]);
+	const [lastNameStatusArr, setLastNameStatusArr] = useState([{}]);
+	const [idNumberStatusArr, setIdNumberStatusArr] = useState([{}]);
+
+	useEffect(() => {
+		const statusArr = [
+			...nameStatusArr,
+			...lastNameStatusArr,
+			...idNumberStatusArr,
+		];
+		const successfulItems = statusArr.filter(
+			(status) => status.validateStatus === 'success'
+		).length;
+
+		setFormCompleted(successfulItems === statusArr.length);
+	}, [nameStatusArr, lastNameStatusArr, idNumberStatusArr]);
+
+	const updateStatusArr = (arr, fun, index, valueToSet) => {
+		arr.map(() => {
+			fun([...arr.slice(0, index), valueToSet, ...arr.slice(index + 1)]);
+			return arr;
+		});
+	};
+
+	const addMemberInfoAndValidateNotEmpty = (key, index, value) => {
+		addMemberInfo(key, index, value);
+
+		switch (key) {
+			case 'name':
+				if (value === '') {
+					updateStatusArr(nameStatusArr, setNameStatusArr, index, {
+						validateStatus: 'error',
+						errorMsg: 'Por favor ingrese su(s) nombre(s)',
+					});
+					return;
+				}
+				updateStatusArr(nameStatusArr, setNameStatusArr, index, {
+					validateStatus: 'success',
+					errorMsg: '',
+				});
+				break;
+			case 'lastName':
+				if (value === '') {
+					updateStatusArr(lastNameStatusArr, setLastNameStatusArr, index, {
+						validateStatus: 'error',
+						errorMsg: 'Por favor ingrese su(s) apellido(s)',
+					});
+					return;
+				}
+				updateStatusArr(lastNameStatusArr, setLastNameStatusArr, index, {
+					validateStatus: 'success',
+					errorMsg: '',
+				});
+				break;
+			default:
+		}
+	};
+
+	const addMemberInfoAndValidateIdNumber = (index, value) => {
+		addMemberInfo('idNumber', index, value);
+		console.log('value', value);
+
+		if (Number.isNaN(Number(value))) {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+				validateStatus: 'error',
+				errorMsg: 'El número de '
+					.concat(members[index].idType)
+					.concat(' solo puede contener dígitos'),
+			});
+			return;
+		}
+
+		if (value.length !== 9 && members[index]?.idType === 'Pasaporte') {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+				validateStatus: 'error',
+				errorMsg: 'El número de Pasaporte debe contar con 9 dígitos',
+			});
+			return;
+		}
+
+		if (
+			value.length !== 8 &&
+			(members[index]?.idType === 'CE' || members[index]?.idType === 'DNI')
+		) {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+				validateStatus: 'error',
+				errorMsg: 'El número de '
+					.concat(members[index].idType)
+					.concat(' debe contar con 8 dígitos'),
+			});
+			return;
+		}
+
+		updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+			validateStatus: 'success',
+			errorMsg: '',
+		});
+	};
+
+	const addMemberInfoAndValidateIdType = (index, value) => {
+		addMemberInfo('idType', index, value);
+
+		if (Number.isNaN(Number(members[index]?.idNumber))) {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+				validateStatus: 'error',
+				errorMsg: 'El '
+					.concat(value)
+					.concat(' solo puede contener dígitos'),
+			});
+			return;
+		}
+
+		if (members[index]?.idNumber !== 9 && value === 'Pasaporte') {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+				validateStatus: 'error',
+				errorMsg: 'El número de Pasaporte debe contar con 9 dígitos',
+			});
+			return;
+		}
+
+		if (
+			members[index]?.idNumber !== 8 &&
+			(value === 'CE' || value === 'DNI')
+		) {
+			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+				validateStatus: 'error',
+				errorMsg: 'El número de '
+					.concat(value)
+					.concat(' debe contar con 8 dígitos'),
+			});
+			return;
+		}
+
+		updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {
+			validateStatus: 'success',
+			errorMsg: '',
+		});
 	};
 
 	return (
-		<Form layout='horizontal' size='default'>
-			<Row>
-				<Col xs={6} sm={7} md={8} lg={9} xl={10}>
-					<h2>Datos del viaje</h2>
+		<Form
+			labelCol={{ span: 10 }}
+			wrapperCol={{ span: 6 }}
+			layout='horizontal'
+			initialValues={{ size: 'default' }}
+			size='default'>
+			<h2>Datos del viaje</h2>
 
-					<Row>
-						<Col span={12}>
-							<Form.Item label='Cantidad de pasajeros'>
-								<InputNumber
-									name='tourId'
-									min={1}
-									max={10}
-									defaultValue={1}
-									onChange={onTravellersQtyChange}
-								/>
-							</Form.Item>
-						</Col>
+			<Form.Item label='Cantidad de pasajeros'>
+				<InputNumber
+					name='tourId'
+					min={1}
+					max={10}
+					defaultValue={
+						inputs.membersSize === undefined ? 1 : inputs.membersSize
+					}
+					onChange={(value) => onChangeFn('membersSize', value)}
+				/>
+			</Form.Item>
 
-						<Col span={12}>
-							<Form.Item label='Fecha de salida'>
-								<DatePicker
-									defaultValue={moment(new Date(), dateFormat)}
-									format={dateFormat}
-									onChange={(e) =>
-										onChangeFn('startDate', e.format(dateFormat).toString())
-									}
-								/>
-							</Form.Item>
-						</Col>
-					</Row>
+			<Form.Item label='Fecha de salida'>
+				<DatePicker
+					defaultValue={
+						inputs.startDate === undefined
+							? moment(new Date(), dateFormat)
+							: moment(new Date(inputs.startDate), dateFormat)
+					}
+					format={dateFormat}
+					onChange={(e) =>
+						onChangeFn('startDate', e.format(dateFormat).toString())
+					}
+				/>
+			</Form.Item>
 
-					<h2>Datos de contacto</h2>
+			<h2>Datos de los pasajeros</h2>
 
-					<Form.Item label='Email'>
+			{[...Array(inputs.membersSize)].map((value, index) => (
+				<div>
+					<h3>Pasajero {index + 1}</h3>
+
+					<Form.Item
+						label='Nombre(s)'
+						hasFeedback
+						validateStatus={nameStatusArr[index]?.validateStatus}
+						help={nameStatusArr[index]?.errorMsg}>
 						<Input
+							defaultValue={
+								inputs.members[index]?.name === undefined
+									? ''
+									: inputs.members[index]?.name
+							}
 							onChange={(e) =>
-								onChangeFn('contactInfo', {
-									...inputs.contactInfo,
-									email: e.target.value,
-								})
+								addMemberInfoAndValidateNotEmpty(
+									'name',
+									index,
+									e.target.value
+								)
 							}
 						/>
 					</Form.Item>
-					<Form.Item label='Teléfono'>
+
+					<Form.Item
+						label='Apellido(s)'
+						hasFeedback
+						validateStatus={lastNameStatusArr[index]?.validateStatus}
+						help={lastNameStatusArr[index]?.errorMsg}>
 						<Input
+							defaultValue={
+								inputs.members[index]?.lastName === undefined
+									? ''
+									: inputs.members[index]?.lastName
+							}
 							onChange={(e) =>
-								onChangeFn('contactInfo', {
-									...inputs.contactInfo,
-									phoneNumber: e.target.value,
-								})
+								addMemberInfoAndValidateNotEmpty(
+									'lastName',
+									index,
+									e.target.value
+								)
 							}
 						/>
 					</Form.Item>
-				</Col>
 
-				<Col xs={18} sm={17} md={16} lg={15} xl={14}>
-					<h2>Datos de los pasajeros</h2>
+					<Form.Item label='Tipo de documento'>
+						<Select
+							defaultValue={
+								inputs.members[index]?.idType === undefined
+									? 'DNI'
+									: inputs.members[index]?.idType
+							}
+							style={{ width: '6rem' }}
+							onChange={(targetValue) =>
+								addMemberInfoAndValidateIdType(index, targetValue)
+							}>
+							<Option value='DNI'>DNI</Option>
+							<Option value='CE'>CE</Option>
+							<Option value='Pasaporte'>Pasaporte</Option>
+						</Select>
+					</Form.Item>
 
-					{[...Array(travellersQty)].map((value, index) => (
-						<div>
-							<h3>Pasajero {index + 1}</h3>
-
-							<Row>
-								<Col span={12}>
-									<Form.Item label='Nombre(s)'>
-										<Input
-											onChange={(e) =>
-												addMemberInfo('name', index, e.target.value)
-											}
-										/>
-									</Form.Item>
-								</Col>
-
-								<Col span={12}>
-									<Form.Item label='Apellido(s)'>
-										<Input
-											onChange={(e) =>
-												addMemberInfo('lastName', index, e.target.value)
-											}
-										/>
-									</Form.Item>
-								</Col>
-							</Row>
-
-							<Row>
-								<Col span={6}>
-									<Form.Item label='Tipo de documento'>
-										<Select
-											defaultValue='DNI'
-											style={{ width: '6rem' }}
-											onChange={(targetValue) =>
-												addMemberInfo('idType', index, targetValue)
-											}>
-											<Option value='DNI'>DNI</Option>
-											<Option value='CE'>CE</Option>
-											<Option value='Pasaporte'>Pasaporte</Option>
-										</Select>
-									</Form.Item>
-								</Col>
-
-								<Col span={18}>
-									<Form.Item label='Número de documento'>
-										<Input
-											onChange={(e) =>
-												addMemberInfo('idNumber', index, e.target.value)
-											}
-										/>
-									</Form.Item>
-								</Col>
-							</Row>
-						</div>
-					))}
-				</Col>
-			</Row>
+					<Form.Item
+						label='Número de documento'
+						hasFeedback
+						validateStatus={idNumberStatusArr[index]?.validateStatus}
+						help={idNumberStatusArr[index]?.errorMsg}>
+						<Input
+							defaultValue={
+								inputs.members[index]?.idNumber === undefined
+									? ''
+									: inputs.members[index]?.idNumber
+							}
+							onChange={(e) =>
+								addMemberInfoAndValidateIdNumber(index, e.target.value)
+							}
+						/>
+					</Form.Item>
+				</div>
+			))}
 		</Form>
 	);
 };

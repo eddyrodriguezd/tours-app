@@ -29,6 +29,8 @@ const Checkout = () => {
 	const days = tour.n_dias;
 
 	const [current, setCurrent] = useState(0);
+
+	const [formCompleted, setFormCompleted] = useState(false);
 	const [reservationSuccess, setReservationSuccess] = useState(false);
 
 	const [hotelsInfo, setHotelsInfo] = useState([]);
@@ -43,7 +45,7 @@ const Checkout = () => {
 			email: 'eddyrodriguezdlc@gmail.com',
 			phoneNumber: '+51999000999',
 		},
-		members: [],
+		members: [{}],
 		startDate: moment(new Date()).format('YYYY-MM-DD').toString(),
 	});
 
@@ -108,6 +110,7 @@ const Checkout = () => {
 					inputs={inputs}
 					addMemberInfo={addMemberInfo}
 					onChangeFn={changeFormValues}
+					setFormCompleted={setFormCompleted}
 				/>
 			),
 		},
@@ -122,7 +125,16 @@ const Checkout = () => {
 	];
 
 	const next = () => {
-		setCurrent(current + 1);
+		console.log('current', current);
+		if (current !== 0) {
+			console.log('diferente de 0');
+			setCurrent(current + 1);
+		}
+
+		if (formCompleted) {
+			console.log('se completó el form');
+			setCurrent(current + 1);
+		}
 	};
 
 	const prev = () => {
@@ -135,7 +147,7 @@ const Checkout = () => {
 	};
 
 	useEffect(() => {
-		console.log('current value', current);
+		// Current value is 1 when Hotels Tab is displayed
 		if (current === 1) {
 			const hotelParams = {
 				checkIn: inputs.startDate,

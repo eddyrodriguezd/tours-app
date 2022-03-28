@@ -30,15 +30,13 @@ const App = () => (
 
 				<Route path='/editor' element={<Editor />} />
 				<Route path='/login' element={<Login />} />
-				<Route path='/register' element={<Registrate />} />
-				<Route path='/registerBusines' element={<LogoutBusines />} />
-          
-			  <Route path='*' element={<h2>Página no Encontrada</h2>} />
-        <Route path='/dashboard/' element={<Dashboard />}>
-          <Route path='tour' element={<RegisterTour />} />
-          <Route path='listTours' element={<ListTours />} />
-			  </Route>
+				<Route path='/register' element={<Register />} />
 
+				<Route path='*' element={<h2>Página no Encontrada</h2>} />
+				<Route path='/dashboard/' element={<Dashboard />}>
+					<Route path='tour' element={<RegisterTour />} />
+					<Route path='listTours' element={<ListTours />} />
+				</Route>
 			</Routes>
 		</ScrollToTop>
 	</BrowserRouter>
