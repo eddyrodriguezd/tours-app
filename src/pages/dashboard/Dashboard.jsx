@@ -1,27 +1,36 @@
-import { Layout, Menu, Breadcrumb, Row, Col, Divider } from 'antd';
+import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
 	DesktopOutlined,
 	PieChartOutlined,
 	FileOutlined,
 } from '@ant-design/icons';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, NavLink, Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { logout } from '../../store/actions';
 import './Dashboard.css';
-import { Outlet, NavLink } from 'react-router-dom';
 
 const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
+	const user = useSelector((state) => state.user);
+	const dispatch = useDispatch();
 	// const { SubMenu } = Menu;
 	const [collapsed, setCollapsed] = useState(false);
 	const [imgPoint, setImgPoint] = useState(null);
 
 	const points = (broken) => {
-		const Point = broken ? { width: '70%' } : { width: '50%' };
+		const Point = broken ? { width: '50%' } : { width: '30%' };
 		setImgPoint(Point);
 	};
 	const collapsedChange = () => {
 		setCollapsed(!collapsed);
-		const collapse = collapsed ? { width: '50%' } : { width: '70%' };
+		const collapse = collapsed ? { width: '30%' } : { width: '50%' };
 		setImgPoint(collapse);
+	};
+	const logoutUser = () => {
+		dispatch(logout());
+		message.success('Logout Successfully');
 	};
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
@@ -41,8 +50,8 @@ const Dashboard = () => {
 					/>
 					{!collapsed && (
 						<div className='content-usuario__role'>
-							<h3>Usuario</h3>
-							<span>role</span>
+							<p>{user.name}</p>
+							<span>{user.tipo}</span>
 						</div>
 					)}
 				</div>
@@ -65,7 +74,7 @@ const Dashboard = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='9' icon={<FileOutlined />}>
-						Modificar
+						<Link to='http://localhost:3000/'>Modificar</Link>
 					</Menu.Item>
 				</Menu>
 			</Sider>
@@ -85,8 +94,10 @@ const Dashboard = () => {
 						</Col>
 						<Col span={13} offset={4} className='content-logout'>
 							<div className='content-logout__name'>
-								<h3>Usuario</h3>
-								<span>Cerrar Sessión</span>
+								<h4>brayanmf</h4>
+								<button type='button' onClick={logoutUser}>
+									Cerrar Sessión
+								</button>
 							</div>
 							<img
 								src='./assets/img/logo/logo.png'

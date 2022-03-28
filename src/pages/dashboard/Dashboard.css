@@ -5,15 +5,18 @@
 	display: flex;
 	justify-content: center;
 }
-
+.content-usuario__img {
+	border-radius: 10%;
+	margin: 5px;
+}
 .content-usuario__role {
 	margin: auto;
 	width: 50%;
 	padding: 10px;
 }
-.content-usuario__role h3 {
+.content-usuario__role p {
 	color: rgb(255, 255, 255);
-	font-weight: bold;
+	font-size: small;
 }
 .content-usuario__role span {
 	color: rgb(255, 255, 255);
@@ -38,6 +41,11 @@
 	display: block;
 	height: inherit;
 	padding: 3px;
+	width: 60px;
+	height: 60px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
 }
 .content-empresa__name,
 .content-logout__name {
@@ -49,7 +57,7 @@
 }
 .content-empresa__name h3,
 .content-empresa__name span,
-.content-logout__name h3,
+.content-logout__name h4,
 .content-logout__name span {
 	line-height: 14px;
 	color: rgb(255, 255, 255);

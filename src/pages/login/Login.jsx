@@ -1,18 +1,24 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import { Alert } from 'antd';
-import { Link } from 'react-router-dom';
-import LoginEndpoints from '../../api/login/loginEndpoints';
+/* eslint-disable import/order */
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import Loading from '../../components/loading/Loading';
+import { clearErrors, login } from '../../store/actions';
+import { Alert, message } from 'antd';
+
 import './Login.css';
 
 const Login = () => {
-	const [form, setForm] = useState({});
-	const [alert, setAlert] = useState(false);
-	const [credentials, setCredentials] = useState({
+	const [form, setForm] = useState({
 		email: '',
 		password: '',
 	});
+	const [alert, setAlert] = useState(false);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { error, loading, isAuthenticated } = useSelector((state) => state);
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
@@ -20,16 +26,32 @@ const Login = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!(Object.keys(form).length === 2)) {
+		const formValues = Object.values(form);
+		const contentObject = formValues.includes('');
+
+		if (!contentObject && formValues.length === 2) {
+			dispatch(login(form));
+			// message.success('Login Successful', 3, navigate('/dashboard'));
+		} else {
 			setAlert(true);
 			setTimeout(() => {
 				setAlert(false);
 			}, 3000);
 		}
-		// se.target.reset();
-		LoginEndpoints.login(credentials);
 	};
-	return (
+	useEffect(() => {
+		if (error) {
+			message.error(error, 3);
+			dispatch(clearErrors());
+		}
+		if (isAuthenticated) {
+			navigate('/dashboard');
+		}
+	}, [error, dispatch, message, isAuthenticated, navigate]);
+
+	return loading ? (
+		<Loading />
+	) : (
 		<div className='content__login'>
 			<div className='formLogin'>
 				<form action='' method='post' onSubmit={handleSubmit}>
@@ -55,9 +77,11 @@ const Login = () => {
 							onChange={handleChange}
 							pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
 							onInvalid={(e) =>
-								e.target.setCustomValidity(
-									'Ingrese un correo electrónico váliddo'
-								)
+								e.target.addEventListener('invalid', (el) => {
+									el.target.setCustomValidity(
+										'Porfavor ingrese un correo válido'
+									);
+								})
 							}
 						/>
 					</div>
@@ -69,19 +93,12 @@ const Login = () => {
 							name='password'
 							placeholder='Ingrese la contraseña'
 							onChange={handleChange}
-							pattern='^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$'
-							onInvalid={(e) =>
-								e.target.setCustomValidity(
-									'La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'
-								)
-							}
 						/>
 					</div>
 					<div className='botton'>
-						<div className='botton__checkbox'>
-							<input type='checkbox' id='check' className='checkbox' />
-							<h5 className='botton_txt'>Remenber me</h5>
-						</div>
+						<Link to='/register' className='btn-register'>
+							Registrate
+						</Link>
 						<Link to='/' className='botton_link'>
 							¿Olvidaste tu contraseña?
 						</Link>
@@ -89,9 +106,6 @@ const Login = () => {
 					<button type='submit' className='btn-registrar'>
 						Ingresar
 					</button>
-					<Link to='/register' className='btn-register'>
-						Registrar como Usuario
-					</Link>
 				</form>
 			</div>
 			<div className='imgBackground'>
