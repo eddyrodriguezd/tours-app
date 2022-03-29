@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
 	DesktopOutlined,
@@ -6,16 +7,17 @@ import {
 } from '@ant-design/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, NavLink, Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
+
 import { logout } from '../../store/actions';
 import './Dashboard.css';
 
 const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
-	const user = useSelector((state) => state.user);
+	const { user } = useSelector((state) => state);
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	// const { SubMenu } = Menu;
+
 	const [collapsed, setCollapsed] = useState(false);
 	const [imgPoint, setImgPoint] = useState(null);
 
@@ -30,7 +32,7 @@ const Dashboard = () => {
 	};
 	const logoutUser = () => {
 		dispatch(logout());
-		message.success('Logout Successfully');
+		message.success('Salida exitosa', 3, navigate('/'));
 	};
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
