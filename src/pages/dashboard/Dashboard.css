@@ -62,6 +62,9 @@
 	line-height: 14px;
 	color: rgb(255, 255, 255);
 }
+.content-logout__name span {
+ cursor: pointer;
+}
 .content-empresa__name span {
 	font-style: oblique;
 }

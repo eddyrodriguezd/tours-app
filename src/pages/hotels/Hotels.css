@@ -1,0 +1,26 @@
+.content {
+	width: 100%;
+	background-color: #ffffff;
+}
+.content-img {
+	background: url(./hotel.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 100% 50%;
+	min-height: 500px;
+	width: 100%;
+}
+.content-card__col {
+	padding: 3rem;
+	padding-top: 2rem;
+	
+}
+.content-card{
+	width: 100%;
+	
+	-webkit-border-radius: 20px;
+border-radius: 20px;
+background: #ffffff;
+-webkit-box-shadow: 13px 13px 20px #b0b0b0, -13px -13px 20px #ffffff;
+box-shadow: 13px 13px 20px #b0b0b0, -13px -13px 20px #ffffff;
+}

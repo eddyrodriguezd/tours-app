@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
@@ -8,8 +10,8 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
-
 import { logout } from '../../store/actions';
+
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -34,6 +36,10 @@ const Dashboard = () => {
 		dispatch(logout());
 		message.success('Salida exitosa', 3, navigate('/'));
 	};
+	if (typeof user === 'undefined') {
+		navigate('/');
+	}
+
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Sider
@@ -76,7 +82,7 @@ const Dashboard = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='9' icon={<FileOutlined />}>
-						<Link to='http://localhost:3000/'>Modificar</Link>
+						<Link to='/modificar'>Modificar</Link>
 					</Menu.Item>
 				</Menu>
 			</Sider>
@@ -97,9 +103,7 @@ const Dashboard = () => {
 						<Col span={13} offset={4} className='content-logout'>
 							<div className='content-logout__name'>
 								<h4>brayanmf</h4>
-								<button type='button' onClick={logoutUser}>
-									Cerrar Sessión
-								</button>
+								<span onClick={logoutUser}>Cerrar Sessión</span>
 							</div>
 							<img
 								src='./assets/img/logo/logo.png'
