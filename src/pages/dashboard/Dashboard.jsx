@@ -16,12 +16,11 @@ import './Dashboard.css';
 
 const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
-	const { user } = useSelector((state) => state);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
 	const [collapsed, setCollapsed] = useState(false);
 	const [imgPoint, setImgPoint] = useState(null);
+	const { user } = useSelector((state) => state);
 
 	const points = (broken) => {
 		const Point = broken ? { width: '50%' } : { width: '30%' };
@@ -36,9 +35,6 @@ const Dashboard = () => {
 		dispatch(logout());
 		message.success('Salida exitosa', 3, navigate('/'));
 	};
-	if (typeof user === 'undefined') {
-		navigate('/');
-	}
 
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
@@ -58,8 +54,8 @@ const Dashboard = () => {
 					/>
 					{!collapsed && (
 						<div className='content-usuario__role'>
-							<p>{user.name}</p>
-							<span>{user.tipo}</span>
+							<p>{user?.name}</p>
+							<span>{user?.tipo}</span>
 						</div>
 					)}
 				</div>

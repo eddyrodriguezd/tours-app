@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import store from './store';
 import ScrollToTop from './helpers/ScrollToTop';
 import Flyingpoints from './components/tickets';
 import { Login, Register } from './components/views/ViewLogin';
@@ -20,13 +21,12 @@ import ListTours from './components/tours/ListTours';
 import Hotels from './pages/hotels/Hotels';
 
 const App = () => {
-	const dispatch = useDispatch();
-	//	const navigate = useNavigate();
+	const { isAuthenticated } = useSelector((state) => state);
 
 	useEffect(() => {
-		dispatch(loadUser());
+		store.dispatch(loadUser());
 	}, []);
-	const { user } = useSelector((state) => state);
+
 	return (
 		<BrowserRouter>
 			<ScrollToTop>
@@ -44,14 +44,14 @@ const App = () => {
 					<Route path='/editor' element={<Editor />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Register />} />
-
 					<Route path='*' element={<h2>Página no Encontrada</h2>} />
-					<Route
-						path='/dashboard/'
-						element={!user ? <Navigate to='/' /> : <Dashboard />}>
-						<Route path='tour' element={<RegisterTour />} />
-						<Route path='listTours' element={<ListTours />} />
-					</Route>
+
+					{isAuthenticated && (
+						<Route path='/dashboard/' element={<Dashboard />}>
+							<Route path='tour' element={<RegisterTour />} />
+							<Route path='listTours' element={<ListTours />} />
+						</Route>
+					)}
 				</Routes>
 			</ScrollToTop>
 		</BrowserRouter>
