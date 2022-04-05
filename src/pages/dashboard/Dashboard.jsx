@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
@@ -8,18 +10,17 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
-
 import { logout } from '../../store/actions';
+
 import './Dashboard.css';
 
 const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
-	const { user } = useSelector((state) => state);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
 	const [collapsed, setCollapsed] = useState(false);
 	const [imgPoint, setImgPoint] = useState(null);
+	const { user } = useSelector((state) => state);
 
 	const points = (broken) => {
 		const Point = broken ? { width: '50%' } : { width: '30%' };
@@ -34,6 +35,7 @@ const Dashboard = () => {
 		dispatch(logout());
 		message.success('Salida exitosa', 3, navigate('/'));
 	};
+
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Sider
@@ -52,8 +54,8 @@ const Dashboard = () => {
 					/>
 					{!collapsed && (
 						<div className='content-usuario__role'>
-							<p>{user.name}</p>
-							<span>{user.tipo}</span>
+							<p>{user?.name}</p>
+							<span>{user?.tipo}</span>
 						</div>
 					)}
 				</div>
@@ -76,7 +78,7 @@ const Dashboard = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='9' icon={<FileOutlined />}>
-						<Link to='http://localhost:3000/'>Modificar</Link>
+						<Link to='/modificar'>Modificar</Link>
 					</Menu.Item>
 				</Menu>
 			</Sider>
@@ -97,9 +99,7 @@ const Dashboard = () => {
 						<Col span={13} offset={4} className='content-logout'>
 							<div className='content-logout__name'>
 								<h4>brayanmf</h4>
-								<button type='button' onClick={logoutUser}>
-									Cerrar Sessión
-								</button>
+								<span onClick={logoutUser}>Cerrar Sessión</span>
 							</div>
 							<img
 								src='./assets/img/logo/logo.png'

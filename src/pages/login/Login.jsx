@@ -48,6 +48,7 @@ const Login = () => {
 			dispatch(clearErrors());
 			setBolAux(false);
 		}
+
 		if (isAuthenticated) {
 			navigate('/dashboard');
 		}
