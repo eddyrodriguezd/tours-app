@@ -3,10 +3,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import Loading from '../../components/loading/Loading';
+import Loading from './components/loading/Loading';
 import { clearErrors, login } from '../../store/actions';
 import { Alert, message } from 'antd';
-
+import validate from '../../helpers/validate';
 import './Login.css';
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
 		email: '',
 		password: '',
 	});
+	const [errors, setErrors] = useState({});
 	const [alert, setAlert] = useState(false);
 	const [bolAux, setBolAux] = useState(false);
 	const navigate = useNavigate();
@@ -24,16 +25,17 @@ const Login = () => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
 	};
-
+	const handleOnblur = (e) => {
+		handleChange(e);
+		setErrors(validate(form));
+	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const formValues = Object.values(form);
-		const contentObject = formValues.includes('');
-
-		if (!contentObject && formValues.length === 2) {
+		setErrors(validate(form));
+		if (Object.keys(errors).length === 0) {
 			dispatch(login(form));
 			setBolAux(true);
-			// message.success('Login Successful', 3, navigate('/dashboard'));
+			message.success('Login Successful', 3, navigate('/dashboard'));
 		} else {
 			setAlert(true);
 			setTimeout(() => {
@@ -75,24 +77,35 @@ const Login = () => {
 							/>
 						)}
 						<div className='cont'>
+							{errors.email && (
+								<Alert
+									message='Error'
+									description={errors.email}
+									type='error'
+									showIcon
+								/>
+							)}
 							<label htmlFor='email'>Correo electrónico </label>
+
 							<input
 								type='email'
 								id='email'
 								name='email'
 								placeholder='Ingrese su correo o su nombre de usuario'
 								onChange={handleChange}
-								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-								onInvalid={(e) =>
-									e.target.addEventListener('invalid', (el) => {
-										el.target.setCustomValidity(
-											'Porfavor ingrese un correo válido'
-										);
-									})
-								}
+								pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+								onBlur={handleOnblur}
 							/>
 						</div>
 						<div className='cont'>
+							{errors.password && (
+								<Alert
+									message='Error'
+									description={errors.password}
+									type='error'
+									showIcon
+								/>
+							)}
 							<label htmlFor='password'>Contraseña</label>
 							<input
 								type='password'
@@ -100,10 +113,12 @@ const Login = () => {
 								name='password'
 								placeholder='Ingrese la contraseña'
 								onChange={handleChange}
+								pattern='(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$'
+								onBlur={handleOnblur}
 							/>
 						</div>
 						<div className='botton'>
-							<Link to='/register' className='btn-register'>
+							<Link to='/registro' className='btn-register'>
 								Registrate
 							</Link>
 							<Link to='/' className='botton_link'>

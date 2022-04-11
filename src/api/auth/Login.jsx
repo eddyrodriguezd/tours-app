@@ -12,3 +12,12 @@ export const loginAsync = (data) => {
 };
 export const loadUserAsync = () => api.get(url.concat('users/me'));
 export const logoutAsync = () => api.get(url.concat('users/logout'));
+
+export const registerAsync = (data) => {
+	const config = { headers: { 'Content-Type': 'application/json' } };
+	return api.post(url.concat('users/register'), data, config);
+};
+export const businessAsync = (data) => {
+	const config = { headers: { 'Content-Type': 'application/json' } };
+	return api.post(url.concat('users/register'), data, config);
+};

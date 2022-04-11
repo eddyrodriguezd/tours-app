@@ -43,7 +43,7 @@ const App = () => {
 					<Route path='/confirmacion/:tk' element={<ConfirmEmail />} />
 					<Route path='/editor' element={<Editor />} />
 					<Route path='/login' element={<Login />} />
-					<Route path='/register' element={<Register />} />
+					<Route path='/registro' element={<Register />} />
 					<Route path='*' element={<h2>Página no Encontrada</h2>} />
 
 					{isAuthenticated && (

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { React, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Spin } from 'antd';
+import { Spin, Button } from 'antd';
+import './ConfirmEmail.css';
 
 const ConfirmEmail = () => {
 	const { tk } = useParams();
@@ -10,7 +11,10 @@ const ConfirmEmail = () => {
 	const [response, setresponse] = useState({});
 	useEffect(() => {
 		axios
-			.put(`${process.env.REACT_APP_BACKEND_ENDPOINT}confirm/${tk}`, {})
+			.put(
+				`${process.env.REACT_APP_BACKEND_ENDPOINT}users/confirm/${tk}`,
+				{}
+			)
 			.then(
 				(resp) => {
 					setresponse(resp.data);
@@ -24,16 +28,33 @@ const ConfirmEmail = () => {
 			});
 	}, []);
 	return (
-		<div>
+		<div className='content-message'>
 			{loading && <Spin />}
 			{!loading && (
-				<div>
-					<div>
-						{response.success && <CheckOutlined twoToneColor='#86DC3D' />}
-						{!response.success && <CloseOutlined twoToneColor='#86DC3D' />}
+				<div className='content-card'>
+					<div className='content-card-icon'>
+						{response.success && (
+							<CheckOutlined style={{ color: '#005acf', fontSize: 70 }} />
+						)}
+						{!response.success && (
+							<CloseOutlined style={{ color: '#c20d00', fontSize: 70 }} />
+						)}
 					</div>
-					<div>
-						<p>{response.message}</p>
+					<p>
+						{response.message} <br /> El enlace que has seguido se ha
+						caducado
+					</p>
+					<div className='content-card-btn'>
+						<Button>
+							<Link to='/'>Ir a Inicio</Link>
+						</Button>
+						<Button type='primary'>
+							{response.success ? (
+								<Link to='/login'>Login</Link>
+							) : (
+								<Link to='/registro'>Intentalo de Nuevo</Link>
+							)}
+						</Button>
 					</div>
 				</div>
 			)}
