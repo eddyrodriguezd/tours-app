@@ -8,6 +8,12 @@ import {
 	LOAD_USER_FAIL,
 	LOGOUT_SUCCESS,
 	LOGOUT_FAIL,
+	REGISTER_USER_REQUEST,
+	REGISTER_USER_SUCCESS,
+	REGISTER_USER_FAIL,
+	REGISTER_BUSINESS_REQUEST,
+	REGISTER_BUSINESS_SUCCESS,
+	REGISTER_BUSINESS_FAIL,
 } from './types';
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-case-declarations */
@@ -23,19 +29,24 @@ function reducer(state = initialState, action) {
 	switch (action.type) {
 		case LOGIN_REQUEST:
 		case LOAD_USER_REQUEST:
+		case REGISTER_USER_REQUEST:
+		case REGISTER_BUSINESS_REQUEST:
 			return {
 				loading: true,
 				isAuthenticated: false,
 			};
 		case LOAD_USER_SUCCESS:
 		case LOGIN_SUCCESS:
+		case REGISTER_USER_SUCCESS:
+		case REGISTER_BUSINESS_SUCCESS:
 			return {
 				...state,
 				loading: false,
 				isAuthenticated: true,
 				user: action.payload,
 			};
-
+		case REGISTER_BUSINESS_FAIL:
+		case REGISTER_USER_FAIL:
 		case LOGIN_FAIL:
 			return {
 				...state,
@@ -68,6 +79,7 @@ function reducer(state = initialState, action) {
 				loading: false,
 				error: action.payload,
 			};
+
 		default:
 			return {
 				state,

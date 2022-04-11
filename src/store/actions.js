@@ -10,9 +10,21 @@ import {
 	LOAD_USER_FAIL,
 	LOGOUT_SUCCESS,
 	LOGOUT_FAIL,
+	REGISTER_USER_REQUEST,
+	REGISTER_USER_SUCCESS,
+	REGISTER_USER_FAIL,
+	REGISTER_BUSINESS_REQUEST,
+	REGISTER_BUSINESS_SUCCESS,
+	REGISTER_BUSINESS_FAIL,
 } from './types';
 
-import { loginAsync, loadUserAsync, logoutAsync } from '../api/auth/Login';
+import {
+	loginAsync,
+	loadUserAsync,
+	logoutAsync,
+	registerAsync,
+	businessAsync,
+} from '../api/auth/Login';
 
 export const login = (user) => async (dispatch) => {
 	try {
@@ -53,5 +65,30 @@ export const logout = () => async (dispatch) => {
 		dispatch({ type: LOGOUT_SUCCESS });
 	} catch (error) {
 		dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
+	}
+};
+export const register = (userData) => async (dispatch) => {
+	try {
+		dispatch({ type: REGISTER_USER_REQUEST });
+		const { data } = await registerAsync(userData);
+		dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
+	} catch (error) {
+		dispatch({
+			type: REGISTER_USER_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+export const registerBusiness = (businessData) => async (dispatch) => {
+	try {
+		dispatch({ type: REGISTER_BUSINESS_REQUEST });
+		const { data } = await businessAsync(businessData);
+
+		dispatch({ type: REGISTER_BUSINESS_SUCCESS, payload: data.user });
+	} catch (error) {
+		dispatch({
+			type: REGISTER_BUSINESS_FAIL,
+			payload: error.response.data.message,
+		});
 	}
 };

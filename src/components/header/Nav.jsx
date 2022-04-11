@@ -46,7 +46,7 @@ const Nav = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='alipays'>
-						<a href='!#'>Registrate</a>
+						<a href='/registro'>Registrate</a>
 					</Menu.Item>
 				</Menu>
 			</div>

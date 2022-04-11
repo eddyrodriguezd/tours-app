@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
 	DesktopOutlined,
@@ -35,7 +35,12 @@ const Dashboard = () => {
 		dispatch(logout());
 		message.success('Salida exitosa', 3, navigate('/'));
 	};
-
+	useEffect(() => {
+		if (!user.verify) {
+			dispatch(logout());
+			message.error('No estas Verificado', 3, navigate('/'));
+		}
+	}, []);
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Sider
@@ -47,7 +52,7 @@ const Dashboard = () => {
 				onBreakpoint={points}>
 				<div className='content-usuario'>
 					<img
-						src='./assets/img/logo/logo.png'
+						src={user.avatar.url}
 						alt='logo'
 						className='content-usuario__img'
 						style={imgPoint}
