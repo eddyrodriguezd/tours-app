@@ -1,28 +1,46 @@
-import { Layout, Menu, Breadcrumb, Row, Col, Divider } from 'antd';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useEffect, useState } from 'react';
+import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
 	DesktopOutlined,
 	PieChartOutlined,
 	FileOutlined,
 } from '@ant-design/icons';
-import React, { useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../store/actions';
+
 import './Dashboard.css';
-import { Outlet, NavLink } from 'react-router-dom';
 
 const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
-	// const { SubMenu } = Menu;
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const [collapsed, setCollapsed] = useState(false);
 	const [imgPoint, setImgPoint] = useState(null);
+	const { user } = useSelector((state) => state);
 
 	const points = (broken) => {
-		const Point = broken ? { width: '70%' } : { width: '50%' };
+		const Point = broken ? { width: '50%' } : { width: '30%' };
 		setImgPoint(Point);
 	};
 	const collapsedChange = () => {
 		setCollapsed(!collapsed);
-		const collapse = collapsed ? { width: '50%' } : { width: '70%' };
+		const collapse = collapsed ? { width: '30%' } : { width: '50%' };
 		setImgPoint(collapse);
 	};
+	const logoutUser = () => {
+		dispatch(logout());
+		message.success('Salida exitosa', 3, navigate('/'));
+	};
+	useEffect(() => {
+		if (!user.verify) {
+			dispatch(logout());
+			message.error('No estas Verificado', 3, navigate('/'));
+		}
+	}, []);
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Sider
@@ -34,15 +52,15 @@ const Dashboard = () => {
 				onBreakpoint={points}>
 				<div className='content-usuario'>
 					<img
-						src='./assets/img/logo/logo.png'
+						src={user.avatar.url}
 						alt='logo'
 						className='content-usuario__img'
 						style={imgPoint}
 					/>
 					{!collapsed && (
 						<div className='content-usuario__role'>
-							<h3>Usuario</h3>
-							<span>role</span>
+							<p>{user?.name}</p>
+							<span>{user?.tipo}</span>
 						</div>
 					)}
 				</div>
@@ -65,7 +83,7 @@ const Dashboard = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='9' icon={<FileOutlined />}>
-						Modificar
+						<Link to='/modificar'>Modificar</Link>
 					</Menu.Item>
 				</Menu>
 			</Sider>
@@ -85,8 +103,8 @@ const Dashboard = () => {
 						</Col>
 						<Col span={13} offset={4} className='content-logout'>
 							<div className='content-logout__name'>
-								<h3>Usuario</h3>
-								<span>Cerrar Sessión</span>
+								<h4>brayanmf</h4>
+								<span onClick={logoutUser}>Cerrar Sessión</span>
 							</div>
 							<img
 								src='./assets/img/logo/logo.png'

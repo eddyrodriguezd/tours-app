@@ -31,6 +31,9 @@ const Nav = () => {
 					<Menu.Item key='pakage'>
 						<NavLink to='/paquetes'>Paquetes</NavLink>
 					</Menu.Item>
+					<Menu.Item key='hotel'>
+						<NavLink to='/hoteles'>Hoteles</NavLink>
+					</Menu.Item>
 				</Menu>
 
 				<Menu
@@ -43,7 +46,7 @@ const Nav = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='alipays'>
-						<a href='!#'>Registrate</a>
+						<a href='/registro'>Registrate</a>
 					</Menu.Item>
 				</Menu>
 			</div>
