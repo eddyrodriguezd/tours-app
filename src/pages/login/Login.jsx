@@ -32,7 +32,10 @@ const Login = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors(validate(form));
-		if (Object.keys(errors).length === 0) {
+		if (
+			Object.keys(errors)[0] === 'ruc' &&
+			Object.keys(errors).length === 1
+		) {
 			dispatch(login(form));
 			setBolAux(true);
 			message.success('Login Successful', 3, navigate('/dashboard'));
