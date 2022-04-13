@@ -1,24 +1,32 @@
-import axios from 'axios';
+// import axios from 'axios';
+import sendHttpRequest from '../sendHttpRequest';
 
-const registerReservation = (data) => {
-	const url = process.env.REACT_APP_BACKEND_ENDPOINT.concat(
-		'/reservation/create'
-	);
+const registerReservation = (data, setSuccess) => {
+	const responseOptions = {
+		successTrigger: setSuccess,
+		successCode: 200,
+		successMessage: 'Reservation successfully created',
+		errorMessage: "Couldn't create reservation",
+	};
 
-	axios
-		.post(url, data)
-		.then((response) => {
-			console.log(response.data);
-			if (response.status === 200) {
-				alert('Reservation sucessfully created');
-			}
-		})
-		.catch((err) => {
-			console.log(
-				'Could not send the reservation information to the backend service.',
-				err
-			);
-		});
+	sendHttpRequest('post', '/reservation/create', data, responseOptions);
 };
 
-export default { registerReservation };
+const fetchHotels = (data, setSuccess) => {
+	const responseOptions = {
+		successTrigger: setSuccess,
+		successCode: 200,
+		successMessage: "Hotels' information successfully fetched",
+		errorMessage: "Couldn't fetch hotels",
+	};
+	console.log('fetch hotels => data sent as body:', data);
+
+	sendHttpRequest(
+		'post',
+		'/reservation/hotels/fetch',
+		data,
+		responseOptions
+	);
+};
+
+export { registerReservation, fetchHotels };
