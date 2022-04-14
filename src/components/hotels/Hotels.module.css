@@ -1,0 +1,72 @@
+.content {
+	width: 90%;
+    margin: auto;
+	background-color: #fafafa;
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+.content-card__col {
+	padding: 3rem;
+	padding-top: 2rem;
+}
+.content__btn{
+    position: absolute;
+    top: 70vh;
+    right: 10rem;
+    z-index: 10;
+}
+.content_list{
+	margin: 2rem auto ;
+	text-align:left;
+    padding: 2rem;
+    border: 1px solid #e6e6e6;
+    background: #ffffff;
+    width: 80%;
+    max-height: 200px;
+    height: 100%;
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-radius: 0px;
+border-radius: 0px;
+background: #fafafa;
+-webkit-box-shadow: 5px 5px 27px #aaaaaa, -5px -5px 27px #ffffff;
+box-shadow: 5px 5px 27px #aaaaaa, -5px -5px 27px #ffffff;
+
+}
+.content__tabs{
+    width: 50%;
+}
+.content__radio{
+    width: 50%;
+
+   
+}
+.content__RadioLabel{
+    margin-left: 0;
+    margin: 8px;
+}
+@media screen and (max-width: 768px) {
+    .content_list {
+    flex-direction: column;}
+}
+@media screen and (max-width: 575px) {
+
+    .content__btn{
+        top: 80vh;
+        right: 5rem;
+    }
+    .content__tabs, .content__radio{
+        width: 100%;
+    }
+    .content_list {
+        align-items:normal;
+        width: 100%;
+        max-height: none;
+        height: none;
+        padding: 0.8rem;
+
+    }
+}

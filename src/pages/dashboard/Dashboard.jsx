@@ -103,7 +103,7 @@ const Dashboard = () => {
 						</Col>
 						<Col span={13} offset={4} className='content-logout'>
 							<div className='content-logout__name'>
-								<h4>brayanmf</h4>
+								<h4>{user?.name}</h4>
 								<span onClick={logoutUser}>Cerrar Sessión</span>
 							</div>
 							<img
