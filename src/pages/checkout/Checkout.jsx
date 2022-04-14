@@ -6,7 +6,7 @@ import { Steps, Button, Card } from 'antd';
 import moment from 'moment';
 
 import TravellersForm from '../../components/travellersInfo/TravellersForm';
-import FlyingPoints from '../../components/tickets';
+import Hotels from '../../components/hotels/Hotels';
 
 import {
 	registerReservation,
@@ -115,8 +115,8 @@ const Checkout = () => {
 			),
 		},
 		{
-			title: 'Vuelo',
-			content: <FlyingPoints onChangeFn={changeFormValues} />,
+			title: 'hotel',
+			content: <Hotels onChangeFn={changeFormValues} />,
 		},
 		{
 			title: 'Pago',
@@ -171,7 +171,7 @@ const Checkout = () => {
 		<div style={{ marginTop: '6rem' }}>
 			<Card
 				hoverable
-				style={{ width: 240 }}
+				style={{ width: 450, margin: '2rem auto' }}
 				cover={<img alt='example' src={`assets/img/${tour.img}.jpg`} />}>
 				<Meta title={tour.title} description={tour.title} />
 			</Card>
