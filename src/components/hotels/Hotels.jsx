@@ -122,7 +122,7 @@ const hoteles = [
 // eslint-disable-next-line spaced-comment
 
 // eslint-disable-next-line no-unused-vars
-const Hotel = ({ onChangeFn }) => {
+const Hotel = ({ onChangeFn, setRadioComplete }) => {
 	// eslint-disable-next-line no-unused-vars
 	const [disable, setDisable] = useState(false);
 	// eslint-disable-next-line no-unused-vars
@@ -134,12 +134,14 @@ const Hotel = ({ onChangeFn }) => {
 		setValor(e.target.value);
 		if (e.target.checked) {
 			setDisable(true);
+			setRadioComplete(true);
 		} else {
 			setDisable(false);
 		}
 	};
 	const handleClick = () => {
 		setDisable(false);
+		setRadioComplete(false);
 		setValor(0);
 	};
 
@@ -160,7 +162,12 @@ const Hotel = ({ onChangeFn }) => {
 							<h4>Divisa : {hotel.currency}</h4>
 							<p>Zona : {hotel.zone}</p>
 							<p>
-								Categoria : <Rate disabled defaultValue={start} />{' '}
+								Categoria :{' '}
+								<Rate
+									disabled
+									defaultValue={start}
+									style={{ fontSize: '.8rem' }}
+								/>
 							</p>
 						</div>
 
@@ -179,7 +186,10 @@ const Hotel = ({ onChangeFn }) => {
 										// eslint-disable-next-line react/jsx-boolean-value
 										checked={true}>
 										{room.name} <br />
-										<Tag color='geekblue'> PRECIO : {room.rate}</Tag>
+										<Tag color='geekblue' style={{ fontSize: '.6rem' }}>
+											{' '}
+											PRECIO : {room.rate}
+										</Tag>
 									</Radio>
 								);
 							})}
