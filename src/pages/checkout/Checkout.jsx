@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 
-import { Steps, Button, Card } from 'antd';
+import { Steps, Button, Card, Row, Col } from 'antd';
 
 import moment from 'moment';
 
@@ -31,6 +31,7 @@ const Checkout = () => {
 	const [current, setCurrent] = useState(0);
 
 	const [formCompleted, setFormCompleted] = useState(false);
+	const [radioCompleted, setRadioComplete] = useState(false);
 	const [reservationSuccess, setReservationSuccess] = useState(false);
 
 	const [hotelsInfo, setHotelsInfo] = useState([]);
@@ -116,7 +117,12 @@ const Checkout = () => {
 		},
 		{
 			title: 'hotel',
-			content: <Hotels onChangeFn={changeFormValues} />,
+			content: (
+				<Hotels
+					onChangeFn={changeFormValues}
+					setRadioComplete={setRadioComplete}
+				/>
+			),
 		},
 		{
 			title: 'Pago',
@@ -128,10 +134,9 @@ const Checkout = () => {
 		console.log('current', current);
 		if (current !== 0) {
 			console.log('diferente de 0');
-			setCurrent(current + 1);
+			if (radioCompleted) setCurrent(current + 1);
 		}
-
-		if (formCompleted) {
+		if (current === 0 && formCompleted) {
 			console.log('se completó el form');
 			setCurrent(current + 1);
 		}
@@ -168,45 +173,55 @@ const Checkout = () => {
 	if (reservationSuccess) return <Navigate to='/' />;
 
 	return (
-		<div style={{ marginTop: '6rem' }}>
-			<Card
-				hoverable
-				style={{ width: 450, margin: '2rem auto' }}
-				cover={<img alt='example' src={`assets/img/${tour.img}.jpg`} />}>
-				<Meta title={tour.title} description={tour.title} />
-			</Card>
+		<div style={{ marginTop: '6rem', height: '95vh' }}>
+			<Row>
+				<Col xs={24} sm={24} md={24} lg={12} xl={12}>
+					<Card
+						hoverable
+						style={{ width: 450, margin: '2rem auto' }}
+						cover={
+							<img alt='example' src={`assets/img/${tour.img}.jpg`} />
+						}>
+						<Meta title={tour.title} description={tour.title} />
+					</Card>
+				</Col>
 
-			<Steps current={current}>
-				{steps.map((item) => (
-					<Step key={item.title} title={item.title} />
-				))}
-			</Steps>
+				<Col xs={24} sm={24} md={24} lg={12} xl={12}>
+					<div style={{ margin: '1rem' }}>
+						<Steps current={current}>
+							{steps.map((item) => (
+								<Step key={item.title} title={item.title} />
+							))}
+						</Steps>
 
-			<div className='steps-content'>{steps[current].content}</div>
+						<div className='steps-content'>{steps[current].content}</div>
 
-			<div className='steps-action'>
-				{current > 0 && (
-					<Button className='steps-button' onClick={() => prev()}>
-						Anterior
-					</Button>
-				)}
-				{current < steps.length - 1 && (
-					<Button
-						className='steps-button'
-						type='primary'
-						onClick={() => next()}>
-						Siguiente
-					</Button>
-				)}
-				{current === steps.length - 1 && (
-					<Button
-						className='steps-button'
-						type='primary'
-						onClick={() => success()}>
-						Finalizar
-					</Button>
-				)}
-			</div>
+						<div className='steps-action'>
+							{current > 0 && (
+								<Button className='steps-button' onClick={() => prev()}>
+									Anterior
+								</Button>
+							)}
+							{current < steps.length - 1 && (
+								<Button
+									className='steps-button'
+									type='primary'
+									onClick={() => next()}>
+									Siguiente
+								</Button>
+							)}
+							{current === steps.length - 1 && (
+								<Button
+									className='steps-button'
+									type='primary'
+									onClick={() => success()}>
+									Finalizar
+								</Button>
+							)}
+						</div>
+					</div>
+				</Col>
+			</Row>
 		</div>
 	);
 };
