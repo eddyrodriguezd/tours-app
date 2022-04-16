@@ -18,7 +18,6 @@ import Editor from './components/editor/Editor';
 import ConfirmEmail from './components/confirm-email/ConfirmEmail';
 import './App.css';
 import ListTours from './components/tours/ListTours';
-import Hotels from './pages/hotels/Hotels';
 
 const App = () => {
 	const { isAuthenticated } = useSelector((state) => state);
@@ -38,7 +37,6 @@ const App = () => {
 						<Route path='/itinerario/:id' element={<Itinerary />} />
 						<Route path='/paquetes' element={<Packages />} />
 						<Route path='/checkout' element={<Checkout />} />
-						<Route path='/hoteles' element={<Hotels />} />
 					</Route>
 					<Route path='/confirmacion/:tk' element={<ConfirmEmail />} />
 					<Route path='/editor' element={<Editor />} />

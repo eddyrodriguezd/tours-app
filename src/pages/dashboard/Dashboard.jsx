@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../store/actions';
 
 import './Dashboard.css';
@@ -33,7 +33,7 @@ const Dashboard = () => {
 	};
 	const logoutUser = () => {
 		dispatch(logout());
-		message.success('Salida exitosa', 3, navigate('/'));
+		message.success('sesión cerrada', 3, navigate('/'));
 	};
 	useEffect(() => {
 		if (!user.verify) {
@@ -59,7 +59,7 @@ const Dashboard = () => {
 					/>
 					{!collapsed && (
 						<div className='content-usuario__role'>
-							<p>{user?.name}</p>
+							<p>{user.name ? user.name : user.email.split('.')[0]}</p>
 							<span>{user?.tipo}</span>
 						</div>
 					)}
@@ -83,7 +83,7 @@ const Dashboard = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='9' icon={<FileOutlined />}>
-						<Link to='/modificar'>Modificar</Link>
+						Modificar
 					</Menu.Item>
 				</Menu>
 			</Sider>
@@ -98,12 +98,12 @@ const Dashboard = () => {
 							/>
 							<div className='content-empresa__name'>
 								<h3>Empresa</h3>
-								<span>Tours pe</span>
+								<span>Mercurio</span>
 							</div>
 						</Col>
 						<Col span={13} offset={4} className='content-logout'>
 							<div className='content-logout__name'>
-								<h4>brayanmf</h4>
+								<h4>{user.name ? user.name : user.email.split('.')[0]}</h4>
 								<span onClick={logoutUser}>Cerrar Sessión</span>
 							</div>
 							<img
@@ -116,10 +116,9 @@ const Dashboard = () => {
 				</Header>
 				<Content style={{ margin: '0 16px' }}>
 					<Breadcrumb style={{ margin: '16px 0' }}>
-						<Breadcrumb.Item>User</Breadcrumb.Item>
-						<Breadcrumb.Item>Bill</Breadcrumb.Item>
+						<Breadcrumb.Item>{user?.tipo}</Breadcrumb.Item>
 					</Breadcrumb>
-					<Divider orientation='left'>Responsive</Divider>
+					<Divider orientation='left'>Mercurio</Divider>
 					<Outlet />
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
