@@ -73,7 +73,6 @@ const TravellersForm = ({
 
 	const addMemberInfoAndValidateIdNumber = (index, value) => {
 		addMemberInfo('idNumber', index, value);
-		console.log('value', value);
 
 		if (Number.isNaN(Number(value))) {
 			updateStatusArr(idNumberStatusArr, setIdNumberStatusArr, index, {

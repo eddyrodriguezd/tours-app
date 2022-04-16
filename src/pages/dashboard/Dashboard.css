@@ -72,7 +72,7 @@
 	color: rgb(197, 0, 0);
 }
 
-.menu-item__link.active {
-	text-decoration: transparent;
-	outline: none;
+.menu-item__link {
+
+	background-color: rgba(204, 204, 204, 0);
 }
