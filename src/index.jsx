@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
