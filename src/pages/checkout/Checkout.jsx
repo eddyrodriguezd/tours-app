@@ -4,7 +4,6 @@ import { useLocation, Navigate } from 'react-router-dom';
 import { Steps, Button, Card, Row, Col } from 'antd';
 
 import moment from 'moment';
-
 import TravellersForm from '../../components/travellersInfo/TravellersForm';
 import Hotels from '../../components/hotels/Hotels';
 
@@ -19,7 +18,6 @@ const { Step } = Steps;
 
 const Checkout = () => {
 	const location = useLocation();
-
 	if (location.state == null || location.state.tour == null)
 		return <Navigate to='/paquetes' />;
 
@@ -27,9 +25,8 @@ const Checkout = () => {
 	const { Meta } = Card;
 
 	const days = tour.n_dias;
-
 	const [current, setCurrent] = useState(0);
-
+	// const [isModalVisible, setIsModalVisible] = useState(false);
 	const [formCompleted, setFormCompleted] = useState(false);
 	const [radioCompleted, setRadioComplete] = useState(false);
 	const [reservationSuccess, setReservationSuccess] = useState(false);
@@ -131,18 +128,18 @@ const Checkout = () => {
 	];
 
 	const next = () => {
-		console.log('current', current);
 		if (current !== 0) {
-			console.log('diferente de 0');
-			if (radioCompleted) setCurrent(current + 1);
+			if (current === 1 && radioCompleted) {
+				setCurrent(current + 1);
+			}
 		}
-		if (current === 0 && formCompleted) {
-			console.log('se completó el form');
-			setCurrent(current + 1);
-		}
+		if (current === 0 && formCompleted) setCurrent(current + 1);
 	};
 
 	const prev = () => {
+		if (current === 2) {
+			setRadioComplete(false);
+		}
 		setCurrent(current - 1);
 	};
 
@@ -175,17 +172,6 @@ const Checkout = () => {
 	return (
 		<div style={{ marginTop: '6rem', height: '95vh' }}>
 			<Row>
-				<Col xs={24} sm={24} md={24} lg={12} xl={12}>
-					<Card
-						hoverable
-						style={{ width: 450, margin: '2rem auto' }}
-						cover={
-							<img alt='example' src={`assets/img/${tour.img}.jpg`} />
-						}>
-						<Meta title={tour.title} description={tour.title} />
-					</Card>
-				</Col>
-
 				<Col xs={24} sm={24} md={24} lg={12} xl={12}>
 					<div style={{ margin: '1rem' }}>
 						<Steps current={current}>
@@ -220,6 +206,16 @@ const Checkout = () => {
 							)}
 						</div>
 					</div>
+				</Col>
+				<Col xs={24} sm={24} md={24} lg={12} xl={12}>
+					<Card
+						hoverable
+						style={{ width: 450, margin: '2rem auto' }}
+						cover={
+							<img alt='example' src={`assets/img/${tour.img}.jpg`} />
+						}>
+						<Meta title={tour.title} description={tour.title} />
+					</Card>
 				</Col>
 			</Row>
 		</div>

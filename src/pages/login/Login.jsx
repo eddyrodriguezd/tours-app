@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/order */
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
@@ -18,6 +18,7 @@ const Login = () => {
 	const [errors, setErrors] = useState({});
 	const [alert, setAlert] = useState(false);
 	const [bolAux, setBolAux] = useState(false);
+	const location = useLocation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { error, loading, isAuthenticated } = useSelector((state) => state);
@@ -55,7 +56,14 @@ const Login = () => {
 		}
 
 		if (isAuthenticated) {
-			message.success('Autentificado ', 3, navigate('/dashboard'));
+			if (location.state && location.state.tour) {
+				const { id, tour } = location.state;
+				navigate(`/itinerario/${id}`, {
+					state: { tour },
+				});
+			} else {
+				message.success('Autentificado ', 3, navigate('/dashboard'));
+			}
 		}
 	}, [error, isAuthenticated, navigate]);
 
@@ -75,7 +83,11 @@ const Login = () => {
 					<Loading />
 				) : (
 					<div className='formLogin'>
-						<form action='' method='post' onSubmit={handleSubmit}>
+						<form
+							action=''
+							method='post'
+							onSubmit={handleSubmit}
+							id='postLogin'>
 							<Link to='/'>
 								<img src='assets/img/logo/logo.png' alt='Logo' />
 							</Link>
