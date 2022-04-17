@@ -17,14 +17,16 @@ const registerTour = (data) => {
 	});
 	formData.append('itinerary', JSON.stringify(data.itinerary));
 	axios
-		.post(url, formData)
+		.post(url, formData, {
+			withCredentials: true,
+		})
 		.then((response) => {
 			if (response.status === 201) {
 				alert('Tour guardado Exitosamente');
 			}
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(`aquiiiiiiiiiiiiiiiiiiiiii ${err}`);
 		});
 };
 
