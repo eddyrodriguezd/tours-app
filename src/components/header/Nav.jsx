@@ -43,7 +43,12 @@ const Nav = () => {
 						</NavLink>
 					</Menu.Item>
 					<Menu.Item key='alipays'>
-						<a href='/registro'>Registrate</a>
+						<NavLink
+							target='_blank'
+							rel='noopener noreferrer'
+							to='/registro'>
+							Registrate
+						</NavLink>
 					</Menu.Item>
 				</Menu>
 			</div>
