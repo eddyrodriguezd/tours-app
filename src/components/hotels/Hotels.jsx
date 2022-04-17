@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import { Radio, Tag, Rate, Button } from 'antd';
@@ -153,6 +154,7 @@ const Hotel = ({ onChangeFn, setRadioComplete }) => {
 				className={style.content__btn}>
 				refrescar
 			</Button>
+
 			{hoteles.map((hotel) => {
 				const start = hotel.category.split(' ')[0];
 				return (

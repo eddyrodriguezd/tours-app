@@ -6,10 +6,11 @@ import {
 	DesktopOutlined,
 	PieChartOutlined,
 	FileOutlined,
+	UserOutlined,
 } from '@ant-design/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { logout } from '../../store/actions';
 
 import './Dashboard.css';
@@ -69,10 +70,13 @@ const Dashboard = () => {
 					defaultSelectedKeys={['1']}
 					mode='inline'
 					className='menu-content'>
-					<Menu.Item key='1' icon={<PieChartOutlined />}>
+					<Menu.Item key='1' icon={<UserOutlined />}>
+						<Link to='/dashboard/profile'>Perfil</Link>
+					</Menu.Item>
+					<Menu.Item key='2' icon={<PieChartOutlined />}>
 						Estadísticas
 					</Menu.Item>
-					<Menu.Item key='2' icon={<DesktopOutlined />}>
+					<Menu.Item key='3' icon={<DesktopOutlined />}>
 						<NavLink
 							onClick={(e) => {
 								e.target.blur();
@@ -82,7 +86,7 @@ const Dashboard = () => {
 							Agregar Tour
 						</NavLink>
 					</Menu.Item>
-					<Menu.Item key='9' icon={<FileOutlined />}>
+					<Menu.Item key='4' icon={<FileOutlined />}>
 						Modificar
 					</Menu.Item>
 				</Menu>
@@ -122,7 +126,7 @@ const Dashboard = () => {
 					<Outlet />
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
-					Ant Design ©2018 Created by Ant UED
+					©2022 Created by Mercurio
 				</Footer>
 			</Layout>
 		</Layout>

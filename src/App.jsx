@@ -14,10 +14,12 @@ import { loadUser } from './store/actions';
 import RegisterTour from './components/tours/RegisterTour';
 import Checkout from './pages/checkout/Checkout';
 import Dashboard from './pages/dashboard/Dashboard';
+import NotExist from './pages/notExist/NotExist';
 import Editor from './components/editor/Editor';
 import ConfirmEmail from './components/confirm-email/ConfirmEmail';
 import './App.css';
 import ListTours from './components/tours/ListTours';
+import Profile from './components/profile/Profile';
 
 const App = () => {
 	const { isAuthenticated } = useSelector((state) => state);
@@ -42,11 +44,12 @@ const App = () => {
 					<Route path='/editor' element={<Editor />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/registro' element={<Register />} />
-					<Route path='*' element={<h2>Página no Encontrada</h2>} />
+					<Route path='*' element={<NotExist />} />
 
 					{isAuthenticated && (
 						<Route path='/dashboard/' element={<Dashboard />}>
 							<Route path='tour' element={<RegisterTour />} />
+							<Route path='profile' element={<Profile />} />
 							<Route path='listTours' element={<ListTours />} />
 						</Route>
 					)}
