@@ -1,5 +1,7 @@
-import { Table, Input } from 'antd';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Table, Input, Space } from 'antd';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getTours } from '../../api/tour/tour';
 
 const { Search } = Input;
@@ -53,6 +55,12 @@ const ListTours = () => {
 			title: 'Acciones',
 			dataIndex: '',
 			key: 'actions',
+			render: () => (
+				<Space size='middle'>
+					<Link to='/'>Actualizar</Link>
+					<Link to='/'>Eliminar</Link>
+				</Space>
+			),
 		},
 	];
 

@@ -44,8 +44,31 @@
 
 .container-itinerary {
 	margin-bottom: 5rem;
+	margin-top: 4rem;
+}
+
+.container-body {
+	color: rgb(17, 17, 220);
+	width: 90%;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2rem;
 }
 
 .aling-left {
 	text-align: left;
+}
+.items {
+	height: 100%;
+	width: 100%;
+}
+
+.title {
+	text-align: center;
+}
+
+.button-itinerary {
+	margin-top: 1rem;
+	margin-left: 3rem;
 }

@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 
 const registerTour = (data) => {
@@ -17,14 +18,16 @@ const registerTour = (data) => {
 	});
 	formData.append('itinerary', JSON.stringify(data.itinerary));
 	axios
-		.post(url, formData)
+		.post(url, formData, {
+			withCredentials: true,
+		})
 		.then((response) => {
 			if (response.status === 201) {
-				alert('Tour guardado Exitosamente');
+				message.success('Tour guardado Exitosamente', 10);
 			}
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(`aquiiiiiiiiiiiiiiiiiiiiii ${err}`);
 		});
 };
 

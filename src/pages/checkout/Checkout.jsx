@@ -212,7 +212,14 @@ const Checkout = () => {
 						hoverable
 						style={{ width: 450, margin: '2rem auto' }}
 						cover={
-							<img alt='example' src={`assets/img/${tour.img}.jpg`} />
+							<img
+								alt='example'
+								src={
+									tour.images[0]
+										? tour.images[0]
+										: 'https://res.cloudinary.com/dmorxcs1y/image/upload/v1650170655/samples/mulyadi-ZnLprInKM7s-unsplash_1_nqiqes.jpg'
+								}
+							/>
 						}>
 						<Meta title={tour.title} description={tour.title} />
 					</Card>
