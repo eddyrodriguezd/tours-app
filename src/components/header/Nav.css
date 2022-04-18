@@ -35,7 +35,22 @@
 .menu a:hover {
 	color: #042458 !important;
 }
-
+.user-menu{
+	margin-right: 2rem;
+}
+.user-menu_name,.user-menu_session{
+	font-size: .7em;
+}
+.user-menu_session{
+	color : #d40000;
+	font-size: .7em;
+	font-weight: bold;
+	margin-left: .5rem;
+	cursor: pointer;
+}
+.user-menu_session:hover{
+	color : #830000;
+}
 @media screen and (max-width: 600px) {
 	.menus {
 		display: none;

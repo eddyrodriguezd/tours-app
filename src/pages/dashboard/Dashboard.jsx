@@ -7,10 +7,19 @@ import {
 	PieChartOutlined,
 	FileOutlined,
 	UserOutlined,
+	ArrowLeftOutlined,
 } from '@ant-design/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
+import {
+	Outlet,
+	NavLink,
+	useNavigate,
+	Link,
+	useLocation,
+} from 'react-router-dom';
+import Profile from '../../components/profile/Profile';
+
 import { logout } from '../../store/actions';
 
 import './Dashboard.css';
@@ -19,6 +28,7 @@ const Dashboard = () => {
 	const { Header, Content, Footer, Sider } = Layout;
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const location = useLocation();
 	const [collapsed, setCollapsed] = useState(false);
 	const [imgPoint, setImgPoint] = useState(null);
 	const { user } = useSelector((state) => state);
@@ -36,12 +46,14 @@ const Dashboard = () => {
 		dispatch(logout());
 		message.success('sesión cerrada', 3, navigate('/'));
 	};
+
 	useEffect(() => {
 		if (!user.verify) {
 			dispatch(logout());
 			message.error('No estas Verificado', 3, navigate('/'));
 		}
 	}, []);
+
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Sider
@@ -89,6 +101,10 @@ const Dashboard = () => {
 					<Menu.Item key='4' icon={<FileOutlined />}>
 						Modificar
 					</Menu.Item>
+
+					<Menu.Item key='5' icon={<ArrowLeftOutlined />}>
+						<Link to='/'>Ir a la web</Link>
+					</Menu.Item>
 				</Menu>
 			</Sider>
 			<Layout>
@@ -123,7 +139,7 @@ const Dashboard = () => {
 						<Breadcrumb.Item>{user?.tipo}</Breadcrumb.Item>
 					</Breadcrumb>
 					<Divider orientation='left'>Mercurio</Divider>
-					<Outlet />
+					{location.pathname === '/dashboard' ? <Profile /> : <Outlet />}
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
 					©2022 Created by Mercurio
