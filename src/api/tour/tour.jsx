@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 
 const registerTour = (data) => {
@@ -22,7 +23,7 @@ const registerTour = (data) => {
 		})
 		.then((response) => {
 			if (response.status === 201) {
-				alert('Tour guardado Exitosamente');
+				message.success('Tour guardado Exitosamente', 10);
 			}
 		})
 		.catch((err) => {
