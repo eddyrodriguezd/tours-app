@@ -32,9 +32,6 @@ const Nav = () => {
 					<Menu.Item key='main'>
 						<NavLink to='/'>Inicio</NavLink>
 					</Menu.Item>
-					<Menu.Item key='destination'>
-						<NavLink to='/destinos'>Destinos</NavLink>
-					</Menu.Item>
 					<Menu.Item key='pakage'>
 						<NavLink to='/paquetes'>Paquetes</NavLink>
 					</Menu.Item>
