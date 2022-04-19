@@ -23,7 +23,7 @@ const fetchHotels = (data, setSuccess) => {
 
 	sendHttpRequest(
 		'post',
-		'/reservation/hotels/fetch',
+		'reservation/hotels/fetch',
 		data,
 		responseOptions
 	);

@@ -4,14 +4,17 @@ import React, { useEffect, useState } from 'react';
 import { Menu, Avatar } from 'antd';
 import 'antd/dist/antd.css';
 import './Nav.css';
-import { NavLink } from 'react-router-dom';
+
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/actions';
 
 const Nav = () => {
 	const [offset, setOffset] = useState(0);
+	const location = useLocation();
 	const dispatch = useDispatch();
 	const { isAuthenticated, user } = useSelector((state) => state);
+
 	useEffect(() => {
 		const onScroll = () => setOffset(window.pageYOffset);
 		window.removeEventListener('scroll', onScroll);
@@ -22,12 +25,17 @@ const Nav = () => {
 		dispatch(logout());
 	};
 	return (
-		<nav className={`nav ${offset > 0 && 'nav-scroll'}`}>
+		<nav
+			className={`nav ${
+				offset > 0 || location.pathname !== '/' ? 'nav-scroll' : ''
+			}`}>
 			<span className='text-logo'>Mercurio</span>
 			<div className='menus'>
 				<Menu
 					mode='horizontal'
-					className={`${offset === 0 && 'menu'}`}
+					className={`${
+						offset === 0 && location.pathname === '/' ? 'menu' : ''
+					}`}
 					style={{ flex: '1 1' }}>
 					<Menu.Item key='main'>
 						<NavLink to='/'>Inicio</NavLink>

@@ -13,6 +13,7 @@ import {
 } from '../../api/reservation/reservationEndpoints';
 
 import './Checkout.css';
+import Payment from '../../components/payment/Payment';
 
 const { Step } = Steps;
 
@@ -35,7 +36,8 @@ const Checkout = () => {
 
 	const [inputs, setInputs] = useState({
 		tour: {
-			tourId: tour.id,
+			// eslint-disable-next-line no-underscore-dangle
+			tourId: tour._id,
 			destination: tour.destination,
 		},
 		contactInfo: {
@@ -45,6 +47,7 @@ const Checkout = () => {
 		},
 		members: [{}],
 		startDate: moment(new Date()).format('YYYY-MM-DD').toString(),
+		endDate: tour.endDate,
 	});
 
 	const changeFormValues = (key, value) => {
@@ -116,6 +119,7 @@ const Checkout = () => {
 			title: 'hotel',
 			content: (
 				<Hotels
+					hoteles={hotelsInfo}
 					onChangeFn={changeFormValues}
 					setRadioComplete={setRadioComplete}
 				/>
@@ -123,7 +127,7 @@ const Checkout = () => {
 		},
 		{
 			title: 'Pago',
-			content: <Button placeholder='Pagar' />,
+			content: <Payment info={inputs} />,
 		},
 	];
 
@@ -153,11 +157,11 @@ const Checkout = () => {
 		if (current === 1) {
 			const hotelParams = {
 				checkIn: inputs.startDate,
-				checkOut: inputs.endDate,
+				checkOut: tour.endDate,
 				rooms: 2,
 				adults: 2,
 				children: 0,
-				city: inputs.tour.destination.city,
+				city: inputs.tour.destination,
 			};
 			fetchHotels(hotelParams, (data) => setHotelsInfo(data));
 		}
