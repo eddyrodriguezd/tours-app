@@ -95,16 +95,19 @@ const Dashboard = () => {
 							</NavLink>
 						</Menu.Item>
 					)}
-					<Menu.Item key='4' icon={<DesktopOutlined />}>
-						<NavLink
-							onClick={(e) => {
-								e.target.blur();
-							}}
-							className='menu-item__link'
-							to='/dashboard/listTours'>
-							Listar Tour
-						</NavLink>
-					</Menu.Item>
+					{user.tipo === 'business' && (
+						<Menu.Item key='4' icon={<DesktopOutlined />}>
+							<NavLink
+								onClick={(e) => {
+									e.target.blur();
+								}}
+								className='menu-item__link'
+								to='/dashboard/listTours'>
+								Listar Tour
+							</NavLink>
+						</Menu.Item>
+					)}
+
 					<Menu.Item key='5' icon={<ArrowLeftOutlined />}>
 						<Link to='/'>Ir a la web</Link>
 					</Menu.Item>
