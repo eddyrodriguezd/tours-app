@@ -83,7 +83,7 @@ const Dashboard = () => {
 					<Menu.Item key='1' icon={<UserOutlined />}>
 						<Link to='/dashboard/profile'>Perfil</Link>
 					</Menu.Item>
-					{user.tipo === 'bussinnes' && (
+					{user.tipo === 'business' && (
 						<Menu.Item key='3' icon={<DesktopOutlined />}>
 							<NavLink
 								onClick={(e) => {
