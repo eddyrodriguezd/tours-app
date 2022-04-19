@@ -85,19 +85,18 @@ const Dashboard = () => {
 					<Menu.Item key='1' icon={<UserOutlined />}>
 						<Link to='/dashboard/profile'>Perfil</Link>
 					</Menu.Item>
-					<Menu.Item key='2' icon={<PieChartOutlined />}>
-						Estadísticas
-					</Menu.Item>
-					<Menu.Item key='3' icon={<DesktopOutlined />}>
-						<NavLink
-							onClick={(e) => {
-								e.target.blur();
-							}}
-							className='menu-item__link'
-							to='/dashboard/tour'>
-							Agregar Tour
-						</NavLink>
-					</Menu.Item>
+					{user.tipo === 'bussinnes' && (
+						<Menu.Item key='3' icon={<DesktopOutlined />}>
+							<NavLink
+								onClick={(e) => {
+									e.target.blur();
+								}}
+								className='menu-item__link'
+								to='/dashboard/tour'>
+								Agregar Tour
+							</NavLink>
+						</Menu.Item>
+					)}
 					<Menu.Item key='4' icon={<DesktopOutlined />}>
 						<NavLink
 							onClick={(e) => {
@@ -108,10 +107,6 @@ const Dashboard = () => {
 							Listar Tour
 						</NavLink>
 					</Menu.Item>
-					<Menu.Item key='5' icon={<FileOutlined />}>
-						Modificar
-					</Menu.Item>
-
 					<Menu.Item key='5' icon={<ArrowLeftOutlined />}>
 						<Link to='/'>Ir a la web</Link>
 					</Menu.Item>

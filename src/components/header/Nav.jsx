@@ -41,7 +41,6 @@ const Nav = () => {
 						<NavLink to='/dashboard'>
 							<span className='user-menu_name'>
 								{user.name ? user.name : user.email.split('.')[0]}
-								dsadasdasdsadsaasddsasdasdas
 							</span>
 							<Avatar src={user.avatar.url} />
 						</NavLink>

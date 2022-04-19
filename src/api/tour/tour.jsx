@@ -2,7 +2,7 @@ import { message } from 'antd';
 import axios from 'axios';
 
 const registerTour = (data) => {
-	const url = 'http://localhost:5000/api/tour/create';
+	const url = process.env.REACT_APP_BACKEND_ENDPOINT.concat('tour/create');
 
 	const formData = new FormData();
 	formData.append('title', data.title);
@@ -27,12 +27,12 @@ const registerTour = (data) => {
 			}
 		})
 		.catch((err) => {
-			console.log(`aquiiiiiiiiiiiiiiiiiiiiii ${err}`);
+			console.log(err);
 		});
 };
 
 const getTours = async () => {
-	const url = 'http://localhost:5000/api/tour/fetch';
+	const url = process.env.REACT_APP_BACKEND_ENDPOINT.concat('tour/fetch');
 	let dataTours = {};
 	try {
 		dataTours = await axios(url);
