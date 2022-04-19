@@ -9,7 +9,7 @@ const registerReservation = (data, setSuccess) => {
 		errorMessage: "Couldn't create reservation",
 	};
 
-	sendHttpRequest('post', '/reservation/create', data, responseOptions);
+	sendHttpRequest('post', 'reservation/create', data, responseOptions);
 };
 
 const fetchHotels = (data, setSuccess) => {
