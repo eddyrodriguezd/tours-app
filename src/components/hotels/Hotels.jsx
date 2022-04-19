@@ -3,118 +3,8 @@
 import React, { useState } from 'react';
 import { Radio, Tag, Rate, Button } from 'antd';
 import style from './Hotels.module.css';
-
 // eslint-disable-next-line no-unused-vars
-const hoteles = [
-	{
-		name: 'Hotel Carrera',
-		category: '4 STARS',
-		zone: 'Centro',
-		currency: 'EUR',
-		rooms: [
-			{
-				name: 'DOUBLE SUPERIOR',
-				rate: '476.72',
-			},
-			{
-				name: 'JUNIOR SUITE CAPACITY 2',
-				rate: '506.56',
-			},
-		],
-	},
-	{
-		name: 'Qorianka Hotel',
-		category: '3 STARS',
-		zone: 'Centro',
-		currency: 'EUR',
-		rooms: [
-			{
-				name: 'TWIN STANDARD',
-				rate: '518.24',
-			},
-			{
-				name: 'DOUBLE EXECUTIVE',
-				rate: '569.55',
-			},
-		],
-	},
 
-	{
-		name: 'Roosevelt Hotel & Suites',
-		category: '4 STARS',
-		zone: 'San Isidro',
-		currency: 'EUR',
-		rooms: [
-			{
-				name: 'DOUBLE STANDARD',
-				rate: '595.60',
-			},
-			{
-				name: 'JUNIOR SUITE STANDARD',
-				rate: '706.88',
-			},
-		],
-	},
-
-	{
-		name: 'Palmetto Hotel Business La Perla',
-		category: '3 STARS',
-		zone: 'San Miguel',
-		currency: 'EUR',
-		rooms: [
-			{
-				name: 'DOUBLE STANDARD',
-				rate: '370.80',
-			},
-			{
-				name: 'DOUBLE EXECUTIVE SUPERIOR',
-				rate: '463.44',
-			},
-			{
-				name: 'TWIN STANDARD',
-				rate: '556.24',
-			},
-			{
-				name: 'SUITE STANDARD',
-				rate: '584.00',
-			},
-		],
-	},
-
-	{
-		name: 'Roosevelt Hotel & Suites',
-		category: '4 STARS',
-		zone: 'San Isidro',
-		currency: 'EUR',
-		rooms: [
-			{
-				name: 'DOUBLE STANDARD',
-				rate: '595.60',
-			},
-			{
-				name: 'JUNIOR SUITE STANDARD',
-				rate: '706.88',
-			},
-		],
-	},
-
-	{
-		name: 'Roosevelt Hotel & Suites',
-		category: '4 STARS',
-		zone: 'San Isidro',
-		currency: 'EUR',
-		rooms: [
-			{
-				name: 'DOUBLE STANDARD',
-				rate: '595.60',
-			},
-			{
-				name: 'JUNIOR SUITE STANDARD',
-				rate: '706.88',
-			},
-		],
-	},
-];
 // const rooms2 = hoteles.map((room) => room.rooms);
 // console.log(rooms2);
 
@@ -123,15 +13,28 @@ const hoteles = [
 // eslint-disable-next-line spaced-comment
 
 // eslint-disable-next-line no-unused-vars
-const Hotel = ({ onChangeFn, setRadioComplete }) => {
+const Hotel = ({ hoteles, onChangeFn, setRadioComplete }) => {
 	// eslint-disable-next-line no-unused-vars
 	const [disable, setDisable] = useState(false);
 	// eslint-disable-next-line no-unused-vars
 	const [valor, setValor] = useState();
 
 	const onChange = (e) => {
-		onChangeFn('precio', e.target.value);
-
+		const [nameHotel, indexRoom] = e.target.value.split('_&_');
+		const hotel = hoteles.find((hotl) => hotl.name === nameHotel);
+		const newHotel = {
+			name: hotel.name,
+			room: {
+				category: hotel.category,
+				beds: 1,
+			},
+			guests: 0,
+			price: {
+				amount: hotel.rooms[indexRoom].rate,
+				currency: hotel.currency,
+			},
+		};
+		onChangeFn('hotel', newHotel);
 		setValor(e.target.value);
 		if (e.target.checked) {
 			setDisable(true);
@@ -140,6 +43,7 @@ const Hotel = ({ onChangeFn, setRadioComplete }) => {
 			setDisable(false);
 		}
 	};
+
 	const handleClick = () => {
 		setDisable(false);
 		setRadioComplete(false);
@@ -179,9 +83,10 @@ const Hotel = ({ onChangeFn, setRadioComplete }) => {
 							className={style.content__radio}>
 							{hotel.rooms.map((room, index) => {
 								const aux = index + 1;
+								const name = `${hotel.name}_&_${index}`;
 								return (
 									<Radio
-										value={room.rate}
+										value={name}
 										className={style.content__RadioLabel}
 										key={aux}
 										disabled={disable}
