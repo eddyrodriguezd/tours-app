@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Breadcrumb, Row, Col, Divider, message } from 'antd';
 import {
 	DesktopOutlined,
-	PieChartOutlined,
-	FileOutlined,
 	UserOutlined,
 	ArrowLeftOutlined,
 } from '@ant-design/icons';
